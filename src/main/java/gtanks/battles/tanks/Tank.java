@@ -1,6 +1,5 @@
 package gtanks.battles.tanks;
 
-import gtanks.StringUtils;
 import gtanks.battles.BattlefieldPlayerController;
 import gtanks.battles.effects.Effect;
 import gtanks.battles.effects.EffectType;
@@ -11,7 +10,10 @@ import gtanks.battles.tanks.math.Vector3;
 import gtanks.battles.tanks.weapons.WeaponModel;
 import gtanks.battles.tanks.weapons.frezee.effects.FreezeEffectModel;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Tank {
     public static final int MAX_HEALTH_TANK = 10000;
@@ -56,10 +58,6 @@ public class Tank {
         this.hull = hull;
         this.speed = hull.speed;
         this.turnSpeed = hull.turnSpeed;
-    }
-
-    public String dump() {
-        return StringUtils.concatStrings("-------TANK DUMP-------\n\t\ttank id: ", this.id, "\n\t\thealth: ", String.valueOf(this.health), "\n\t\tweapon: ", String.valueOf(this.weapon), "\n\t\thull: ", String.valueOf(this.hull), "\n\t\tstate: ", this.state);
     }
 
     public Colormap getColormap() {

@@ -4,17 +4,16 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import gtanks.StringUtils;
 import gtanks.battles.BattlefieldModel;
 import gtanks.battles.BattlefieldPlayerController;
+import gtanks.battles.tanks.weapons.ShotData;
 import gtanks.battles.tanks.weapons.WeaponEntity;
 import gtanks.battles.tanks.weapons.WeaponModel;
-import gtanks.battles.tanks.weapons.ShotData;
 import gtanks.battles.tanks.weapons.WeaponWeakeningData;
 import gtanks.battles.tanks.weapons.flamethrower.FlamethrowerEntity;
 import gtanks.battles.tanks.weapons.flamethrower.FlamethrowerModel;
-import gtanks.battles.tanks.weapons.frezee.FrezeeEntity;
 import gtanks.battles.tanks.weapons.frezee.FreezeModel;
+import gtanks.battles.tanks.weapons.frezee.FrezeeEntity;
 import gtanks.battles.tanks.weapons.isida.IsidaEntity;
 import gtanks.battles.tanks.weapons.isida.IsidaModel;
 import gtanks.battles.tanks.weapons.railgun.RailgunEntity;
@@ -107,7 +106,7 @@ public class WeaponsFactory {
         for (JsonElement e : obj.getAsJsonArray("params")) {
             JsonObject item = e.getAsJsonObject();
             String modification = item.get("modification").getAsString();
-            String id = StringUtils.concatStrings(type, "_", modification);
+            String id = type + "_" + modification;
             ShotData shotData = new ShotData(id, item.get("autoAimingAngleDown").getAsDouble(), item.get("autoAimingAngleUp").getAsDouble(), item.get("numRaysDown").getAsInt(), item.get("numRaysUp").getAsInt(), item.get("reloadMsec").getAsInt(), item.get("impactCoeff").getAsFloat(), item.get("kickback").getAsFloat(), item.get("turretRotationAccel").getAsFloat(), item.get("turretRotationSpeed").getAsFloat());
             WeaponEntity entity = null;
             switch (type) {

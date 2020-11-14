@@ -1,6 +1,5 @@
 package gtanks.users;
 
-import gtanks.StringUtils;
 import gtanks.groups.UserGroup;
 import gtanks.network.Session;
 import gtanks.system.localization.Localization;
@@ -296,8 +295,9 @@ public class User implements Serializable {
         this.lastIssueBonus = lastIssueBonus;
     }
 
+    @Override
     public String toString() {
-        return StringUtils.concatStrings(String.valueOf(this.rang), " ", this.nickname, " ", this.password);
+        return "" + this.rang + " " + this.nickname + " " + this.password;
     }
 
     public Localization getLocalization() {

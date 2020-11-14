@@ -1,6 +1,7 @@
 package gtanks.battles.tanks.weapons.railgun;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import gtanks.RandomUtils;
 import gtanks.battles.BattlefieldModel;
@@ -29,23 +30,22 @@ public class RailgunModel extends FiringWeaponModel {
     public void fire(JsonObject data) {
         this.battle.fire(this.tank, data);
 
-        JsonArray tanks = data.getAsJsonArray("targets");
+        JsonElement targets = data.get("targets");
         if (!check(data.get("reloadTime").getAsInt())) {
             this.battle.cheatDetected(this.tank, this);
             return;
         }
 
-        if (tanks == null) {
-            return;
+        if (targets != null && !targets.isJsonNull()) {
+            JsonArray tanks = targets.getAsJsonArray();
+            BattlefieldPlayerController[] tanksA = new BattlefieldPlayerController[tanks.size()];
+
+            for (int i = 0; i < tanks.size(); ++i) {
+                tanksA[i] = this.battle.players.get(tanks.get(i).getAsString());
+            }
+
+            this.onTarget(tanksA, 0);
         }
-
-        BattlefieldPlayerController[] tanks_array = new BattlefieldPlayerController[tanks.size()];
-
-        for (int i = 0; i < tanks.size(); ++i) {
-            tanks_array[i] = this.battle.players.get(tanks.get(i).getAsString());
-        }
-
-        this.onTarget(tanks_array, 0);
     }
 
     @Override

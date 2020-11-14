@@ -1,6 +1,5 @@
 package gtanks.main.netty;
 
-import gtanks.StringUtils;
 import gtanks.auth.Auth;
 import gtanks.commands.Command;
 import gtanks.commands.Commands;
@@ -11,16 +10,15 @@ import org.jboss.netty.channel.Channel;
 import org.jboss.netty.channel.ChannelHandlerContext;
 
 public class ProtocolTransfer {
-    private static final String SPLITTER_CMDS = "end~";
+    private static final String COMMAND_SEPARATOR = "end~";
     private final int[] _keys = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9};
+    private final Channel channel;
+    private final ChannelHandlerContext context;
     public LobbyManager lobby;
     public Auth auth;
     private StringBuffer inputRequest;
     private StringBuffer badRequest = new StringBuffer();
-    private Channel channel;
-    private ChannelHandlerContext context;
     private int _lastKey = 1;
-    private boolean doAES = false;
 
     public ProtocolTransfer(Channel channel, ChannelHandlerContext context) {
         this.channel = channel;
@@ -30,8 +28,8 @@ public class ProtocolTransfer {
     public void decryptProtocol(String protocol) {
         //System.out.println("Raw input data: " + protocol);
         if ((this.inputRequest = new StringBuffer(protocol)).length() > 0) {
-            if (this.inputRequest.toString().endsWith(SPLITTER_CMDS)) {
-                this.inputRequest = new StringBuffer(StringUtils.concatStrings(this.badRequest.toString(), this.inputRequest.toString()));
+            if (this.inputRequest.toString().endsWith(COMMAND_SEPARATOR)) {
+                this.inputRequest = new StringBuffer(this.badRequest.toString() + this.inputRequest.toString());
 
                 for (String request : parseCryptRequests()) {
                     int key;
@@ -67,14 +65,14 @@ public class ProtocolTransfer {
 
                 this.badRequest = new StringBuffer();
             } else {
-                this.badRequest = new StringBuffer(StringUtils.concatStrings(this.badRequest.toString(), this.inputRequest.toString()));
+                this.badRequest = new StringBuffer(this.badRequest.toString() + this.inputRequest.toString());
             }
         }
 
     }
 
     private String[] parseCryptRequests() {
-        return this.inputRequest.toString().split(SPLITTER_CMDS);
+        return this.inputRequest.toString().split(COMMAND_SEPARATOR);
     }
 
     private String decrypt(String request, int key) {
@@ -117,9 +115,6 @@ public class ProtocolTransfer {
             default:
                 break;
             case SYSTEM:
-                if (cmd.args[0].equals("get_aes_data")) {
-                    send(Type.SYSTEM, "set_aes_data", "");
-                }
                 this.auth.executeCommand(cmd);
 
                 if (this.lobby != null) {
@@ -134,10 +129,10 @@ public class ProtocolTransfer {
         request.append(";");
 
         for (int i = 0; i < args.length - 1; ++i) {
-            request.append(StringUtils.concatStrings(args[i], ";"));
+            request.append(args[i]).append(";");
         }
 
-        request.append(StringUtils.concatStrings(args[args.length - 1], SPLITTER_CMDS));
+        request.append(args[args.length - 1]).append(COMMAND_SEPARATOR);
         if (this.channel.isWritable() && this.channel.isConnected() && this.channel.isOpen()) {
             this.channel.write(request.toString());
         }

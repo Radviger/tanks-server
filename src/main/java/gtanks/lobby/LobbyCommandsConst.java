@@ -34,5 +34,5 @@ public class LobbyCommandsConst {
     public static final String INIT_BATTLE_MODEL = "init_battle_model";
     public static final String SERVER_MESSAGE = "server_message";
     public static final String INIT_MESSAGES = "init_messages";
-    public static final String ADD_CRYSTALL = "add_crystall";
+    public static final String ADD_CRYSTAL = "add_crystall";
 }

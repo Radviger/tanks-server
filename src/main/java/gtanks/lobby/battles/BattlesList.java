@@ -1,6 +1,5 @@
 package gtanks.lobby.battles;
 
-import gtanks.StringUtils;
 import gtanks.battles.BattlefieldModel;
 import gtanks.battles.BattlefieldPlayerController;
 import gtanks.commands.Type;
@@ -32,7 +31,7 @@ public class BattlesList extends BattlesListCommandsConst {
 
     public static void removeBattle(BattleInfo battle) {
         if (battle != null) {
-            lobbyServices.sendCommandToAllUsers(Type.LOBBY, UserLocation.BATTLESELECT, StringUtils.concatStrings("remove_battle", ";", battle.battleId));
+            lobbyServices.sendCommandToAllUsers(Type.LOBBY, UserLocation.BATTLESELECT, REMOVE_BATTLE + ";" + battle.battleId);
             if (battle.model != null && battle.model.players != null) {
                 for (BattlefieldPlayerController player : battle.model.players.values()) {
                     player.parentLobby.kick();
@@ -49,7 +48,7 @@ public class BattlesList extends BattlesListCommandsConst {
     }
 
     private static String generateId(String gameName, String mapId) {
-        return (new Random()).nextInt(50000) + "@" + gameName + "@" + "#" + countBattles;
+        return new Random().nextInt(50000) + "@" + gameName + "@" + "#" + countBattles;
     }
 
     public static BattleInfo getBattleInfoById(String id) {

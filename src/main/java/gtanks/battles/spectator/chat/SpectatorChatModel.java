@@ -54,17 +54,17 @@ public class SpectatorChatModel {
                         return;
                     }
 
-                    User giver = this.database.getUserById(arguments[1]);
+                    User giver = database.getUserById(arguments[1]);
                     if (giver != null) {
                         String reason = StringUtils.concatMassive(arguments, 2);
-                        this.chatModel.sendSystemMessage(StringUtils.concatStrings("Танкист ", giver.getNickname(), " предупрежден. Причина: ", reason));
+                        this.chatModel.sendSystemMessage("Танкист " + giver.getNickname() + " предупрежден. Причина: " + reason);
                     }
                     break;
                 }
                 case "kick": {
-                    User _userForKick = this.database.getUserById(arguments[1]);
+                    User _userForKick = database.getUserById(arguments[1]);
                     if (_userForKick != null) {
-                        LobbyManager _lobby = this.lobbyServices.getLobbyByUser(_userForKick);
+                        LobbyManager _lobby = lobbyServices.getLobbyByUser(_userForKick);
                         if (_lobby != null) {
                             _lobby.kick();
                             this.chatModel.sendSystemMessage(_userForKick.getNickname() + " кикнут");
@@ -74,9 +74,9 @@ public class SpectatorChatModel {
                 }
                 case "unban": {
                     if (arguments.length >= 2) {
-                        User cu = this.database.getUserById(arguments[1]);
+                        User cu = database.getUserById(arguments[1]);
                         if (cu != null) {
-                            this.banServices.unbanChat(cu);
+                            banServices.unbanChat(cu);
                             this.chatModel.sendSystemMessage("Танкисту " + cu.getNickname() + " был разрешён выход в эфир");
                         }
                     }
@@ -84,8 +84,7 @@ public class SpectatorChatModel {
                 }
                 case "blockgame": {
                     if (arguments.length >= 3) {
-                        User victim_ = this.database.getUserById(arguments[1]);
-                        boolean var6 = false;
+                        User victim_ = database.getUserById(arguments[1]);
 
                         int reasonId;
                         try {
@@ -95,22 +94,22 @@ public class SpectatorChatModel {
                         }
 
                         if (victim_ != null) {
-                            this.banServices.ban(BanType.GAME, BanTimeType.FOREVER, victim_, spectator.getUser(), BlockGameReason.getReasonById(reasonId).getReason());
-                            LobbyManager lobby = this.lobbyServices.getLobbyByNick(victim_.getNickname());
+                            banServices.ban(BanType.GAME, BanTimeType.FOREVER, victim_, spectator.getUser(), BlockGameReason.getReasonById(reasonId).getReason());
+                            LobbyManager lobby = lobbyServices.getLobbyByNick(victim_.getNickname());
                             if (lobby != null) {
                                 lobby.kick();
                             }
 
-                            this.chatModel.sendSystemMessage(StringUtils.concatStrings("Танкист ", victim_.getNickname(), " был заблокирован и кикнут"));
+                            this.chatModel.sendSystemMessage("Танкист " + victim_.getNickname() + " был заблокирован и кикнут");
                         }
                     }
                     break;
                 }
                 case "unblockgame": {
                     if (arguments.length >= 2) {
-                        User av = this.database.getUserById(arguments[1]);
+                        User av = database.getUserById(arguments[1]);
                         if (av != null) {
-                            this.banServices.unblock(av);
+                            banServices.unblock(av);
                             this.chatModel.sendSystemMessage(av.getNickname() + " разблокирован");
                         }
                     }
@@ -136,13 +135,13 @@ public class SpectatorChatModel {
                         return;
                     }
 
-                    User _victim = this.database.getUserById(arguments[1]);
+                    User _victim = database.getUserById(arguments[1]);
                     if (_victim == null) {
                         return;
                     }
 
-                    this.banServices.ban(BanType.CHAT, time, _victim, spectator.getUser(), reason);
-                    this.chatModel.sendSystemMessage(StringUtils.concatStrings("Танкист ", _victim.getNickname(), " лишен права выхода в эфир ", time.getNameType(), " Причина: ", reason));
+                    banServices.ban(BanType.CHAT, time, _victim, spectator.getUser(), reason);
+                    this.chatModel.sendSystemMessage("Танкист " + _victim.getNickname() + " лишен права выхода в эфир " + time.getNameType() + " Причина: " + reason);
                     break;
                 }
             }

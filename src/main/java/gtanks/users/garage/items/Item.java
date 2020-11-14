@@ -1,7 +1,6 @@
 package gtanks.users.garage.items;
 
 import com.google.gson.JsonObject;
-import gtanks.StringUtils;
 import gtanks.system.localization.strings.LocalizedString;
 import gtanks.users.garage.Garage;
 import gtanks.users.garage.enums.ItemType;
@@ -45,7 +44,7 @@ public class Item {
     }
 
     public String getId() {
-        return StringUtils.concatStrings(this.id, "_m", String.valueOf(this.modificationIndex));
+        return this.id + "_m" + this.modificationIndex;
     }
 
     @Override

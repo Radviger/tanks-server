@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import gtanks.StringUtils;
 import gtanks.battles.tanks.hulls.Hull;
 
 import java.io.File;
@@ -41,7 +40,7 @@ public class HullsFactory {
         for (JsonElement e : obj.getAsJsonArray("modifications")) {
             JsonObject mod = e.getAsJsonObject();
             Hull hull = new Hull(mod.get("mass").getAsFloat(), mod.get("power").getAsFloat(), mod.get("maxForwardSpeed").getAsFloat(), mod.get("maxTurnSpeed").getAsFloat(), mod.get("hp").getAsFloat());
-            hulls.put(StringUtils.concatStrings(type, "_", mod.get("modification").getAsString()), hull);
+            hulls.put(type + "_" + mod.get("modification").getAsString(), hull);
         }
     }
 

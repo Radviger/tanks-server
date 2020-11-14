@@ -34,7 +34,7 @@ public class IsidaModel extends TickableWeaponModel {
         String victim = null;
 
         JsonElement victimId = data.get("victimId");
-        if (victimId != null) {
+        if (victimId != null && !victimId.isJsonNull()) {
             victim = victimId.getAsString();
             if (!victim.isEmpty()) {
                 BattlefieldPlayerController target = this.bfModel.getPlayer(victim);

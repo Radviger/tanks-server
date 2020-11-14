@@ -2,7 +2,6 @@ package gtanks.lobby;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import gtanks.StringUtils;
 import gtanks.battles.BattlefieldPlayerController;
 import gtanks.battles.maps.Map;
 import gtanks.battles.maps.MapsLoader;
@@ -30,6 +29,7 @@ import gtanks.services.LobbyServices;
 import gtanks.system.dailybonus.DailyBonusService;
 import gtanks.users.TypeUser;
 import gtanks.users.User;
+import gtanks.users.garage.Garage;
 import gtanks.users.garage.GarageItemsLoader;
 import gtanks.users.garage.items.Item;
 import gtanks.users.locations.UserLocation;
@@ -43,10 +43,10 @@ public class LobbyManager extends LobbyCommandsConst {
     private static final ChatLobby chatLobby = ChatLobby.INSTANCE;
     private static final DailyBonusService dailyBonusService = DailyBonusService.INSTANCE;
     private static final AutoEntryServices autoEntryServices = AutoEntryServices.INSTANCE;
-    public ProtocolTransfer pipeline;
-    public BattlefieldPlayerController battle;
+    public final ProtocolTransfer pipeline;
+    public final DisconnectListeners disconnectListeners;
     public SpectatorController spectatorController;
-    public DisconnectListeners disconnectListeners;
+    public BattlefieldPlayerController battle;
     public long timer;
     private User localUser;
     private FloodController chatFloodController;
@@ -71,27 +71,28 @@ public class LobbyManager extends LobbyCommandsConst {
         try {
             switch (cmd.type) {
                 case GARAGE:
+                    Garage garage = this.localUser.getGarage();
                     switch (cmd.args[0]) {
-                        case "try_mount_item":
-                            if (this.localUser.getGarage().mountItem(cmd.args[1])) {
-                                this.send(Type.GARAGE, "mount_item", cmd.args[1]);
-                                this.localUser.getGarage().parseJSONData();
-                                database.update(this.localUser.getGarage());
+                        case TRY_MOUNT_ITEM:
+                            if (garage.mountItem(cmd.args[1])) {
+                                this.send(Type.GARAGE, MOUNT_ITEM, cmd.args[1]);
+                                garage.parseJSONData();
+                                database.update(garage);
                             } else {
-                                this.send(Type.GARAGE, "try_mount_item_NO");
+                                this.send(Type.GARAGE, TRY_MOUNT_ITEM_NO);
                             }
                             break;
-                        case "try_update_item":
+                        case TRY_UPDATE_ITEM:
                             this.onTryUpdateItem(cmd.args[1]);
                             break;
-                        case "get_garage_data":
-                            if (this.localUser.getGarage().mountHull != null && this.localUser.getGarage().mountTurret != null && this.localUser.getGarage().mountColormap != null) {
-                                this.send(Type.GARAGE, "init_mounted_item", StringUtils.concatStrings(this.localUser.getGarage().mountHull.id, "_m", String.valueOf(this.localUser.getGarage().mountHull.modificationIndex)));
-                                this.send(Type.GARAGE, "init_mounted_item", StringUtils.concatStrings(this.localUser.getGarage().mountTurret.id, "_m", String.valueOf(this.localUser.getGarage().mountTurret.modificationIndex)));
-                                this.send(Type.GARAGE, "init_mounted_item", StringUtils.concatStrings(this.localUser.getGarage().mountColormap.id, "_m", String.valueOf(this.localUser.getGarage().mountColormap.modificationIndex)));
+                        case GET_GARAGE_DATA:
+                            if (garage.mountHull != null && garage.mountTurret != null && garage.mountColormap != null) {
+                                this.send(Type.GARAGE, INIT_MOUNTED_ITEM, garage.mountHull.id + "_m" + garage.mountHull.modificationIndex);
+                                this.send(Type.GARAGE, INIT_MOUNTED_ITEM, garage.mountTurret.id + "_m" + garage.mountTurret.modificationIndex);
+                                this.send(Type.GARAGE, INIT_MOUNTED_ITEM, garage.mountColormap.id + "_m" + garage.mountColormap.modificationIndex);
                             }
                             break;
-                        case "try_buy_item":
+                        case TRY_BUY_ITEM:
                             this.onTryBuyItem(cmd.args[1], Integer.parseInt(cmd.args[2]));
                             break;
                     }
@@ -103,51 +104,51 @@ public class LobbyManager extends LobbyCommandsConst {
                     break;
                 case LOBBY:
                     switch (cmd.args[0]) {
-                        case "get_hall_of_fame_data":
+                        case GET_HALL_OF_FAME_DATA:
                             this.localUser.setUserLocation(UserLocation.HALL_OF_FAME);
                             this.send(Type.LOBBY, "init_hall_of_fame", JsonUtils.parseHallOfFame(top));
                             break;
-                        case "get_garage_data":
+                        case GET_GARAGE_DATA:
                             this.sendGarage();
                             break;
-                        case "get_data_init_battle_select":
+                        case GET_DATA_INIT_BATTLE_SELECT:
                             this.sendMapsInit();
                             break;
-                        case "check_battleName_for_forbidden_words":
+                        case CHECK_BATTLENAME_FOR_FORBIDDEN_WORDS:
                             this.checkBattleName(cmd.args[1]);
                             break;
-                        case "try_create_battle_dm":
+                        case TRY_CREATE_BATTLE_DM:
                             this.tryCreateBattleDM(cmd.args[1], cmd.args[2], Integer.parseInt(cmd.args[3]), Integer.parseInt(cmd.args[4]), Integer.parseInt(cmd.args[5]), Integer.parseInt(cmd.args[6]), Integer.parseInt(cmd.args[7]), this.stringToBoolean(cmd.args[8]), this.stringToBoolean(cmd.args[9]), this.stringToBoolean(cmd.args[10]));
                             break;
-                        case "try_create_battle_tdm":
+                        case TRY_CREATE_BATTLE_TDM:
                             this.tryCreateTDMBattle(cmd.args[1]);
                             break;
-                        case "try_create_battle_ctf":
+                        case TRY_CREATE_BATTLE_CTF:
                             this.tryCreateCTFBattle(cmd.args[1]);
                             break;
-                        case "get_show_battle_info":
+                        case GET_SHOW_BATTLE_INFO:
                             this.sendBattleInfo(cmd.args[1]);
                             break;
-                        case "enter_battle":
+                        case ENTER_BATTLE:
                             this.onEnterInBattle(cmd.args[1]);
                             break;
-                        case "bug_report":
+                        case BUG_REPORT:
 
                             break;
-                        case "screenshot":
+                        case SCREENSHOT:
 
                             break;
-                        case "enter_battle_team":
+                        case ENTER_BATTLE_TEAM:
                             this.onEnterInTeamBattle(cmd.args[1], Boolean.parseBoolean(cmd.args[2]));
                             break;
-                        case "enter_battle_spectator":
+                        case ENTER_BATTLE_SPECTATOR:
                             if (this.getLocalUser().getType() == TypeUser.DEFAULT) {
                                 return;
                             }
 
                             this.enterInBattleBySpectator(cmd.args[1]);
                             break;
-                        case "user_inited":
+                        case USER_INITED:
                             dailyBonusService.userLoaded(this);
                             break;
                     }
@@ -309,7 +310,7 @@ public class LobbyManager extends LobbyCommandsConst {
 
     public void onExitFromBattle() {
         if (this.battle != null) {
-            if (this.autoEntryServices.removePlayer(this.battle.battle, this.getLocalUser().getNickname(), this.battle.playerTeamType, this.battle.battle.battleInfo.team)) {
+            if (autoEntryServices.removePlayer(this.battle.battle, this.getLocalUser().getNickname(), this.battle.playerTeamType, this.battle.battle.battleInfo.team)) {
                 this.battle.destroy(true);
             } else {
                 this.battle.destroy(false);
@@ -347,7 +348,7 @@ public class LobbyManager extends LobbyCommandsConst {
                     this.battle = new BattlefieldPlayerController(this, battleInfo.model, red ? PlayerTeamType.RED : PlayerTeamType.BLUE);
                     this.disconnectListeners.addListener(this.battle);
                     lobbyServices.sendCommandToAllUsers(Type.LOBBY, UserLocation.BATTLESELECT, "update_count_users_in_team_battle", JsonUtils.parseUpdateCoundPeoplesCommand(battleInfo));
-                    this.send(Type.BATTLE, "init_battle_model", JsonUtils.parseBattleModelInfo(battleInfo, false));
+                    this.send(Type.BATTLE, INIT_BATTLE_MODEL, JsonUtils.parseBattleModelInfo(battleInfo, false));
                     lobbyServices.sendCommandToAllUsers(Type.LOBBY, UserLocation.BATTLESELECT, "add_player_to_battle", JsonUtils.parseAddPlayerComand(this.battle, battleInfo));
                 }
             }
@@ -356,7 +357,7 @@ public class LobbyManager extends LobbyCommandsConst {
 
     private void onEnterInBattle(String battleId) {
         this.localUser.setUserLocation(UserLocation.BATTLE);
-        this.autoEntryServices.removePlayer(this.getLocalUser().getNickname());
+        autoEntryServices.removePlayer(this.getLocalUser().getNickname());
         if (this.battle == null) {
             BattleInfo battleInfo = BattlesList.getBattleInfoById(battleId);
             if (battleInfo != null) {
@@ -364,14 +365,13 @@ public class LobbyManager extends LobbyCommandsConst {
                     this.battle = new BattlefieldPlayerController(this, battleInfo.model, PlayerTeamType.NONE);
                     this.disconnectListeners.addListener(this.battle);
                     ++battleInfo.countPeople;
-                    System.out.println("incration");
                     if (!battleInfo.team) {
-                        lobbyServices.sendCommandToAllUsers(Type.LOBBY, UserLocation.BATTLESELECT, StringUtils.concatStrings("update_count_users_in_dm_battle", ";", battleId, ";", String.valueOf(this.battle.battle.battleInfo.countPeople)));
+                        lobbyServices.sendCommandToAllUsers(Type.LOBBY, UserLocation.BATTLESELECT, "update_count_users_in_dm_battle" + ";" + battleId + ";" + this.battle.battle.battleInfo.countPeople);
                     } else {
                         lobbyServices.sendCommandToAllUsers(Type.LOBBY, UserLocation.BATTLESELECT, "update_count_users_in_team_battle", JsonUtils.parseUpdateCoundPeoplesCommand(battleInfo));
                     }
 
-                    this.send(Type.BATTLE, "init_battle_model", JsonUtils.parseBattleModelInfo(battleInfo, false));
+                    this.send(Type.BATTLE, INIT_BATTLE_MODEL, JsonUtils.parseBattleModelInfo(battleInfo, false));
                     lobbyServices.sendCommandToAllUsers(Type.LOBBY, UserLocation.BATTLESELECT, "add_player_to_battle", JsonUtils.parseAddPlayerComand(this.battle, battleInfo));
                 }
             }
@@ -438,18 +438,18 @@ public class LobbyManager extends LobbyCommandsConst {
     }
 
     private void checkBattleName(String name) {
-        this.send(Type.LOBBY, "check_battle_name", name);
+        this.send(Type.LOBBY, CHECK_BATTLE_NAME, name);
     }
 
     private void sendMapsInit() {
         this.localUser.setUserLocation(UserLocation.BATTLESELECT);
-        this.send(Type.LOBBY, "init_battle_select", JsonUtils.parseBattleMapList());
+        this.send(Type.LOBBY, INIT_BATTLE_SELECT, JsonUtils.parseBattleMapList());
     }
 
     private void sendGarage() {
         this.localUser.setUserLocation(UserLocation.GARAGE);
-        this.send(Type.GARAGE, "init_garage_items", JsonUtils.parseGarageUser(this.localUser).trim());
-        this.send(Type.GARAGE, "init_market", JsonUtils.parseMarketItems(this.localUser));
+        this.send(Type.GARAGE, INIT_GARAGE_ITEMS, JsonUtils.parseGarageUser(this.localUser).trim());
+        this.send(Type.GARAGE, INIT_MARKET, JsonUtils.parseMarketItems(this.localUser));
     }
 
     public synchronized void onTryUpdateItem(String id) {
@@ -461,15 +461,14 @@ public class LobbyManager extends LobbyCommandsConst {
             }
 
             if (this.localUser.getGarage().updateItem(id)) {
-                this.send(Type.GARAGE, "update_item", id);
-                this.addCrystall(-item.modifications[modificationID + 1].price);
+                this.send(Type.GARAGE, UPDATE_ITEM, id);
+                this.addCrystal(-item.modifications[modificationID + 1].price);
                 this.localUser.getGarage().parseJSONData();
                 database.update(this.localUser.getGarage());
             }
         } else {
-            this.send(Type.GARAGE, "try_update_NO");
+            this.send(Type.GARAGE, TRY_UPDATE_NO);
         }
-
     }
 
     public synchronized void onTryBuyItem(String itemId, int count) {
@@ -484,17 +483,17 @@ public class LobbyManager extends LobbyCommandsConst {
                 Item fromUser = this.localUser.getGarage().buyItem(itemId, count, 0);
 
                 if (fromUser != null) {
-                    this.send(Type.GARAGE, "buy_item", StringUtils.concatStrings(item.id, "_m", String.valueOf(item.modificationIndex)), JsonUtils.parseItemInfo(fromUser));
-                    this.addCrystall(-price);
+                    this.send(Type.GARAGE, BUY_ITEM, item.id + "_m" + item.modificationIndex, JsonUtils.parseItemInfo(fromUser));
+                    this.addCrystal(-price);
                     this.localUser.getGarage().parseJSONData();
                     database.update(this.localUser.getGarage());
                 } else {
-                    this.send(Type.GARAGE, "try_buy_item_NO");
+                    this.send(Type.GARAGE, TRY_BUY_ITEM_NO);
                 }
             }
 
         } else {
-            this.crystallToZero();
+            this.crystalToZero();
         }
     }
 
@@ -502,15 +501,15 @@ public class LobbyManager extends LobbyCommandsConst {
         return this.localUser.getCrystall() - buyValue >= 0;
     }
 
-    public synchronized void addCrystall(int value) {
+    public synchronized void addCrystal(int value) {
         this.localUser.addCrystall(value);
-        this.send(Type.LOBBY, "add_crystall", String.valueOf(this.localUser.getCrystall()));
+        this.send(Type.LOBBY, ADD_CRYSTAL, String.valueOf(this.localUser.getCrystall()));
         database.update(this.localUser);
     }
 
-    public void crystallToZero() {
+    public void crystalToZero() {
         this.localUser.setCrystall(0);
-        this.send(Type.LOBBY, "add_crystall", String.valueOf(this.localUser.getCrystall()));
+        this.send(Type.LOBBY, ADD_CRYSTAL, String.valueOf(this.localUser.getCrystall()));
         database.update(this.localUser);
     }
 

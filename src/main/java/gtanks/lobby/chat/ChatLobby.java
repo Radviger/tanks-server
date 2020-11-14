@@ -54,7 +54,7 @@ public enum ChatLobby {
             Date banTo = karma.getChatBannedBefore();
             long delta = currDate - banTo.getTime();
             if (delta <= 0L) {
-                msg.localLobby.send(Type.LOBBY_CHAT, "system", StringUtils.concatStrings("Вы отключены от чата. Вы вернётесь в ЭФИР через ", DateFormater.formatTimeToUnban(delta), ". Причина: " + karma.getReasonChatBan()));
+                msg.localLobby.send(Type.LOBBY_CHAT, "system", "Вы отключены от чата. Вы вернётесь в ЭФИР через " + DateFormater.formatTimeToUnban(delta) + ". Причина: " + karma.getReasonChatBan());
                 return;
             }
         }
@@ -139,7 +139,7 @@ public enum ChatLobby {
                                 msg.localLobby.send(Type.LOBBY_CHAT, "system", "[SERVER]: Игрок не найден!");
                             } else {
                                 String reason = StringUtils.concatMassive(arguments, 2);
-                                this.sendSystemMessageToAll(StringUtils.concatStrings("Танкист ", giver.getNickname(), " предупрежден. Причина: ", reason), false);
+                                this.sendSystemMessageToAll("Танкист " + giver.getNickname() + " предупрежден. Причина: " + reason, false);
                             }
                             break label244;
                         }
@@ -238,7 +238,7 @@ public enum ChatLobby {
                                     msg.localLobby.send(Type.LOBBY_CHAT, "system", "[SERVER]: Игрок не найден!");
                                 } else {
                                     this.banServices.unbanChat(cu);
-                                    this.sendSystemMessageToAll(StringUtils.concatStrings("Танкисту ", cu.getNickname(), " был разрешён выход в эфир"), false);
+                                    this.sendSystemMessageToAll("Танкисту " + cu.getNickname() + " был разрешён выход в эфир", false);
                                 }
                             }
                             break label244;
@@ -268,7 +268,7 @@ public enum ChatLobby {
                                     lobby.kick();
                                 }
 
-                                this.sendSystemMessageToAll(StringUtils.concatStrings("Танкист ", victim_.getNickname(), " был заблокирован и кикнут"), false);
+                                this.sendSystemMessageToAll("Танкист " + victim_.getNickname() + " был заблокирован и кикнут", false);
                             }
                             break label244;
                         }
@@ -284,7 +284,7 @@ public enum ChatLobby {
                                 msg.localLobby.send(Type.LOBBY_CHAT, "system", "[SERVER]: Игрок не найден!");
                             } else {
                                 this.banServices.unblock(av);
-                                this.sendSystemMessageToAll(StringUtils.concatStrings("Танкист ", av.getNickname(), " был разблокирован"), false);
+                                this.sendSystemMessageToAll("Танкист " + av.getNickname() + " был разблокирован", false);
                             }
                             break label244;
                         }
@@ -344,7 +344,7 @@ public enum ChatLobby {
                 }
 
                 this.banServices.ban(BanType.CHAT, time, _victim, msg.user, reason);
-                this.sendSystemMessageToAll(StringUtils.concatStrings("Танкист ", _victim.getNickname(), " лишен права выхода в эфир ", time.getNameType(), " Причина: ", reason), false);
+                this.sendSystemMessageToAll("Танкист " + _victim.getNickname() + " лишен права выхода в эфир " + time.getNameType() + " Причина: " + reason, false);
             }
         } else if (!msg.message.isEmpty()) {
             if (msg.message.length() >= 399) {
@@ -367,7 +367,7 @@ public enum ChatLobby {
                         BanTimeType time = BanTimeType.FIVE_MINUTES;
                         String reason = "Флуд.";
                         this.banServices.ban(BanType.CHAT, time, msg.user, msg.user, reason);
-                        this.sendSystemMessageToAll(StringUtils.concatStrings("Танкист ", msg.user.getNickname(), " лишен права выхода в эфир ", time.getNameType(), " Причина: ", reason), false);
+                        this.sendSystemMessageToAll("Танкист " + msg.user.getNickname() + " лишен права выхода в эфир " + time.getNameType() + " Причина: " + reason, false);
                         return;
                     }
 
@@ -376,7 +376,6 @@ public enum ChatLobby {
                 }
             }
         }
-
     }
 
     public void cleanMessagesByText(String text) {

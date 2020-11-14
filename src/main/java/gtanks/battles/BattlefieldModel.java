@@ -2,7 +2,6 @@ package gtanks.battles;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import gtanks.StringUtils;
 import gtanks.battles.bonuses.Bonus;
 import gtanks.battles.bonuses.BonusesSpawnService;
 import gtanks.battles.bonuses.model.BonusTakeModel;
@@ -188,7 +187,7 @@ public class BattlefieldModel implements Destroyable {
 
     public void spawnBonus(Bonus bonus, int inc, int disappearingTime) {
         if (bonus.position.x != 0.0F || bonus.position.y != 0.0F || bonus.position.z != 0.0F) {
-            String id = StringUtils.concatStrings(bonus.type.toString(), "_", String.valueOf(inc));
+            String id = bonus.type.toString() + "_" + inc;
             this.activeBonuses.put(id, bonus);
             BonusesScheduler.runRemoveTask(this, id, disappearingTime);
             this.sendToAllPlayers(Type.BATTLE, "spawn_bonus", JsonUtils.parseBonusInfo(bonus, inc, disappearingTime));

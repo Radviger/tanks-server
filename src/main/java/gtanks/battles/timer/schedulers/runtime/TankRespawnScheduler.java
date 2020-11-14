@@ -1,6 +1,5 @@
 package gtanks.battles.timer.schedulers.runtime;
 
-import gtanks.StringUtils;
 import gtanks.battles.BattlefieldPlayerController;
 import gtanks.battles.managers.SpawnManager;
 import gtanks.battles.tanks.math.Vector3;
@@ -91,14 +90,14 @@ public class TankRespawnScheduler {
 
                 this.preparedPosition = SpawnManager.getSpawnState(this.player.battle.battleInfo.map, this.player.playerTeamType);
                 if (this.onlySpawn) {
-                    this.player.send(Type.BATTLE, "prepare_to_spawn", StringUtils.concatStrings(this.player.tank.id, ";", String.valueOf(this.preparedPosition.x), "@", String.valueOf(this.preparedPosition.y), "@", String.valueOf(this.preparedPosition.z), "@", String.valueOf(this.preparedPosition.rot)));
+                    this.player.send(Type.BATTLE, "prepare_to_spawn", this.player.tank.id + ";" + this.preparedPosition.x + "@" + this.preparedPosition.y + "@" + this.preparedPosition.z + "@" + this.preparedPosition.rot);
                 } else {
                     if (this.player.battle == null) {
                         return;
                     }
 
                     this.player.tank.position = this.preparedPosition;
-                    this.player.send(Type.BATTLE, "prepare_to_spawn", StringUtils.concatStrings(this.player.tank.id, ";", String.valueOf(this.preparedPosition.x), "@", String.valueOf(this.preparedPosition.y), "@", String.valueOf(this.preparedPosition.z), "@", String.valueOf(this.preparedPosition.rot)));
+                    this.player.send(Type.BATTLE, "prepare_to_spawn", this.player.tank.id + ";" + this.preparedPosition.x + "@" + this.preparedPosition.y + "@" + this.preparedPosition.z + "@" + this.preparedPosition.rot);
                 }
 
                 this.spawnTask = new TankRespawnScheduler.SpawnTask();

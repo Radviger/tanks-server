@@ -1,6 +1,5 @@
 package gtanks.services;
 
-import gtanks.StringUtils;
 import gtanks.battles.BattlefieldModel;
 import gtanks.battles.BattlefieldPlayerController;
 import gtanks.battles.tanks.PlayerTeamType;
@@ -56,7 +55,7 @@ public enum AutoEntryServices {
             lobbyServices.sendCommandToAllUsers(Type.LOBBY, UserLocation.BATTLESELECT, "remove_player_from_battle", JsonUtils.parseRemovePlayerComand(userId, data.battleInfo.battleId));
             if (!team) {
                 --data.battleInfo.countPeople;
-                lobbyServices.sendCommandToAllUsers(Type.LOBBY, UserLocation.BATTLESELECT, StringUtils.concatStrings("update_count_users_in_dm_battle", ";", data.battleInfo.battleId, ";", String.valueOf(data.battleInfo.countPeople)));
+                lobbyServices.sendCommandToAllUsers(Type.LOBBY, UserLocation.BATTLESELECT, "update_count_users_in_dm_battle" + ";" + data.battleInfo.battleId + ";" + data.battleInfo.countPeople);
             } else {
                 if (teamType == PlayerTeamType.RED) {
                     --data.battleInfo.redPeople;

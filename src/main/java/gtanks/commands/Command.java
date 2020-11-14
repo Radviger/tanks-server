@@ -1,10 +1,8 @@
 package gtanks.commands;
 
-import gtanks.StringUtils;
-
 public class Command {
-    public Type type;
-    public String[] args;
+    public final Type type;
+    public final String[] args;
 
     public Command(Type type, String[] args) {
         this.type = type;
@@ -13,7 +11,6 @@ public class Command {
 
     @Override
     public String toString() {
-        String argsString = StringUtils.concatStrings(this.args);
-        return this.type.toString() + " " + argsString;
+        return type.toString() + " " + String.join("", args);
     }
 }

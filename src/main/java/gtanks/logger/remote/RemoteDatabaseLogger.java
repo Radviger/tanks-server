@@ -61,28 +61,6 @@ public class RemoteDatabaseLogger {
         return sb.toString();
     }
 
-    public static List<DumpData> getDump() {
-        List<LogObject> logs = databaseManager.collectLogs();
-        List<DumpData> dump = new ArrayList();
-
-        for (LogObject log : logs) {
-            DumpData dd = new DumpData();
-            dd.obj = log;
-            if (dump.contains(dd)) {
-                for (DumpData _dd : dump) {
-                    if (_dd.equals(dd)) {
-                        ++_dd.count;
-                        break;
-                    }
-                }
-            } else {
-                dump.add(dd);
-            }
-        }
-
-        return dump;
-    }
-
     private static LogObject buildLogObject(Exception ex, LogType type) {
         LogObject log = new LogObject();
         StringWriter sw = new StringWriter();

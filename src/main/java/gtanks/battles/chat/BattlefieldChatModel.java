@@ -44,7 +44,7 @@ public class BattlefieldChatModel {
                 Date banTo = karma.getChatBannedBefore();
                 long delta = currDate - banTo.getTime();
                 if (delta <= 0L) {
-                    player.parentLobby.send(Type.LOBBY_CHAT, "system", StringUtils.concatStrings("Вы отключены от чата. Вы вернётесь в ЭФИР через ", DateFormater.formatTimeToUnban(delta), ". Причина: " + karma.getReasonChatBan()));
+                    player.parentLobby.send(Type.LOBBY_CHAT, "system", "Вы отключены от чата. Вы вернётесь в ЭФИР через " + DateFormater.formatTimeToUnban(delta) + ". Причина: " + karma.getReasonChatBan());
                     return;
                 }
 
@@ -112,7 +112,7 @@ public class BattlefieldChatModel {
                             this.sendSystemMessage("[SERVER]: Игрок не найден!", player);
                         } else {
                             String reason = StringUtils.concatMassive(arguments, 2);
-                            this.sendSystemMessage(StringUtils.concatStrings("Танкист ", giver.getNickname(), " предупрежден. Причина: ", reason));
+                            this.sendSystemMessage("Танкист " + giver.getNickname() + " предупрежден. Причина: " + reason);
                         }
                         break;
                     }
@@ -180,7 +180,7 @@ public class BattlefieldChatModel {
                                 lobby.kick();
                             }
 
-                            this.sendSystemMessage(StringUtils.concatStrings("Танкист ", target.getNickname(), " был заблокирован и кикнут"));
+                            this.sendSystemMessage("Танкист " + target.getNickname() + " был заблокирован и кикнут");
                         }
                         break;
                     }
@@ -226,7 +226,7 @@ public class BattlefieldChatModel {
                         }
 
                         this.banServices.ban(BanType.CHAT, time, target, player.getUser(), reason);
-                        this.sendSystemMessage(StringUtils.concatStrings("Танкист ", target.getNickname(), " лишен права выхода в эфир ", time.getNameType(), " Причина: ", reason));
+                        this.sendSystemMessage("Танкист " + target.getNickname() + " лишен права выхода в эфир " + time.getNameType() + " Причина: " + reason);
                         break;
                     }
                     default: {
@@ -247,7 +247,7 @@ public class BattlefieldChatModel {
                         BanTimeType time = BanTimeType.FIVE_MINUTES;
                         String reason = "Флуд.";
                         this.banServices.ban(BanType.CHAT, time, player.getUser(), player.getUser(), reason);
-                        this.sendSystemMessage(StringUtils.concatStrings("Танкист ", player.getUser().getNickname(), " лишен права выхода в эфир ", time.getNameType(), " Причина: ", reason));
+                        this.sendSystemMessage("Танкист " + player.getUser().getNickname() + " лишен права выхода в эфир " + time.getNameType() + " Причина: " + reason);
                         return;
                     }
 

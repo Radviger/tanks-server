@@ -3,7 +3,6 @@ package gtanks.battles;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import gtanks.StringUtils;
 import gtanks.battles.commands.BattlefieldPlayerCommandsConst;
 import gtanks.battles.ctf.flags.FlagServer;
 import gtanks.battles.inventory.InventoryController;
@@ -233,7 +232,7 @@ public class BattlefieldPlayerController extends BattlefieldPlayerCommandsConst 
         if (!cache) {
             this.lobbyServices.sendCommandToAllUsers(gtanks.commands.Type.LOBBY, UserLocation.BATTLESELECT, "remove_player_from_battle", JsonUtils.parseRemovePlayerComand(this));
             if (!this.battle.battleInfo.team) {
-                this.lobbyServices.sendCommandToAllUsers(gtanks.commands.Type.LOBBY, UserLocation.BATTLESELECT, StringUtils.concatStrings("update_count_users_in_dm_battle", ";", this.battle.battleInfo.battleId, ";", String.valueOf(this.battle.players.size())));
+                this.lobbyServices.sendCommandToAllUsers(gtanks.commands.Type.LOBBY, UserLocation.BATTLESELECT, "update_count_users_in_dm_battle" + ";" + this.battle.battleInfo.battleId + ";" + this.battle.players.size());
             } else {
                 this.lobbyServices.sendCommandToAllUsers(gtanks.commands.Type.LOBBY, UserLocation.BATTLESELECT, "update_count_users_in_team_battle", JsonUtils.parseUpdateCoundPeoplesCommand(this.battle.battleInfo));
             }
