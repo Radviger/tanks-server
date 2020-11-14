@@ -1,11 +1,11 @@
 package gtanks.battles.tanks.weapons.thunder;
 
-import gtanks.battles.tanks.weapons.EntityType;
-import gtanks.battles.tanks.weapons.IEntity;
+import gtanks.battles.tanks.weapons.WeaponType;
+import gtanks.battles.tanks.weapons.WeaponEntity;
 import gtanks.battles.tanks.weapons.ShotData;
 import gtanks.battles.tanks.weapons.WeaponWeakeningData;
 
-public class ThunderEntity implements IEntity {
+public class ThunderEntity implements WeaponEntity {
     public float maxSplashDamageRadius;
     public float minSplashDamageRadius;
     public float minSplashDamagePercent;
@@ -32,7 +32,7 @@ public class ThunderEntity implements IEntity {
     }
 
     @Override
-    public EntityType getType() {
-        return EntityType.THUNDER;
+    public WeaponType getType() {
+        return WeaponType.THUNDER;
     }
 }

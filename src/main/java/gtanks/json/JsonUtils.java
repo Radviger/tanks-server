@@ -14,7 +14,7 @@ import gtanks.battles.maps.MapsLoader;
 import gtanks.battles.mines.ServerMine;
 import gtanks.battles.tanks.Tank;
 import gtanks.battles.tanks.math.Vector3;
-import gtanks.battles.tanks.weapons.IEntity;
+import gtanks.battles.tanks.weapons.WeaponEntity;
 import gtanks.battles.tanks.weapons.WeaponWeakeningData;
 import gtanks.battles.tanks.weapons.flamethrower.FlamethrowerEntity;
 import gtanks.battles.tanks.weapons.frezee.FrezeeEntity;
@@ -707,7 +707,7 @@ public class JsonUtils {
         return GSON.toJson(obj);
     }
 
-    public static JsonObject parseSpecialEntity(IEntity entity) {
+    public static JsonObject parseSpecialEntity(WeaponEntity entity) {
         JsonObject j = new JsonObject();
         switch (entity.getType()) {
             case FLAMETHROWER:
@@ -773,11 +773,11 @@ public class JsonUtils {
         return j;
     }
 
-    public static String parseWeapons(Collection<IEntity> weapons, java.util.Map<String, WeaponWeakeningData> wwds) {
+    public static String parseWeapons(Collection<WeaponEntity> weapons, java.util.Map<String, WeaponWeakeningData> wwds) {
         JsonObject obj = new JsonObject();
         JsonArray array = new JsonArray();
 
-        for (IEntity entity : weapons) {
+        for (WeaponEntity entity : weapons) {
             JsonObject weapon = new JsonObject();
             WeaponWeakeningData wwd = wwds.get(entity.getShotData().id);
             weapon.addProperty("auto_aiming_down", entity.getShotData().autoAimingAngleDown);

@@ -1,10 +1,10 @@
 package gtanks.battles.tanks.weapons.ricochet;
 
-import gtanks.battles.tanks.weapons.EntityType;
-import gtanks.battles.tanks.weapons.IEntity;
+import gtanks.battles.tanks.weapons.WeaponType;
+import gtanks.battles.tanks.weapons.WeaponEntity;
 import gtanks.battles.tanks.weapons.ShotData;
 
-public class RicochetEntity implements IEntity {
+public class RicochetEntity implements WeaponEntity {
     public float shotRadius;
     public float shotSpeed;
     public int energyCapacity;
@@ -33,7 +33,7 @@ public class RicochetEntity implements IEntity {
     }
 
     @Override
-    public EntityType getType() {
-        return EntityType.RICOCHET;
+    public WeaponType getType() {
+        return WeaponType.RICOCHET;
     }
 }

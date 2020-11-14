@@ -7,8 +7,8 @@ import com.google.gson.JsonParseException;
 import gtanks.StringUtils;
 import gtanks.battles.BattlefieldModel;
 import gtanks.battles.BattlefieldPlayerController;
-import gtanks.battles.tanks.weapons.IEntity;
-import gtanks.battles.tanks.weapons.IWeapon;
+import gtanks.battles.tanks.weapons.WeaponEntity;
+import gtanks.battles.tanks.weapons.WeaponModel;
 import gtanks.battles.tanks.weapons.ShotData;
 import gtanks.battles.tanks.weapons.WeaponWeakeningData;
 import gtanks.battles.tanks.weapons.flamethrower.FlamethrowerEntity;
@@ -45,11 +45,11 @@ import java.util.Map.Entry;
 
 public class WeaponsFactory {
     private static final Gson GSON = new Gson();
-    private static final Map<String, IEntity> weapons = new HashMap<>();
+    private static final Map<String, WeaponEntity> weapons = new HashMap<>();
     private static final Map<String, WeaponWeakeningData> wwd = new HashMap<>();
     private static String jsonListWeapons;
 
-    public static IWeapon getWeapon(String turretId, BattlefieldPlayerController tank, BattlefieldModel battle) {
+    public static WeaponModel getWeapon(String turretId, BattlefieldPlayerController tank, BattlefieldModel battle) {
         String turret = turretId.split("_m")[0];
         switch (turret) {
             case "snowman":
@@ -98,7 +98,6 @@ public class WeaponsFactory {
             e.printStackTrace();
             Logger.log(Type.ERROR, "Loading entitys weapons failed. " + e.getMessage());
         }
-
     }
 
     private static void parse(File json) throws IOException, JsonParseException {
@@ -110,7 +109,7 @@ public class WeaponsFactory {
             String modification = item.get("modification").getAsString();
             String id = StringUtils.concatStrings(type, "_", modification);
             ShotData shotData = new ShotData(id, item.get("autoAimingAngleDown").getAsDouble(), item.get("autoAimingAngleUp").getAsDouble(), item.get("numRaysDown").getAsInt(), item.get("numRaysUp").getAsInt(), item.get("reloadMsec").getAsInt(), item.get("impactCoeff").getAsFloat(), item.get("kickback").getAsFloat(), item.get("turretRotationAccel").getAsFloat(), item.get("turretRotationSpeed").getAsFloat());
-            IEntity entity = null;
+            WeaponEntity entity = null;
             switch (type) {
                 case "snowman": {
                     WeaponWeakeningData wwdSnowman = new WeaponWeakeningData(item.get("max_damage_radius").getAsDouble(), item.get("min_damage_percent").getAsDouble(), item.get("min_damage_radius").getAsDouble());
@@ -173,14 +172,14 @@ public class WeaponsFactory {
         return wwd.get(id);
     }
 
-    public static IEntity getEntity(String id) {
+    public static WeaponEntity getEntity(String id) {
         return weapons.get(id);
     }
 
-    public static String getId(IEntity entity) {
+    public static String getId(WeaponEntity entity) {
         String id = null;
 
-        for (Entry<String, IEntity> entry : weapons.entrySet()) {
+        for (Entry<String, WeaponEntity> entry : weapons.entrySet()) {
             if (entry.getValue().equals(entity)) {
                 id = entry.getKey();
             }
@@ -189,7 +188,7 @@ public class WeaponsFactory {
         return id;
     }
 
-    public static Collection<IEntity> getEntities() {
+    public static Collection<WeaponEntity> getEntities() {
         return weapons.values();
     }
 

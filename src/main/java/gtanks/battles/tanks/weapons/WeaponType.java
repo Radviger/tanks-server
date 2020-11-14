@@ -2,7 +2,7 @@ package gtanks.battles.tanks.weapons;
 
 import gtanks.battles.tanks.colormaps.ColormapResistanceType;
 
-public enum EntityType {
+public enum WeaponType {
     SMOKY(ColormapResistanceType.SMOKY),
     FLAMETHROWER(ColormapResistanceType.FLAMETHROWER),
     TWINS(ColormapResistanceType.TWINS),
@@ -16,7 +16,7 @@ public enum EntityType {
 
     public final ColormapResistanceType colormap;
 
-    EntityType(ColormapResistanceType colormap) {
+    WeaponType(ColormapResistanceType colormap) {
         this.colormap = colormap;
     }
 }

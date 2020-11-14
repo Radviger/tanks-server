@@ -6,20 +6,21 @@ import gtanks.battles.ctf.flags.FlagServer;
 import gtanks.battles.ctf.flags.FlagState;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class CaptureTheFlagAnticheatModel {
     private static final long MIN_TIME_DELIVERED = 4000L;
-    private HashMap datas = new HashMap();
-    private BattlefieldModel bfModel;
+    private final Map<BattlefieldPlayerController, Data> data = new HashMap<>();
+    private final BattlefieldModel bfModel;
 
     public CaptureTheFlagAnticheatModel(BattlefieldModel bfModel) {
         this.bfModel = bfModel;
     }
 
     public boolean onTakeFlag(BattlefieldPlayerController taker, FlagServer flag) {
-        CaptureTheFlagAnticheatModel.Data data = (CaptureTheFlagAnticheatModel.Data) this.datas.get(taker);
+        Data data = this.data.get(taker);
         if (data == null) {
-            this.datas.put(taker, data = new CaptureTheFlagAnticheatModel.Data());
+            this.data.put(taker, data = new Data());
         }
 
         data.lastTimeTakeFlag = System.currentTimeMillis();
@@ -28,10 +29,10 @@ public class CaptureTheFlagAnticheatModel {
     }
 
     public boolean onDeliveredFlag(BattlefieldPlayerController taker, FlagServer flag) {
-        CaptureTheFlagAnticheatModel.Data data = (CaptureTheFlagAnticheatModel.Data) this.datas.get(taker);
-        long time;
-        if ((time = System.currentTimeMillis() - data.lastTimeTakeFlag) <= 4000L && data.prevState == FlagState.BASE) {
-            this.bfModel.cheatDetected(taker, this.getClass());
+        Data data = this.data.get(taker);
+        long time = System.currentTimeMillis() - data.lastTimeTakeFlag;
+        if (time <= MIN_TIME_DELIVERED && data.prevState == FlagState.BASE) {
+            this.bfModel.cheatDetected(taker, this);
             System.out.println(time);
             return true;
         } else {
@@ -39,7 +40,7 @@ public class CaptureTheFlagAnticheatModel {
         }
     }
 
-    class Data {
+    static class Data {
         long lastTimeTakeFlag;
         long lastTimeDeliveredFlag;
         FlagState prevState;

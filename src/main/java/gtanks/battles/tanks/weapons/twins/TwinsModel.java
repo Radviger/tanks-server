@@ -1,81 +1,69 @@
 package gtanks.battles.tanks.weapons.twins;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
 import gtanks.RandomUtils;
 import gtanks.battles.BattlefieldModel;
 import gtanks.battles.BattlefieldPlayerController;
-import gtanks.battles.anticheats.AntiCheatModel;
-import gtanks.battles.tanks.weapons.IEntity;
-import gtanks.battles.tanks.weapons.IWeapon;
+import gtanks.battles.tanks.weapons.WeaponEntity;
 import gtanks.battles.tanks.weapons.WeaponUtils;
 import gtanks.battles.tanks.weapons.WeaponWeakeningData;
-import gtanks.battles.tanks.weapons.anticheats.FireableWeaponAnticheatModel;
+import gtanks.battles.tanks.weapons.anticheats.FiringWeaponModel;
 import gtanks.commands.Type;
 
-@AntiCheatModel(
-    name = "TwinsModel",
-    actionInfo = "Child FireableWeaponAnticheatModel"
-)
-public class TwinsModel extends FireableWeaponAnticheatModel implements IWeapon {
-    private static final Gson GSON = new Gson();
+public class TwinsModel extends FiringWeaponModel {
     private final BattlefieldModel bfModel;
     private final BattlefieldPlayerController player;
-    private final WeaponWeakeningData weakeingData;
+    private final WeaponWeakeningData weakeningData;
     private final TwinsEntity entity;
 
-    public TwinsModel(TwinsEntity twinsEntity, WeaponWeakeningData weakeingData, BattlefieldPlayerController tank, BattlefieldModel battle) {
+    public TwinsModel(TwinsEntity twinsEntity, WeaponWeakeningData weakeningData, BattlefieldPlayerController tank, BattlefieldModel battle) {
         super(twinsEntity.getShotData().reloadMsec);
         this.bfModel = battle;
         this.player = tank;
         this.entity = twinsEntity;
-        this.weakeingData = weakeingData;
+        this.weakeningData = weakeningData;
     }
 
     @Override
-    public void startFire(String json) {
-        this.bfModel.sendToAllPlayers(this.player, Type.BATTLE, "start_fire_twins", this.player.tank.id, json);
+    public void startFire(JsonObject data) {
+        this.bfModel.sendToAllPlayers(this.player, Type.BATTLE, "start_fire_twins", this.player.tank.id, BattlefieldPlayerController.GSON.toJson(data));
     }
 
     @Override
-    public void fire(String json) {
-        this.bfModel.fire(this.player, json);
+    public void fire(JsonObject data) {
+        this.bfModel.fire(this.player, data);
 
-        try {
-            JsonObject parser = GSON.fromJson(json, JsonObject.class);
-            if (!this.check(parser.get("reloadTime").getAsInt())) {
-                this.bfModel.cheatDetected(this.player, this.getClass());
-                return;
-            }
+        if (!this.check(data.get("reloadTime").getAsInt())) {
+            this.bfModel.cheatDetected(this.player, this);
+            return;
+        }
 
-            JsonElement victimId = parser.get("victimId");
-            if (victimId != null) {
-                BattlefieldPlayerController victim = this.bfModel.getPlayer(victimId.getAsString());
-                this.onTarget(new BattlefieldPlayerController[]{victim}, parser.get("distance").getAsInt());
+        JsonElement victimId = data.get("victimId");
+        if (victimId != null && !victimId.isJsonNull()) {
+            BattlefieldPlayerController victim = this.bfModel.getPlayer(victimId.getAsString());
+            if (victim != null) {
+                onTarget(new BattlefieldPlayerController[]{victim}, data.get("distance").getAsInt());
             }
-        } catch (JsonParseException e) {
-            e.printStackTrace();
         }
     }
 
     @Override
-    public void onTarget(BattlefieldPlayerController[] targetsTanks, int distance) {
+    public void onTarget(BattlefieldPlayerController[] targets, int distance) {
         float damage = RandomUtils.getRandom(this.entity.damage_min, this.entity.damage_max);
-        if (targetsTanks.length != 0) {
-            if (targetsTanks[0] != null) {
-                if ((double) distance >= this.weakeingData.minimumDamageRadius) {
-                    damage = WeaponUtils.calculateDamageFromDistance(damage, (int) this.weakeingData.minimumDamagePercent);
+        if (targets.length != 0) {
+            if (targets[0] != null) {
+                if ((double) distance >= this.weakeningData.minimumDamageRadius) {
+                    damage = WeaponUtils.calculateDamageFromDistance(damage, (int) this.weakeningData.minimumDamagePercent);
                 }
 
-                this.bfModel.tanksKillModel.damageTank(targetsTanks[0], this.player, damage, true);
+                this.bfModel.tanksKillModel.damageTank(targets[0], this.player, damage, true);
             }
         }
     }
 
     @Override
-    public IEntity getEntity() {
+    public WeaponEntity getEntity() {
         return this.entity;
     }
 

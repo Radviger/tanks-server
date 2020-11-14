@@ -1,19 +1,16 @@
 package gtanks.battles.tanks.weapons.isida;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import gtanks.RandomUtils;
 import gtanks.battles.BattlefieldModel;
 import gtanks.battles.BattlefieldPlayerController;
-import gtanks.battles.tanks.weapons.IEntity;
-import gtanks.battles.tanks.weapons.IWeapon;
-import gtanks.battles.tanks.weapons.anticheats.TickableWeaponAnticheatModel;
+import gtanks.battles.tanks.weapons.WeaponEntity;
+import gtanks.battles.tanks.weapons.anticheats.TickableWeaponModel;
 import gtanks.commands.Type;
 import gtanks.services.TanksServices;
 
-public class IsidaModel extends TickableWeaponAnticheatModel implements IWeapon {
-    private static final Gson GSON = new Gson();
+public class IsidaModel extends TickableWeaponModel {
     private static final double HEALER_POINTS_COEFFICIENT = 90.0D;
     private static final TanksServices tanksServices = TanksServices.INSTANCE;
 
@@ -30,14 +27,13 @@ public class IsidaModel extends TickableWeaponAnticheatModel implements IWeapon 
     }
 
     @Override
-    public void startFire(String json) {
+    public void startFire(JsonObject data) {
         JsonObject obj = new JsonObject();
-        JsonObject parser = GSON.fromJson(json, JsonObject.class);
 
         String shotType = "";
         String victim = null;
 
-        JsonElement victimId = parser.get("victimId");
+        JsonElement victimId = data.get("victimId");
         if (victimId != null) {
             victim = victimId.getAsString();
             if (!victim.isEmpty()) {
@@ -57,22 +53,20 @@ public class IsidaModel extends TickableWeaponAnticheatModel implements IWeapon 
         obj.addProperty("type", shotType);
         obj.addProperty("shooterId", this.player.getUser().getNickname());
         obj.addProperty("targetId", victim);
-        this.bfModel.sendToAllPlayers(this.player, Type.BATTLE, "start_fire", this.player.getUser().getNickname(), GSON.toJson(obj));
+        this.bfModel.sendToAllPlayers(this.player, Type.BATTLE, "start_fire", this.player.getUser().getNickname(), BattlefieldPlayerController.GSON.toJson(obj));
     }
 
     @Override
-    public void fire(String json) {
-        JsonObject parser = GSON.fromJson(json, JsonObject.class);
-
-        this.check(parser.get("tickPeriod").getAsInt());
-        JsonElement victimId = parser.get("victimId");
+    public void fire(JsonObject data) {
+        this.check(data.get("tickPeriod").getAsInt());
+        JsonElement victimId = data.get("victimId");
         if (victimId != null) {
             String victim = victimId.getAsString();
             if (!victim.isEmpty()) {
                 BattlefieldPlayerController target = this.bfModel.getPlayer(victim);
                 if (target != null) {
                     if (!((float) ((int) (target.tank.position.distanceTo(this.player.tank.position) / 100.0D)) > this.entity.maxRadius)) {
-                        this.onTarget(new BattlefieldPlayerController[]{target}, parser.get("distance").getAsInt());
+                        this.onTarget(new BattlefieldPlayerController[]{target}, data.get("distance").getAsInt());
                     }
                 }
             }
@@ -103,24 +97,24 @@ public class IsidaModel extends TickableWeaponAnticheatModel implements IWeapon 
     }
 
     @Override
-    public void onTarget(BattlefieldPlayerController[] targetsTanks, int distance) {
+    public void onTarget(BattlefieldPlayerController[] targets, int distance) {
         if (distance != 1500) {
-            this.bfModel.cheatDetected(this.player, this.getClass());
+            this.bfModel.cheatDetected(this.player, this);
         }
 
         float damage = RandomUtils.getRandom(this.entity.damage_min, this.entity.damage_min) / 2.0F;
-        if (this.bfModel.battleInfo.team && this.player.playerTeamType.equals(targetsTanks[0].playerTeamType)) {
-            if (this.bfModel.tanksKillModel.healPlayer(this.player, targetsTanks[0], damage)) {
-                this.addScoreForHealing(damage, targetsTanks[0]);
+        if (this.bfModel.battleInfo.team && this.player.playerTeamType.equals(targets[0].playerTeamType)) {
+            if (this.bfModel.tanksKillModel.healPlayer(this.player, targets[0], damage)) {
+                this.addScoreForHealing(damage, targets[0]);
             }
         } else {
-            this.bfModel.tanksKillModel.damageTank(targetsTanks[0], this.player, damage, true);
+            this.bfModel.tanksKillModel.damageTank(targets[0], this.player, damage, true);
             this.bfModel.tanksKillModel.healPlayer(this.player, this.player, damage / 2.0F);
         }
     }
 
     @Override
-    public IEntity getEntity() {
+    public WeaponEntity getEntity() {
         return this.entity;
     }
 }

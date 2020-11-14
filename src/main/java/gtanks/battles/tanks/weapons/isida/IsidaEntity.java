@@ -1,10 +1,10 @@
 package gtanks.battles.tanks.weapons.isida;
 
-import gtanks.battles.tanks.weapons.EntityType;
-import gtanks.battles.tanks.weapons.IEntity;
+import gtanks.battles.tanks.weapons.WeaponType;
+import gtanks.battles.tanks.weapons.WeaponEntity;
 import gtanks.battles.tanks.weapons.ShotData;
 
-public class IsidaEntity implements IEntity {
+public class IsidaEntity implements WeaponEntity {
     public int capacity;
     public int chargeRate;
     public int dischargeRate;
@@ -39,7 +39,7 @@ public class IsidaEntity implements IEntity {
     }
 
     @Override
-    public EntityType getType() {
-        return EntityType.ISIDA;
+    public WeaponType getType() {
+        return WeaponType.ISIDA;
     }
 }

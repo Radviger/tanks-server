@@ -1,84 +1,70 @@
 package gtanks.battles.tanks.weapons.snowman;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import gtanks.RandomUtils;
 import gtanks.battles.BattlefieldModel;
 import gtanks.battles.BattlefieldPlayerController;
-import gtanks.battles.anticheats.AntiCheatModel;
-import gtanks.battles.tanks.weapons.IEntity;
-import gtanks.battles.tanks.weapons.IWeapon;
+import gtanks.battles.tanks.weapons.WeaponEntity;
 import gtanks.battles.tanks.weapons.WeaponUtils;
 import gtanks.battles.tanks.weapons.WeaponWeakeningData;
-import gtanks.battles.tanks.weapons.anticheats.FireableWeaponAnticheatModel;
+import gtanks.battles.tanks.weapons.anticheats.FiringWeaponModel;
 import gtanks.battles.tanks.weapons.frezee.effects.FreezeEffectModel;
 import gtanks.commands.Type;
-import gtanks.logger.Logger;
 
-@AntiCheatModel(
-    name = "SnowmanModel",
-    actionInfo = "Child FireableWeaponAnticheatModel"
-)
-public class SnowmanModel extends FireableWeaponAnticheatModel implements IWeapon {
-    private static final Gson GSON = new Gson();
-    private BattlefieldModel bfModel;
-    private BattlefieldPlayerController player;
-    private WeaponWeakeningData weakeingData;
-    private SnowmanEntity entity;
+public class SnowmanModel extends FiringWeaponModel {
+    private final BattlefieldModel bfModel;
+    private final BattlefieldPlayerController player;
+    private final WeaponWeakeningData weakeningData;
+    private final SnowmanEntity entity;
 
-    public SnowmanModel(SnowmanEntity snowmanEntity, WeaponWeakeningData weakeingData, BattlefieldPlayerController tank, BattlefieldModel battle) {
+    public SnowmanModel(SnowmanEntity snowmanEntity, WeaponWeakeningData weakeningData, BattlefieldPlayerController tank, BattlefieldModel battle) {
         super(snowmanEntity.getShotData().reloadMsec);
         this.bfModel = battle;
         this.player = tank;
         this.entity = snowmanEntity;
-        this.weakeingData = weakeingData;
+        this.weakeningData = weakeningData;
     }
 
     @Override
-    public void startFire(String json) {
-        this.bfModel.sendToAllPlayers(this.player, Type.BATTLE, "start_fire_snowman", this.player.tank.id, json);
+    public void startFire(JsonObject data) {
+        this.bfModel.sendToAllPlayers(this.player, Type.BATTLE, "start_fire_snowman", this.player.tank.id, BattlefieldPlayerController.GSON.toJson(data));
     }
 
     @Override
-    public void fire(String json) {
-        this.bfModel.fire(this.player, json);
+    public void fire(JsonObject data) {
+        this.bfModel.fire(this.player, data);
 
-        try {
-            JsonObject parser = GSON.fromJson(json, JsonObject.class);
-            if (!this.check(parser.get("reloadTime").getAsInt())) {
-                this.bfModel.cheatDetected(this.player, this.getClass());
-                return;
-            }
-
-            BattlefieldPlayerController victim = this.bfModel.getPlayer(parser.get("victimId").getAsString());
-            this.onTarget(new BattlefieldPlayerController[]{victim}, parser.get("distance").getAsInt());
-        } catch (Exception e) {
-            Logger.log("Error in parsing json SnowmanModel().fire() Data: " + json);
+        if (!check(data.get("reloadTime").getAsInt())) {
+            this.bfModel.cheatDetected(this.player, this);
+            return;
         }
+
+        BattlefieldPlayerController victim = this.bfModel.getPlayer(data.get("victimId").getAsString());
+        this.onTarget(new BattlefieldPlayerController[]{victim}, data.get("distance").getAsInt());
     }
 
     @Override
-    public void onTarget(BattlefieldPlayerController[] targetsTanks, int distance) {
+    public void onTarget(BattlefieldPlayerController[] targets, int distance) {
         float damage = RandomUtils.getRandom(this.entity.damage_min, this.entity.damage_max);
-        if (targetsTanks.length != 0) {
-            if (targetsTanks[0] != null) {
-                if ((double) distance >= this.weakeingData.minimumDamageRadius) {
-                    damage = WeaponUtils.calculateDamageFromDistance(damage, (int) this.weakeingData.minimumDamagePercent);
+        if (targets.length != 0) {
+            if (targets[0] != null) {
+                if ((double) distance >= this.weakeningData.minimumDamageRadius) {
+                    damage = WeaponUtils.calculateDamageFromDistance(damage, (int) this.weakeningData.minimumDamagePercent);
                 }
 
-                if (targetsTanks[0].tank.freezeEffect == null) {
-                    targetsTanks[0].tank.freezeEffect = new FreezeEffectModel(this.entity.frezeeSpeed, targetsTanks[0].tank, this.bfModel);
-                    targetsTanks[0].tank.freezeEffect.setStartSpecFromTank();
+                if (targets[0].tank.freezeEffect == null) {
+                    targets[0].tank.freezeEffect = new FreezeEffectModel(this.entity.frezeeSpeed, targets[0].tank, this.bfModel);
+                    targets[0].tank.freezeEffect.setStartSpecFromTank();
                 }
 
-                targetsTanks[0].tank.freezeEffect.update();
-                this.bfModel.tanksKillModel.damageTank(targetsTanks[0], this.player, damage, true);
+                targets[0].tank.freezeEffect.update();
+                this.bfModel.tanksKillModel.damageTank(targets[0], this.player, damage, true);
             }
         }
     }
 
     @Override
-    public IEntity getEntity() {
+    public WeaponEntity getEntity() {
         return this.entity;
     }
 

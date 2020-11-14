@@ -8,7 +8,7 @@ import gtanks.battles.tanks.colormaps.Colormap;
 import gtanks.battles.tanks.data.DamageTankData;
 import gtanks.battles.tanks.hulls.Hull;
 import gtanks.battles.tanks.math.Vector3;
-import gtanks.battles.tanks.weapons.IWeapon;
+import gtanks.battles.tanks.weapons.WeaponModel;
 import gtanks.battles.tanks.weapons.frezee.effects.FreezeEffectModel;
 
 import java.util.*;
@@ -31,7 +31,7 @@ public class Tank {
     public FreezeEffectModel freezeEffect;
     public final List<Effect> activeEffects = new ArrayList<>();
     public Map<BattlefieldPlayerController, DamageTankData> lastDamagers = new LinkedHashMap<>();
-    private IWeapon weapon;
+    private WeaponModel weapon;
     private Hull hull;
     private Colormap colormap;
 
@@ -39,11 +39,11 @@ public class Tank {
         this.position = position;
     }
 
-    public IWeapon getWeapon() {
+    public WeaponModel getWeapon() {
         return this.weapon;
     }
 
-    public void setWeapon(IWeapon weapon) {
+    public void setWeapon(WeaponModel weapon) {
         this.weapon = weapon;
         this.turretRotationSpeed = weapon.getEntity().getShotData().turretRotationSpeed;
     }

@@ -3,7 +3,6 @@ package gtanks.battles;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import gtanks.StringUtils;
-import gtanks.battles.anticheats.AntiCheatModel;
 import gtanks.battles.bonuses.Bonus;
 import gtanks.battles.bonuses.BonusesSpawnService;
 import gtanks.battles.bonuses.model.BonusTakeModel;
@@ -151,8 +150,8 @@ public class BattlefieldModel implements Destroyable {
         return (int) ((this.endBattleTime - System.currentTimeMillis()) / 1000L);
     }
 
-    public void fire(BattlefieldPlayerController tank, String json) {
-        this.sendToAllPlayers(tank, Type.BATTLE, "fire", tank.tank.id, json);
+    public void fire(BattlefieldPlayerController tank, JsonObject json) {
+        this.sendToAllPlayers(tank, Type.BATTLE, "fire", tank.tank.id, GSON.toJson(json));
     }
 
     public void startFire(BattlefieldPlayerController tank) {
@@ -342,12 +341,8 @@ public class BattlefieldModel implements Destroyable {
         this.spectatorModel.sendCommandToSpectators(type, args);
     }
 
-    public void cheatDetected(BattlefieldPlayerController player, Class anticheat) {
-        AntiCheatModel[] model = (AntiCheatModel[]) anticheat.getAnnotationsByType(AntiCheatModel.class);
-        if (model != null && model.length >= 1) {
-            Logger.log("Detected cheater![" + model[0].name() + "] " + player.getUser().getNickname() + " " + player.parentLobby.pipeline.getIP());
-        }
-
+    public void cheatDetected(BattlefieldPlayerController player, Object model) {
+        Logger.log("Detected cheater![" + model.getClass() + "] " + player.getUser().getNickname() + " " + player.parentLobby.pipeline.getIP());
         this.kickPlayer(player);
     }
 

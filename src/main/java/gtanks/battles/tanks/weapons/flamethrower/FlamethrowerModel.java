@@ -1,19 +1,16 @@
 package gtanks.battles.tanks.weapons.flamethrower;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import gtanks.battles.BattlefieldModel;
 import gtanks.battles.BattlefieldPlayerController;
-import gtanks.battles.tanks.weapons.IEntity;
-import gtanks.battles.tanks.weapons.IWeapon;
-import gtanks.battles.tanks.weapons.anticheats.TickableWeaponAnticheatModel;
+import gtanks.battles.tanks.weapons.WeaponEntity;
+import gtanks.battles.tanks.weapons.anticheats.TickableWeaponModel;
 
-public class FlamethrowerModel extends TickableWeaponAnticheatModel implements IWeapon {
-    private static final Gson GSON = new Gson();
-    public BattlefieldModel bfModel;
-    public BattlefieldPlayerController player;
-    private FlamethrowerEntity entity;
+public class FlamethrowerModel extends TickableWeaponModel {
+    private final BattlefieldModel bfModel;
+    private final BattlefieldPlayerController player;
+    private final FlamethrowerEntity entity;
 
     public FlamethrowerModel(FlamethrowerEntity entity, BattlefieldModel bfModel, BattlefieldPlayerController player) {
         super(entity.targetDetectionInterval);
@@ -23,7 +20,7 @@ public class FlamethrowerModel extends TickableWeaponAnticheatModel implements I
     }
 
     @Override
-    public void startFire(String json) {
+    public void startFire(JsonObject data) {
         this.bfModel.startFire(this.player);
     }
 
@@ -33,11 +30,10 @@ public class FlamethrowerModel extends TickableWeaponAnticheatModel implements I
     }
 
     @Override
-    public void fire(String json) {
-        JsonObject obj = GSON.fromJson(json, JsonObject.class);
-        JsonArray tanks = obj.getAsJsonArray("targetsIds");
-        if (!this.check(obj.get("tickPeriod").getAsInt())) {
-            this.bfModel.cheatDetected(this.player, this.getClass());
+    public void fire(JsonObject data) {
+        JsonArray tanks = data.getAsJsonArray("targetsIds");
+        if (!check(data.get("tickPeriod").getAsInt())) {
+            this.bfModel.cheatDetected(this.player, this);
             return;
         }
 
@@ -58,14 +54,14 @@ public class FlamethrowerModel extends TickableWeaponAnticheatModel implements I
     }
 
     @Override
-    public void onTarget(BattlefieldPlayerController[] targetsTanks, int distance) {
-        for (BattlefieldPlayerController victim : targetsTanks) {
+    public void onTarget(BattlefieldPlayerController[] targets, int distance) {
+        for (BattlefieldPlayerController victim : targets) {
             this.bfModel.tanksKillModel.damageTank(victim, this.player, this.entity.damage_max, true);
         }
     }
 
     @Override
-    public IEntity getEntity() {
+    public WeaponEntity getEntity() {
         return this.entity;
     }
 }

@@ -1,10 +1,10 @@
 package gtanks.battles.tanks.weapons.twins;
 
-import gtanks.battles.tanks.weapons.EntityType;
-import gtanks.battles.tanks.weapons.IEntity;
+import gtanks.battles.tanks.weapons.WeaponType;
+import gtanks.battles.tanks.weapons.WeaponEntity;
 import gtanks.battles.tanks.weapons.ShotData;
 
-public class TwinsEntity implements IEntity {
+public class TwinsEntity implements WeaponEntity {
     public float shotRange;
     public float shotSpeed;
     public float shotRadius;
@@ -27,7 +27,7 @@ public class TwinsEntity implements IEntity {
     }
 
     @Override
-    public EntityType getType() {
-        return EntityType.TWINS;
+    public WeaponType getType() {
+        return WeaponType.TWINS;
     }
 }

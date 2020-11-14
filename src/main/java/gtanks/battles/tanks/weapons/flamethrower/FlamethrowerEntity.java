@@ -1,11 +1,11 @@
 package gtanks.battles.tanks.weapons.flamethrower;
 
-import gtanks.battles.tanks.weapons.EntityType;
-import gtanks.battles.tanks.weapons.IEntity;
+import gtanks.battles.tanks.weapons.WeaponType;
+import gtanks.battles.tanks.weapons.WeaponEntity;
 import gtanks.battles.tanks.weapons.ShotData;
 
-public class FlamethrowerEntity implements IEntity {
-    public final EntityType type;
+public class FlamethrowerEntity implements WeaponEntity {
+    public final WeaponType type;
     public int targetDetectionInterval;
     public float range;
     public float coneAngle;
@@ -17,7 +17,7 @@ public class FlamethrowerEntity implements IEntity {
     public ShotData shotData;
 
     public FlamethrowerEntity(int targetDetectionInterval, float range, float coneAngle, int heatingSpeed, int coolingSpeed, int heatLimit, ShotData shotData, float damageMax, float damageMin) {
-        this.type = EntityType.FLAMETHROWER;
+        this.type = WeaponType.FLAMETHROWER;
         this.targetDetectionInterval = targetDetectionInterval;
         this.range = range;
         this.coneAngle = coneAngle;
@@ -35,7 +35,7 @@ public class FlamethrowerEntity implements IEntity {
     }
 
     @Override
-    public EntityType getType() {
+    public WeaponType getType() {
         return this.type;
     }
 }

@@ -1,10 +1,10 @@
 package gtanks.battles.tanks.weapons.frezee;
 
-import gtanks.battles.tanks.weapons.EntityType;
-import gtanks.battles.tanks.weapons.IEntity;
+import gtanks.battles.tanks.weapons.WeaponType;
+import gtanks.battles.tanks.weapons.WeaponEntity;
 import gtanks.battles.tanks.weapons.ShotData;
 
-public class FrezeeEntity implements IEntity {
+public class FrezeeEntity implements WeaponEntity {
     public float damageAreaConeAngle;
     public float damageAreaRange;
     public int energyCapacity;
@@ -35,7 +35,7 @@ public class FrezeeEntity implements IEntity {
     }
 
     @Override
-    public EntityType getType() {
-        return EntityType.FREZZE;
+    public WeaponType getType() {
+        return WeaponType.FREZZE;
     }
 }

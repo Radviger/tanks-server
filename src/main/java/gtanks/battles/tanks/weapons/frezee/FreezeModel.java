@@ -1,18 +1,15 @@
 package gtanks.battles.tanks.weapons.frezee;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import gtanks.RandomUtils;
 import gtanks.battles.BattlefieldModel;
 import gtanks.battles.BattlefieldPlayerController;
-import gtanks.battles.tanks.weapons.IEntity;
-import gtanks.battles.tanks.weapons.IWeapon;
-import gtanks.battles.tanks.weapons.anticheats.TickableWeaponAnticheatModel;
+import gtanks.battles.tanks.weapons.WeaponEntity;
+import gtanks.battles.tanks.weapons.anticheats.TickableWeaponModel;
 import gtanks.battles.tanks.weapons.frezee.effects.FreezeEffectModel;
 
-public class FreezeModel extends TickableWeaponAnticheatModel implements IWeapon {
-    private static final Gson GSON = new Gson();
+public class FreezeModel extends TickableWeaponModel {
     private final FrezeeEntity entity;
     private final BattlefieldModel bfModel;
     private final BattlefieldPlayerController player;
@@ -25,13 +22,12 @@ public class FreezeModel extends TickableWeaponAnticheatModel implements IWeapon
     }
 
     @Override
-    public void fire(String json) {
-        JsonObject obj = GSON.fromJson(json, JsonObject.class);
-        JsonArray victims = obj.getAsJsonArray("victims");
-        JsonArray distances = obj.getAsJsonArray("targetDistances");
+    public void fire(JsonObject data) {
+        JsonArray victims = data.getAsJsonArray("victims");
+        JsonArray distances = data.getAsJsonArray("targetDistances");
 
-        if (!this.check(obj.get("tickPeriod").getAsInt())) {
-            this.bfModel.cheatDetected(this.player, this.getClass());
+        if (!this.check(data.get("tickPeriod").getAsInt())) {
+            this.bfModel.cheatDetected(this.player, this);
             return;
         }
 
@@ -46,7 +42,7 @@ public class FreezeModel extends TickableWeaponAnticheatModel implements IWeapon
     }
 
     @Override
-    public void startFire(String json) {
+    public void startFire(JsonObject data) {
         this.bfModel.startFire(this.player);
     }
 
@@ -56,11 +52,11 @@ public class FreezeModel extends TickableWeaponAnticheatModel implements IWeapon
     }
 
     @Override
-    public void onTarget(BattlefieldPlayerController[] targetsTanks, int distance) {
+    public void onTarget(BattlefieldPlayerController[] targets, int distance) {
         float damage = RandomUtils.getRandom(this.entity.damage_min, this.entity.damage_min) / 2.0F;
         if (!((float) distance > this.entity.damageAreaRange)) {
-            this.bfModel.tanksKillModel.damageTank(targetsTanks[0], this.player, damage, true);
-            BattlefieldPlayerController victim = targetsTanks[0];
+            this.bfModel.tanksKillModel.damageTank(targets[0], this.player, damage, true);
+            BattlefieldPlayerController victim = targets[0];
             if (victim != null && victim.tank != null) {
                 boolean canFreeze = true;
                 if (this.bfModel.battleInfo.team) {
@@ -80,7 +76,7 @@ public class FreezeModel extends TickableWeaponAnticheatModel implements IWeapon
     }
 
     @Override
-    public IEntity getEntity() {
+    public WeaponEntity getEntity() {
         return this.entity;
     }
 }

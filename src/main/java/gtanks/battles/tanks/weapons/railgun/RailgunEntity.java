@@ -1,11 +1,11 @@
 package gtanks.battles.tanks.weapons.railgun;
 
-import gtanks.battles.tanks.weapons.EntityType;
-import gtanks.battles.tanks.weapons.IEntity;
+import gtanks.battles.tanks.weapons.WeaponType;
+import gtanks.battles.tanks.weapons.WeaponEntity;
 import gtanks.battles.tanks.weapons.ShotData;
 
-public class RailgunEntity implements IEntity {
-    public final EntityType type;
+public class RailgunEntity implements WeaponEntity {
+    public final WeaponType type;
     public int chargingTime;
     public int weakeningCoefficient;
     public float damage_min;
@@ -13,7 +13,7 @@ public class RailgunEntity implements IEntity {
     private final ShotData shotData;
 
     public RailgunEntity(ShotData shotData, int chargingTime, int weakeningCoefficient, float damage_min, float damage_max) {
-        this.type = EntityType.RAILGUN;
+        this.type = WeaponType.RAILGUN;
         this.chargingTime = chargingTime;
         this.weakeningCoefficient = weakeningCoefficient;
         this.damage_min = damage_min;
@@ -32,7 +32,7 @@ public class RailgunEntity implements IEntity {
     }
 
     @Override
-    public EntityType getType() {
+    public WeaponType getType() {
         return this.type;
     }
 }

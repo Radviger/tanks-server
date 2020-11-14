@@ -29,7 +29,7 @@ import gtanks.users.locations.UserLocation;
 import java.util.Objects;
 
 public class BattlefieldPlayerController extends BattlefieldPlayerCommandsConst implements DisconnectListener, Comparable<BattlefieldPlayerController> {
-    private static final Gson GSON = new Gson();
+    public static final Gson GSON = new Gson();
 
     public LobbyManager parentLobby;
     public BattlefieldModel battle;
@@ -100,12 +100,12 @@ public class BattlefieldPlayerController extends BattlefieldPlayerCommandsConst 
                             break;
                         case START_FIRE:
                             if (this.tank.state.equals("active")) {
-                                this.tank.getWeapon().startFire(cmd.args.length >= 2 ? cmd.args[1] : "");
+                                this.tank.getWeapon().startFire(cmd.args.length >= 2 ? GSON.fromJson(cmd.args[1], JsonObject.class) : new JsonObject());
                             }
                             break;
                         case FIRE:
                             if (this.tank.state.equals("active")) {
-                                this.tank.getWeapon().fire(cmd.args[1]);
+                                this.tank.getWeapon().fire(GSON.fromJson(cmd.args[1], JsonObject.class));
                             }
                             break;
                         case I_EXIT_FROM_BATTLE:
@@ -124,7 +124,7 @@ public class BattlefieldPlayerController extends BattlefieldPlayerCommandsConst 
                             this.parseAndDropFlag(cmd.args[1]);
                             break;
                         case SPEEDHACK_DETECTED:
-                            this.battle.cheatDetected(this, this.getClass());
+                            this.battle.cheatDetected(this, this);
                             break;
                         case ACTIVATE_ITEM:
                             Vector3 _tankPos;
@@ -144,10 +144,9 @@ public class BattlefieldPlayerController extends BattlefieldPlayerCommandsConst 
                             break;
                     }
             }
-        } catch (Exception var5) {
-            var5.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
     }
 
     private void parseAndDropFlag(String json) {
@@ -198,10 +197,9 @@ public class BattlefieldPlayerController extends BattlefieldPlayerCommandsConst 
             this.tank.turretDir = turretDir;
             this.tank.controllBits = bits;
             this.battle.moveTank(this);
-        } catch (Exception var9) {
-            var9.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
     }
 
     public void clearEffects() {

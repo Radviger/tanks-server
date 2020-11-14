@@ -1,6 +1,6 @@
 package gtanks.battles.tanks.colormaps;
 
-import gtanks.battles.tanks.weapons.EntityType;
+import gtanks.battles.tanks.weapons.WeaponType;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +12,7 @@ public class Colormap {
         this.resistances.put(type, percent);
     }
 
-    public Integer getResistance(EntityType weaponType) {
+    public Integer getResistance(WeaponType weaponType) {
         return this.resistances.get(weaponType.colormap);
     }
 }

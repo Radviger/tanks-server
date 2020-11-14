@@ -1,10 +1,10 @@
 package gtanks.battles.tanks.weapons.snowman;
 
-import gtanks.battles.tanks.weapons.EntityType;
-import gtanks.battles.tanks.weapons.IEntity;
+import gtanks.battles.tanks.weapons.WeaponType;
+import gtanks.battles.tanks.weapons.WeaponEntity;
 import gtanks.battles.tanks.weapons.ShotData;
 
-public class SnowmanEntity implements IEntity {
+public class SnowmanEntity implements WeaponEntity {
     public float shotRange;
     public float shotSpeed;
     public float shotRadius;
@@ -29,7 +29,7 @@ public class SnowmanEntity implements IEntity {
     }
 
     @Override
-    public EntityType getType() {
-        return EntityType.SNOWMAN;
+    public WeaponType getType() {
+        return WeaponType.SNOWMAN;
     }
 }

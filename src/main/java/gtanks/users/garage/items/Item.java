@@ -2,14 +2,12 @@ package gtanks.users.garage.items;
 
 import com.google.gson.JsonObject;
 import gtanks.StringUtils;
-import gtanks.dumpers.Dumper;
-import gtanks.system.localization.Localization;
 import gtanks.system.localization.strings.LocalizedString;
 import gtanks.users.garage.Garage;
 import gtanks.users.garage.enums.ItemType;
 import gtanks.users.garage.items.modification.ModificationInfo;
 
-public class Item implements Dumper {
+public class Item {
     public String id;
     public LocalizedString description;
     public boolean isInventory;
@@ -53,11 +51,6 @@ public class Item implements Dumper {
     @Override
     public Item clone() {
         return new Item(this.id, this.description, this.isInventory, this.index, this.properties, this.itemType, this.modificationIndex, this.name, this.nextProperty, this.nextPrice, this.nextRankId, this.price, this.rankId, this.modifications, this.specialItem, this.count);
-    }
-
-    @Override
-    public String dump() {
-        return StringUtils.concatStrings("-------DUMP GARAGE ITEM------\n", "\tid: ", this.id, "\n", "\tinventoryItem: ", String.valueOf(this.isInventory), "\n", "\tindex: ", String.valueOf(this.index), "\n", "\tname: ", this.name.localize(Localization.RU), "\n", "\tprice: ", String.valueOf(this.price), "\n", "\trandId: ", String.valueOf(this.rankId), "\n", "\tspecialItem: ", String.valueOf(this.specialItem), "\n", "-------------------------------", "\n");
     }
 
     public JsonObject serialize(Garage garage) {
