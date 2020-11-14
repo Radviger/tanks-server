@@ -1,0 +1,67 @@
+{
+	"type" :"inventory",
+	"items" :[
+		{
+		   "name_ru": "Аптечка",
+		   "name_en": "First Aid",
+		   "description_en": "Gradually restores «health» at the rate of 30 HP/sec. Heals till full healing or till all HPs are given. The amount of HPs in the medkit is equal to full «health» of the tank. Next use within 30 seconds after previous medkit activation. A must have item at a warfield. A set of well balanced medical items, packed in a box, helps to stay alive in a very dangerous situations. The box itself can play the role of composting tollet.",
+		   "description_ru": "Постепенно восстанавливает «здоровье» со скоростью 30 HP/сек. Лечит либо до полного исцеления, либо пока не выработает свой ресурс, равный полному запасу «здоровья» танка.\nНезаменимая вещь в бою. Набор грамотно подобранных медикаментов, аккуратно упакованных в пластиковую коробку, позволит вылечить легкие раны и неглубокие порезы. Входящие в комплект нитка, иголка и бактерицидный гель помогут приладить на место отрезанные в бою пальцы, уши и другие мелкие части тела. Сама же коробка нужна не только для хранения всего этого хозяйства, по задумке военных инженеров она также должна выполнять роль биотуалета.",
+		   "modification": 0,
+		   "id": "health",
+		   "price_m0": "15",
+		   "rang_m0":"3",
+		   "count_modifications" : 0
+		},
+		{
+		   "name_ru": "Двойная защита",
+		   "name_en": "Double Armor",
+		   "description_en": "Doubles protection to one minute.\n\nA set of advanced kevlar plates, mounted in standart slots. Being set in a right way they can take up 50% of kinetic and thermal energy of the impact, provided double power armor.\n\nThe devices function for the period of one minute.",
+		   "description_ru": "Удваивает защиту на минуту.\n\nНабор усовершенствованных керамо-кавлоровых бронепластин, монтируемых в стандартные слоты 600x800 мм. При весе всего в 10 кг, такая пластина способна вдвое увеличить защитные свойства штатной брони, при правильной установке принимая на себя 50% кинетической и термической энергии взрыва. В комплект также входят ножницы с победитовыми лезвиями, три катушки двухстороннего скотча и белоснежная кружевная тряпочка из никотинового материала, без которой, судя по инструкции, никак не обойтись.",
+		   "modification": 0,
+		   "id": "armor",
+		   "price_m0": "5",
+		   "rang_m0":"4",
+		   "count_modifications" : 0
+		},
+		{
+		   "name_ru": "Двойная энергия",
+		   "name_en": "Double Power",
+		   "description_en": "Doubles gun characteristics to one minute.\n\nA unique devise - small metal clutch mounted on a barrel of the turret support upper distillate with the help on two bolts (20) and one lock screw. It speeds up for several times the shell of any nature, plasma  or impulse nanoweight, creating double power boost to any shot. Unfortunately, due to high power consumption of the electromagnetic modulator which speeds up the substance in the barrel, independent nuclear supply source which gives it power supply, runs down quickly and becomes useless.",
+		   "description_ru": "Удваивает характеристики пушки на минуту.\n\nУникальная военная разработка — небольшая металлическая муфта, монтируемая на среднюю часть дула посредством двух болтов на 20 и одного граверного шурупа. Позволяет в разы увеличить выходную скорость снаряда любой природы, тем самым вдвое увеличив его поражающую способность. К сожалению, автономный источник энергии, от которого питается электромагнитный модулятор, разгоняющий материю внутри ствола, быстро разряжается и устройство приходит в негодность.",
+		   "modification": 0,
+		   "id": "double_damage",
+		   "price_m0": "5",
+		   "rang_m0":"4",
+		   "count_modifications" : 0
+		},
+		{
+		   "name_ru": "Ускорение",
+		   "name_en": "Nitro",
+		   "description_en": "Increases speed for one minute.\n\nNitrogen oxide should be in every tank. First, it is wonderful fuel for acceleration. Second, nitrogen oxide also known as laughing gas can be used for narcosis and even just for fun. If you meet silly giggling tankman you should know — he has snuffed N2O. ",
+		   "description_ru": "Повышает скорость на минуту.\n\nБаллон с закисью азота должен быть в каждом танке. Во-первых, это отличное горючее для временного ускорения боевой машины. Во-вторых, оксид азота, также известный как веселящий газ, можно использовать для наркоза и просто для поднятия настроения. Если вы повстречаете глупо хихикающего танкиста, знайте, он просто нюхнул N2O.",
+		   "modification": 0,
+		   "id": "n2o",
+		   "price_m0": "5",
+		   "rang_m0":"4",
+		   "count_modifications" : 0
+		},
+		{
+		   "name_ru": "Мина",
+		   "name_en": "Mine",
+		   "description_en": "Undermines enemies.\n\nThe mine it deactivated if its owner was killed, left the battle was finished. In team battles mines don't react to allies. \n\n The mine is the friend, comrade and brother of an experienced tanker. To gain the rear of the enemy and mine his staff, protect the comrades while retreat, block approaches to the base - all this is possible due to the inconspicuous deadly device.",
+		   "description_ru": "Подрывает противников.\n\nМина деактивируется, если владелец погиб, вышел из битвы или закончилась битва. В командной битве мины не реагируют на союзников. \n \n Мина — друг, товарищ и брат опытного танкиста. Незаметно прокрасться в тыл врага и заминировать его штаб, прикрыть товарищей при отступлении, заблокировать подходы к базе — всё это стало возможным благодаря применению незаметного смертоносного устройства. Танк, подорвавшийся на мине, теряет от 120 до 240 единиц здоровья (hp). Время активации мины — 2 секунды, повторное использование мины возможно только через 30 секунд.",
+		   "modification": 0,
+		   "id": "mine",
+		   "price_m0": "10",
+		   "rang_m0":"10",
+		   "count_modifications" : 1,
+
+		   "propertys_m0": [
+			   		{
+			   			"type": "damage",
+			   			"value": "120-240"
+			   		}
+			]
+		}
+	]
+}

@@ -1,0 +1,769 @@
+{
+  "maps": [
+    {
+      "name": "Карта",
+      "id": "map",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "2042",
+      "id": "map_2042",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Бездна",
+      "id": "map_abyss",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Арена",
+      "id": "map_arena",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Атра",
+      "id": "map_atra",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Вавилон",
+      "id": "map_babylon",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Барда",
+      "id": "map_barda",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Берлин",
+      "id": "map_berlin",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Бобруйск",
+      "id": "map_bobruisk",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Бумбокс",
+      "id": "map_boombox",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Брест",
+      "id": "map_brest",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Брест II",
+      "id": "map_brest_2",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Мосты",
+      "id": "map_bridges",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Лагерь",
+      "id": "map_camp",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Каньон",
+      "id": "map_canyon",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Пещеры",
+      "id": "map_cave",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Овраг",
+      "id": "map_combe",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Кураж",
+      "id": "map_courage",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Перекрёсток",
+      "id": "map_cross",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Трек",
+      "id": "map_deathtrack",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Палуба-9",
+      "id": "map_deck9",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Пустыня",
+      "id": "map_desert",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Дуэль",
+      "id": "map_duel",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Дюссельдорф",
+      "id": "map_dusseldorf",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Эспланада",
+      "id": "map_esplanade",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Ферма",
+      "id": "map_farm",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Flying_test",
+      "id": "map_flying_test",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Форест",
+      "id": "map_forest",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Форт Нокс",
+      "id": "map_fortknox",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Форт Нокс II",
+      "id": "map_fortknoxII",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Форт Нокс III",
+      "id": "map_fort_knox_III",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Гардер",
+      "id": "map_garder",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Гравити",
+      "id": "map_gravity",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Губаха",
+      "id": "map_gubakha",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Ангары",
+      "id": "map_hangars",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Плато",
+      "id": "map_highland",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Плато II",
+      "id": "map_highland_II",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Холмы",
+      "id": "map_hill",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Промзона",
+      "id": "map_industrial_zone",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Иран",
+      "id": "map_iran",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Остров",
+      "id": "map_island",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Колхоз",
+      "id": "map_kolhoz",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Кунгур",
+      "id": "map_kungur",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Тэмпл",
+      "id": "map_losttemple",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Безумие",
+      "id": "map_madness",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Магадан",
+      "id": "map_magadan",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Магистраль",
+      "id": "map_magistral",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Бойня",
+      "id": "map_massacre",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "МегаПропы",
+      "id": "map_megaprops1",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Молотов",
+      "id": "map_molotov",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Монте-Карло",
+      "id": "map_montecarlo",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Новая песочница",
+      "id": "map_new_sandbox",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Трибьют",
+      "id": "map_new_tribute",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Шум",
+      "id": "map_noise",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Новэл",
+      "id": "map_novel",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Противостояние",
+      "id": "map_opposition",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Оса",
+      "id": "map_osa",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Парма",
+      "id": "map_parma",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Перевал",
+      "id": "map_pass",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Пинг-Понг",
+      "id": "map_pingpong",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Полигон",
+      "id": "map_polygon",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Позиция",
+      "id": "map_position",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Равен",
+      "id": "map_raven",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Ред Алерт",
+      "id": "map_redalert",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Сандал",
+      "id": "map_sandal",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Песочница",
+      "id": "map_sandbox",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Простор",
+      "id": "map_scope",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Серпухов",
+      "id": "map_serpuhov",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Мостик",
+      "id": "map_shortbridge",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Осада",
+      "id": "map_siege",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Тишина",
+      "id": "map_silence",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Жаворонки",
+      "id": "map_skylark",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Соликамск",
+      "id": "map_solikamsk",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Стадион",
+      "id": "map_stadium",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Станция",
+      "id": "map_station",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Подземка",
+      "id": "map_subway",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "test",
+      "id": "map_test",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "testing_ground 1",
+      "id": "map_testing_ground_1",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "test_new",
+      "id": "map_test_new",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Трибьют",
+      "id": "map_tribute",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Долина",
+      "id": "map_valley",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Волна",
+      "id": "map_wave",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Вольфенштейн",
+      "id": "map_wolfenstein",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Зона",
+      "id": "map_zone",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    },
+    {
+      "name": "Тест теней",
+      "id": "map_shadow",
+      "min_rank": "1",
+      "max_rank": "27",
+      "max_players": "10",
+      "tdm": true,
+      "ctf": true
+    }
+  ]
+}

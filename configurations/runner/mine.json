@@ -1,0 +1,45 @@
+{
+	"class_name": "gtanks.test.server.configuration.entitys.MineConfiguratorEntity",
+	"params": [
+		{
+			"var" : "activationTimeMsec",
+			"value": 2000,
+			"class_name": "java.lang.Integer"
+		},
+		{
+			"var" : "farVisibilityRadius",
+			"value": 15,
+			"class_name": "java.lang.Integer"
+		},
+		{
+			"var" : "nearVisibilityRadius",
+			"value": 5,
+			"class_name": "java.lang.Integer"
+		},
+		{
+			"var" : "impactForce",
+			"value": 2.0,
+			"class_name": "java.lang.Double"
+		},
+		{
+			"var" : "minDistanceFromBase",
+			"value": 6,
+			"class_name": "java.lang.Integer"
+		},
+		{
+			"var" : "radius",
+			"value": 1,
+			"class_name": "java.lang.Integer"
+		},
+		{
+			"var" : "minDamage",
+			"value": 120,
+			"class_name": "java.lang.Integer"
+		},
+		{
+			"var" : "maxDamage",
+			"value": 240,
+			"class_name": "java.lang.Integer"
+		}
+	]
+}

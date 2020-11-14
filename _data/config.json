@@ -1,0 +1,169 @@
+{
+	"maps": [
+	    {
+			"name": "polygon",
+			"id": "polygon",
+			"min_rank": "5",
+			"max_rank": "30",
+			"max_players": "24",
+			"tdm": true,
+			"ctf": false,
+			"skybox_id": "skybox_desert",
+			"theme_id": "Лето"
+		},
+		{
+			"name": "island",
+			"id": "island",
+			"min_rank": "5",
+			"max_rank": "30",
+			"max_players": "6",
+			"tdm": true,
+			"ctf": true,
+			"skybox_id": "skybox_desert",
+			"theme_id": "Лето"
+		},
+	    {
+			"name": "map",
+			"id": "map",
+			"min_rank": "5",
+			"max_rank": "30",
+			"max_players": "24",
+			"tdm": true,
+			"ctf": false,
+			"skybox_id": "skybox_desert",
+			"theme_id": "Лето"
+		},
+		{
+			"name": "2042",
+			"id": "2042",
+			"min_rank": "5",
+			"max_rank": "30",
+			"max_players": "24",
+			"tdm": true,
+			"ctf": true,
+			"skybox_id": "skybox_desert",
+			"theme_id": "Лето"
+		},
+		{ 
+			"name": "Песочница", 
+			"id": "pesok", 
+			"min_rank": "1", 
+			"max_rank": "30", 
+			"max_players": "8", 
+			"tdm": true, 
+			"ctf": true, 
+			"skybox_id": "skybox_default", 
+			"theme_id": "Лето" 
+		},
+		{ 
+			"name": "Арена", 
+			"id": "arena", 
+			"min_rank": "7", 
+			"max_rank": "30",
+			"max_players": "8", 
+			"tdm": true, 
+			"ctf": true, 
+			"skybox_id": "skybox_desert", 
+			"theme_id": "Лето" 
+		},
+		{ 
+			"name": "Дуэль", 
+			"id": "duel", 
+			"min_rank": "6", 
+			"max_rank": "30", 
+			"max_players": "2", 
+			"tdm": true, 
+			"ctf": true, 
+			"skybox_id": "skybox_default", 
+			"theme_id": "Лето" 
+		},
+		{ 
+			"name": "Овраг", 
+			"id": "ovrag", 
+			"min_rank": "7", 
+			"max_rank": "30",
+			"max_players": "8", 
+			"tdm": true, 
+			"ctf": true, 
+			"skybox_id": "skybox_desert", 
+			"theme_id": "Лето" 
+		},
+		{ 
+			"name": "Остров", 
+			"id": "ostr", 
+			"min_rank": "6", 
+			"max_rank": "30",
+			"max_players": "6", 
+			"tdm": true, 
+			"ctf": true, 
+			"skybox_id": "skybox_desert", 
+			"theme_id": "Лето" 
+		},
+		{ 
+			"name": "Пинг-Понг", 
+			"id": "ping", 
+			"min_rank": "7", 
+			"max_rank": "30",
+			"max_players": "6", 
+			"tdm": true, 
+			"ctf": true, 
+			"skybox_id": "skybox_desert", 
+			"theme_id": "Лето" 
+		},
+		{ 
+			"name": "Промзона", 
+			"id": "promz", 
+			"min_rank": "1", 
+			"max_rank": "30",
+			"max_players": "20", 
+			"tdm": true, 
+			"ctf": true, 
+			"skybox_id": "skybox_desert", 
+			"theme_id": "Лето" 
+		},
+		{ 
+			"name": "Сандал", 
+			"id": "sandal", 
+			"min_rank": "1", 
+			"max_rank": "30", 
+			"max_players": "12", 
+			"tdm": true, 
+			"ctf": true, 
+			"skybox_id": "skybox_default", 
+			"theme_id": "Лето" 
+		},
+		{ 
+			"name": "Ферма", 
+			"id": "ferma", 
+			"min_rank": "3", 
+			"max_rank": "30", 
+			"max_players": "8", 
+			"tdm": true, 
+			"ctf": true, 
+			"skybox_id": "skybox_desert", 
+			"theme_id": "Лето" 
+		},
+		{ 
+			"name": "Шум", 
+			"id": "shym", 
+			"min_rank": "6", 
+			"max_rank": "30",
+			"max_players": "16", 
+			"tdm": true, 
+			"ctf": true, 
+			"skybox_id": "skybox_desert", 
+			"theme_id": "Лето" 
+		},
+		{ 
+			"name": "Эспланада", 
+			"id": "esplanada", 
+			"min_rank": "3", 
+			"max_rank": "30",
+			"max_players": "16", 
+			"tdm": true, 
+			"ctf": true, 
+			"skybox_id": "skybox_desert", 
+			"theme_id": "Лето" 
+		},
+	]
+}

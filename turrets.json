@@ -1,0 +1,891 @@
+{
+    "type": "turrets",
+
+    "items": [
+        {
+           "name_ru": "Смоки",
+           "name_en": "Smoky",
+           "description_en": "Medium-caliber tank gun. It is used in light and training tanks. It is wide spread used because it is affordable and easy to operate. If you want to act like a guenilla, it certainly suits your needs. Fix it on light armor and enjoy speed among monster tanks.",
+           "description_ru": "Среднекалиберная танковая пушка. В основном, устанавливается на лёгкие истребительные и учебные танки. Получила распространение из-за дешевизны и простоты обслуживания. Установите её на быстрый корпус и, шныряя между ошарашенными врагами, берите тяжёлые неповоротливые танки на измор. Разработанные апгрейды способны существенно увеличить убойную силу этой малышки. Стоит помнить, что урон этой пушки падает на расстоянии.",
+           "modification": 0,
+           "id": "smoky",
+
+           "price_m0": "0",
+           "price_m1": "30",
+           "price_m2": "90",
+           "price_m3": "300",
+
+           "rang_m0":"1",
+           "rang_m1":"3",
+           "rang_m2":"5",
+           "rang_m3":"7",
+
+               "propertys_m0": [
+                       {
+                           "type": "damage",
+                           "value": "4 - 16"
+                       },
+
+                    {
+                        "type": "shot_frequency",
+                        "value": "30.0"
+                    },
+
+                    {
+                           "type": "turret_turn_speed",
+                           "value": "57.3"
+                       }
+
+               ],
+               "propertys_m1":[
+                       {
+                           "type": "damage",
+                           "value": "5 - 17"
+                       },
+                    {
+                        "type": "shot_frequency",
+                        "value": "31.6"
+                    },
+                    {
+                        "type": "turret_turn_speed",
+                        "value": "63.0"
+                    }
+               ],
+               "propertys_m2":[
+                       {
+                           "type": "damage",
+                           "value": "6 - 20"
+                       },
+                    {
+                        "type": "shot_frequency",
+                        "value": "34.3"
+                    },
+
+                    {
+                        "type": "turret_turn_speed",
+                        "value": "74.5"
+
+                    }
+               ],
+               "propertys_m3":[
+                       {
+                           "type": "damage",
+                           "value": "8 - 24"
+                       },
+                    {
+                        "type": "shot_frequency",
+                        "value": "37.5"
+                    },
+
+                    {
+                        "type": "turret_turn_speed",
+                        "value": "103.1"
+
+                    }
+
+               ]
+        },
+        {
+           "name_ru": "Огнемёт",
+           "name_en": "Firebird",
+           "description_en": "In close city quarters battles, there is no better weapon than a flame spitter. This is a weapon of mass destruction The heat will melt down any tank and its crew. This weapon is highly effective in a confined space on slow moving tanks.",
+           "description_ru": "В тесных городских кварталах, когда картина боя напоминает скорее муравейник, нет лучшего оружия, чем Огнемёт. Огнемёт является этаким оружием массового поражения для ближнего боя. Высокая температура горения смеси позволит быстро поджечь экипаж танка зазевавшегося противника, после чего скрыться за углом, пока враг догорает. Идеальное оружие против медленных танков в условиях ограниченного пространства. Из недостатков можно отметить сравнительно долгое время перезарядки, однако стрелять можно и из частично перезаряженного оружия.",
+           "modification": 0,
+           "id": "flamethrower",
+
+           "price_m0": "5",
+           "price_m1": "40",
+           "price_m2": "120",
+           "price_m3": "400",
+
+           "rang_m0":"4",
+           "rang_m1":"5",
+           "rang_m2":"7",
+           "rang_m3":"9",
+
+               "propertys_m0": [
+                    {
+                       "type": "damage_per_second",
+                       "value": "12"
+                    },
+                       {
+                        "type": "turret_turn_speed",
+                        "value": "91.7"
+                    },
+                       {
+                           "type": "cone_angle",
+                           "value": "20"
+                       },
+                    {
+                        "type": "shot_range",
+                        "value": "20"
+
+                    }
+               ],
+               "propertys_m1":[
+                    {
+                       "type": "damage_per_second",
+                       "value": "14"
+                    },
+                       {
+                        "type": "turret_turn_speed",
+                        "value": "103.1"
+                    },
+                       {
+                           "type": "cone_angle",
+                           "value": "20"
+                       },
+                   {
+                        "type": "shot_range",
+                        "value": "20"
+
+                    }
+               ],
+               "propertys_m2":[
+
+                    {
+                       "type": "damage_per_second",
+                       "value": "18"
+                    },
+                    {
+                        "type": "turret_turn_speed",
+                        "value": "126.1"
+                    },
+                       {
+                           "type": "cone_angle",
+                           "value": "20"
+                       },
+                    {
+                        "type": "shot_range",
+                        "value": "20"
+
+                    }
+               ],
+               "propertys_m3":[
+                    {
+                       "type": "damage_per_second",
+                       "value": "24"
+                    },
+                       {
+                        "type": "turret_turn_speed",
+                        "value": "171.9"
+                    },
+                       {
+                           "type": "cone_angle",
+                           "value": "20"
+                       },
+                    {
+                        "type": "shot_range",
+                        "value": "20"
+
+                    }
+               ]
+        },
+        {
+           "name_ru": "Твинс",
+           "name_en": "Twins",
+           "description_en": "This fast plasma gun with two tubes will melt enemy in seconds. Just remember that forced plasma generator, hid in this baby, eats a lot of energy, and gunfire accuracy is not the best ideal for dynamic firefight on a mid-distance.",
+           "description_ru": "Скорострельный двуствольный плазмомёт вмиг превратит врага в кучу расплавленного железа. Учитывая то, что попадание во вражеский танк сбивает ему прицел, это оружие идеально подходит для динамичного боя на средней дистанции.",
+           "modification": 0,
+           "id": "twins",
+
+           "price_m0": "10",
+           "price_m1": "50",
+           "price_m2": "150",
+           "price_m3": "500",
+
+           "rang_m0":"5",
+           "rang_m1":"6",
+           "rang_m2":"8",
+           "rang_m3":"10",
+
+               "propertys_m0": [
+                       {
+                           "type": "damage",
+                           "value": "3 - 5"
+                       },
+                    {
+                        "type": "shot_frequency",
+                        "value": "160.0"
+                    },
+                       {
+                           "type": "turret_turn_speed",
+                           "value": "74.5"
+                       },
+                    {
+                        "type": "shot_range",
+                        "value": "60"
+                    }
+
+               ],
+               "propertys_m1":[
+                       {
+                           "type": "damage",
+                           "value": "4 - 6"
+                       },
+                    {
+                        "type": "shot_frequency",
+                        "value": "150.0"
+                    },
+                       {
+                           "type": "turret_turn_speed",
+                           "value": "83.1"
+                       },
+                    {
+                        "type": "shot_range",
+                        "value": "60"
+                    }
+               ],
+               "propertys_m2":[
+                       {
+                           "type": "damage",
+                           "value": "5 -7"
+                       },
+                    {
+                        "type": "shot_frequency",
+                        "value": "160.0"
+                    },
+                       {
+                           "type": "turret_turn_speed",
+                           "value": "97.4"
+                       },
+                    {
+                        "type": "shot_range",
+                        "value": "60"
+
+                    }
+               ],
+               "propertys_m3":[
+                       {
+                           "type": "damage",
+                           "value": "6 - 8"
+                       },
+                    {
+                        "type": "shot_frequency",
+                        "value": "181.8"
+                    },
+                       {
+                           "type": "turret_turn_speed",
+                           "value": "120.3"
+                       },
+                    {
+                        "type": "shot_range",
+                        "value": "60"
+
+                    }
+
+               ]
+        },
+        {
+           "name_ru": "Рельса",
+           "name_en": "Railgun",
+           "description_en": "If mid-caliber guns are not enough for your self-expression, this toy is right for you. Large-caliber gun with huge muzzle speed and uranic core shells. You can get several targets with a single shot, because it goes through the enemy. Complex recoil reduction system needs a lot of power to function. Ideal for long-range trench warfare and sniping.",
+           "description_ru": "Если среднекалиберные пушки уже не утоляют вашу жажду самовыражения, то эта игрушка специально для вас. Крупнокалиберная пушка, обладающая огромной дульной скоростью и снарядами с сердечниками из обеднённого урана. Сверхмощный и сверхточный кинетический снаряд способен пробить танк насквозь, поразив несколько целей, стоящих на одной прямой. Идеальное оружие для позиционного боя на дальней дистанции. Следует помнить, что это оружие довольно долго перезаряжается, чем обязательно воспользуется опытный противник.",
+           "modification": 0,
+           "id": "railgun",
+
+           "price_m0": "100",
+           "price_m1": "350",
+           "price_m2": "1100",
+           "price_m3": "3700",
+
+           "rang_m0":"7",
+           "rang_m1":"8",
+           "rang_m2":"9",
+           "rang_m3":"10",
+
+               "propertys_m0": [
+                       {
+                           "type": "damage",
+                           "value": "30 - 45"
+                       },
+                    {
+                        "type": "shot_frequency",
+                        "value": "8.0"
+                    },
+                       {
+                           "type": "turret_turn_speed",
+                           "value": "34.4"
+                       }
+               ],
+               "propertys_m1":[
+                       {
+                           "type": "damage",
+                           "value": "34 - 51"
+                       },
+                    {
+                        "type": "shot_frequency",
+                        "value": "8.2"
+                    },
+                       {
+                           "type": "turret_turn_speed",
+                           "value": "40.1"
+                       }
+               ],
+               "propertys_m2":[
+                       {
+                           "type": "damage",
+                           "value": "42 - 67"
+                       },
+                    {
+                        "type": "shot_frequency",
+                        "value": "8.5"
+                    },
+                       {
+                           "type": "turret_turn_speed",
+                           "value": "57.3"
+                       }
+               ],
+               "propertys_m3":[
+                       {
+                           "type": "damage",
+                           "value": "55 - 85"
+                       },
+                    {
+                        "type": "shot_frequency",
+                        "value": "8.7"
+                    },
+                       {
+                           "type": "turret_turn_speed",
+                           "value": "80.2"
+                       }
+
+               ]
+        },
+        {
+           "name_ru": "Изида",
+           "name_en": "Isida",
+           "description_en": "The idea of this unique weapon arose in the times of the cold war but was realized only with development of quantum physics nand nanotechnologies. The heart of this wonder-machine is generator of nanorobots able to reproduce or destroy the structure of any non-biologocal material. The weapon is equipped with impulse emitter which allows to transport nanomass in the magnetic channel at a distance of about twenty meters. Molecular material, derived during nanorobots functioning in the mode of target destruction, is used to fix own chassis.",
+           "description_ru": "Уникальная идея этого оружия зародилась ещё во времена холодной войны, но смогла воплотиться только с развитием квантовой физики и нанотехнологий. Сердце этой чудо-машины — генератор нанороботов, способных воспроизвести или разрушить структуру любого материала небиологического происхождения. Импульсный излучатель, которым оборудована пушка, позволяет транспортировать наномассу в магнитном канале на расстояние в пару десятков метров. Молекулярный материал, получаемый при работе нанороботов в режиме разрушения цели, используется для починки собственного шасси. Таким образом, это оружие наносит урон врагам и восстанавливает союзников, что особенно необходимо при командной игре.",
+           "modification": 0,
+           "id": "isida",
+
+           "price_m0": "300",
+           "price_m1": "700",
+           "price_m2": "1800",
+           "price_m3": "4500",
+
+           "rang_m0":"9",
+           "rang_m1":"10",
+           "rang_m2":"11",
+           "rang_m3":"12",
+
+               "propertys_m0": [
+                       {
+                        "type": "heal_rate",
+                        "value": "12"
+                    },
+                       {
+                        "type": "vampire_rate",
+                        "value": "12"
+                    },
+                    {
+                        "type": "turret_turn_speed",
+                        "value": "74.5"
+                    },
+                    {
+                        "type": "healing_radius",
+                        "value": "15"
+                    }
+
+               ],
+               "propertys_m1":[
+                       {
+                        "type": "heal_rate",
+                        "value": "14"
+                    },
+                   {
+                        "type": "vampire_rate",
+                        "value": "14"
+                    },
+                    {
+                        "type": "turret_turn_speed",
+                        "value": "83.1"
+                    },
+                    {
+                        "type": "healing_radius",
+                        "value": "15"
+                    }
+               ],
+               "propertys_m2":[
+                       {
+                        "type": "heal_rate",
+                        "value": "18"
+                    },
+                   {
+                        "type": "vampire_rate",
+                        "value": "18"
+                    },
+                    {
+                        "type": "turret_turn_speed",
+                        "value": "97.4"
+                    },
+                    {
+                        "type": "healing_radius",
+                        "value": "15"
+
+                    }
+               ],
+               "propertys_m3":[
+                       {
+                        "type": "heal_rate",
+                        "value": "24"
+                    },
+                   {
+                        "type": "vampire_rate",
+                        "value": "24"
+                    },
+                    {
+                        "type": "turret_turn_speed",
+                        "value": "120.3"
+                    },
+                    {
+                        "type": "healing_radius",
+                        "value": "15"
+
+                    }
+
+               ]
+        },
+        {
+           "name_ru": "Гром",
+           "name_en": "Thunder",
+           "description_en": "This ''Type 2'' middle-caliber gun is the best choice for dynamic battle. Splash damage(make sure you won't hit yourself) allows you to attack a group of enemy vehicles. Equiped with light armor Thunder is one of the most dangerous weapons on the battlefield.",
+           "description_ru": "Среднекалиберная пушка — это лучший выбор для любителей динамичного боя. Разрывной снаряд Грома (осторожно, можно нанести урон самому себе) позволяет атаковать группу соперников, а быстрая перезарядка поможет получить неоспоримое преимущество перед тяжёлыми танками противника. В сочетании с быстрым корпусом Гром становится грозным оружием в руках умелого танкиста.",
+           "modification": 0,
+           "id": "thunder",
+
+           "price_m0": "500",
+           "price_m1": "1500",
+           "price_m2": "4500",
+           "price_m3": "14000",
+
+           "rang_m0":"11",
+           "rang_m1":"12",
+           "rang_m2":"13",
+           "rang_m3":"14",
+
+               "propertys_m0": [
+                       {
+                           "type": "damage",
+                           "value": "21 - 35"
+                       },
+                    {
+                        "type": "shot_frequency",
+                        "value": "17.1"
+                    },
+                       {
+                           "type": "turret_turn_speed",
+                           "value": "45.8"
+                       }
+
+               ],
+               "propertys_m1":[
+                       {
+                           "type": "damage",
+                           "value": "22 - 37"
+                       },
+                    {
+                        "type": "shot_frequency",
+                        "value": "19.0"
+                    },
+                       {
+                           "type": "turret_turn_speed",
+                           "value": "51.6"
+                       }
+
+               ],
+               "propertys_m2":[
+                       {
+                           "type": "damage",
+                           "value": "24 - 41"
+                       },
+                    {
+                        "type": "shot_frequency",
+                        "value": "22.2"
+                    },
+                       {
+                           "type": "turret_turn_speed",
+                           "value": "65.9"
+                       }
+
+               ],
+               "propertys_m3":[
+                       {
+                           "type": "damage",
+                           "value": "26-46"
+                       },
+                    {
+                        "type": "shot_frequency",
+                        "value": "26.7"
+                    },
+                       {
+                           "type": "turret_turn_speed",
+                           "value": "91.7"
+                       }
+
+               ]
+        },
+        {
+           "name_ru": "Фриз",
+           "name_en": "Freeze",
+           "description_en": "The concept of «Freeze» weapon system was created in the desolate Russian village. Using old broken refrigerator «Sever» and vacuum cleaner «Buran» local inventor made «freeze thrower». Professional engineer who had been fishing near the village noticed this invention and brought it to the Zhukov Research institute. There clumsy «freeze thrower» became fomidable «Freeze» gun. It showers enemy with the chemical composition based on freon. Victim gets damagers and all its movements and processes become slower. Thought a flow of flame can unfreeze target.",
+           "description_ru": "Концепция грозной установки «Фриз» родилась в глухой русской деревне. Из неисправного холодильника «Север» и пылесоса «Буран» местный кулибин собрал «хладомёт». Новинку заметил рыбачивший в тех краях инженер. После доработки в закрытом НИИ им. Жукова «хладомёт» превратился в танковое орудие «Фриз». Заливая противника химическим составом на основе фреона, пушка наносит урон и замораживает объект, замедляя все его движения и процессы. Правда, струя пламени может разморозить жертву.",
+           "modification": 0,
+           "id": "frezee",
+
+           "price_m0": "550",
+           "price_m1": "1700",
+           "price_m2": "5000",
+           "price_m3": "15000",
+
+           "rang_m0":"12",
+           "rang_m1":"13",
+           "rang_m2":"14",
+           "rang_m3":"15",
+
+               "propertys_m0": [
+                       {
+                        "type": "damage_per_second",
+                        "value": "20"
+                    },
+                    {
+                        "type": "turret_turn_speed",
+                        "value": "83.1"
+                    },
+                    {
+                           "type": "cone_angle",
+                           "value": "20"
+                       },
+                       {
+                           "type": "shot_range",
+                           "value": "20"
+                       }
+
+               ],
+               "propertys_m1":[
+                       {
+                        "type": "damage_per_second",
+                        "value": "22"
+                    },
+                    {
+                        "type": "turret_turn_speed",
+                        "value": "93.4"
+                    },
+                    {
+                           "type": "cone_angle",
+                           "value": "20"
+                       },
+                       {
+                           "type": "shot_range",
+                           "value": "20"
+                       }
+
+               ],
+               "propertys_m2":[
+                       {
+                        "type": "damage_per_second",
+                        "value": "26"
+                    },
+                    {
+                        "type": "turret_turn_speed",
+                        "value": "111.7"
+                    },
+                    {
+                           "type": "cone_angle",
+                           "value": "20"
+                       },
+                    {
+                        "type": "shot_range",
+                        "value": "20"
+
+                    }
+               ],
+               "propertys_m3":[
+                       {
+                        "type": "damage_per_second",
+                        "value": "32"
+                    },
+                    {
+                        "type": "turret_turn_speed",
+                        "value": "146.1"
+                    },
+                    {
+                           "type": "cone_angle",
+                           "value": "20"
+                       },
+                    {
+                        "type": "shot_range",
+                        "value": "20"
+
+                    }
+
+               ]
+        },
+        {
+           "name_ru": "Рикошет",
+           "name_en": "Ricochet",
+           "description_en": "«Ricochet» plasma gun is a new secret project of Siberian scientists. To produce this gun team of 22 high-class professionals have been working in the underground bunker more then three years without permission to exit on the surface. And their have created unique weapon. It throws plasma charges cloaked with «clever» minus-field. When such charge hits the tank it explodes but it bounces of any other surface. So using «Ricochet» you can defeat even targets out of over visibility range. But be careful! Do not stand in the way of a released charge, so you can do damage to youself.",
+           "description_ru": "Плазмомёт «Рикошет» — это новая секретная разработка сибирских ученых. Чтобы поставить её на вооружение, команда из 22 специалистов три года работала в подземном бункере без права выхода на поверхность. В итоге они создали уникальное оружие. Оно выпускает плазменные заряды, окутанные «умным» минус-полем. При попадании в танк заряд взрывается, но от других поверхностей отскакивает и продолжает полёт. Таким образом, из Рикошета можно поразить цель, даже не видя её.",
+           "modification": 0,
+           "id": "ricochet",
+
+           "price_m0": "650",
+           "price_m1": "2000",
+           "price_m2": "6000",
+           "price_m3": "18000",
+
+           "rang_m0":"13",
+           "rang_m1":"14",
+           "rang_m2":"15",
+           "rang_m3":"16",
+
+               "propertys_m0": [
+                       {
+                           "type": "damage",
+                           "value": "10 - 12"
+                       },
+                    {
+                        "type": "shot_frequency",
+                        "value": "100.0"
+                    },
+                       {
+                           "type": "turret_turn_speed",
+                           "value": "74.5"
+                       },
+                    {
+                        "type": "shot_range",
+                        "value": "80"
+                    }
+
+               ],
+               "propertys_m1":[
+                       {
+                           "type": "damage",
+                           "value": "10 - 13"
+                       },
+                    {
+                        "type": "shot_frequency",
+                        "value": "104.3"
+                    },
+                       {
+                           "type": "turret_turn_speed",
+                           "value": "83.1"
+                       },
+                    {
+                        "type": "shot_range",
+                        "value": "80"
+                    }
+               ],
+               "propertys_m2":[
+                       {
+                           "type": "damage",
+                           "value": "11 - 15"
+                       },
+                    {
+                        "type": "shot_frequency",
+                        "value": "107.1"
+                    },
+                       {
+                           "type": "turret_turn_speed",
+                           "value": "97.4"
+                       },
+                    {
+                        "type": "shot_range",
+                        "value": "80"
+                    }
+               ],
+               "propertys_m3":[
+                       {
+                           "type": "damage",
+                           "value": "12 - 16"
+                       },
+                    {
+                        "type": "shot_frequency",
+                        "value": "120.0"
+                    },
+                       {
+                           "type": "turret_turn_speed",
+                           "value": "120.3"
+                       },
+                    {
+                        "type": "shot_range",
+                        "value": "80"
+                    }
+               ]
+        },{
+           "name_ru": "Шафт",
+           "name_en": "Shaft",
+           "description_en": "Long range sniper turret. Can enter sniper mode by holding the firing button. Damage in sniper mode will depend on how long do you charge up the shot, and your tank will also become completely immobile.\nGreat choice for fans of sniper battles. In regular mode the turret works as a modern multifunctional weapon complex, with an astounding number of uses. It can brew coffee, order pizza, pay the checks, but in the heat of battle it doesn’t work any different from other turrets. The main speciality of Shaft turrets is the secondary sniper mode, upon entering which the power of your shots can be increased significantly, if you charge them up. Using sniper mode requires the tank to enter its siege mode, meaning it cannot move. Focusing your shot on the enemy will also use an additional laser pointer, which can be detected by most modern tanks’ optical systems. That’s why seasoned tankers recommend to never be in the sniper mode for long, or you risk to open your backside for a surprise enemy attack.",
+           "description_ru": "Отличный выбор для любителей снайперской стрельбы. Тяжёлый противотанковый бластер способен буквально испепелять танки с одного попадания. В обычном режиме пушка представляет из себя современный многофункциональный комплекс вооружения с огромным количеством функций. Она может варить кофе, заказывать пиццу, оплачивать счета, но в боевых условиях мало чем отличается от обычных систем вооружения. Главной особенностью пушки «Шафт» является дополнительный снайперский режим, в котором мощность бластера можно повысить многократно, накопив заряд. Применение этого режима требует перехода корпуса танка в осадный режим, исключающий возможность передвигаться. Фокусировка выстрела требует учёта параметров плотности и температуры атмосферы, для чего используется вспомогательный лазер наведения. Этот лазер легко могут засечь системы наблюдения любого современного танка. Потому бывалые танкисты не рекомендуют использовать снайперский режим слишком долго, иначе подкравшийся сзади противник может вас сильно напугать.",
+           "modification": 0,
+           "id": "shaft",
+
+           "price_m0": "800",
+           "price_m1": "2400",
+           "price_m2": "7200",
+           "price_m3": "21600",
+
+           "rang_m0":"14",
+           "rang_m1":"15",
+           "rang_m2":"16",
+           "rang_m3":"17",
+
+               "propertys_m0": [
+                       {
+                           "type": "damage",
+                           "value": "16 - 20"
+                       },
+                    {
+                        "type": "shot_frequency",
+                        "value": "17.6"
+                    },
+                    {
+                           "type": "turret_turn_speed",
+                           "value": "28"
+                       }
+
+               ],
+               "propertys_m1":[
+                       {
+                           "type": "damage",
+                           "value": "18 - 22"
+                       },
+                    {
+                        "type": "shot_frequency",
+                        "value": "18.8"
+                    },
+                    {
+                           "type": "turret_turn_speed",
+                           "value": "30"
+                       }
+               ],
+               "propertys_m2":[
+                       {
+                           "type": "damage",
+                           "value": "23 - 27"
+                       },
+                    {
+                        "type": "shot_frequency",
+                        "value": "20"
+                    },
+                    {
+                           "type": "turret_turn_speed",
+                           "value": "34"
+                       }
+               ],
+               "propertys_m3":[
+                       {
+                           "type": "damage",
+                           "value": "28 - 32"
+                       },
+                    {
+                        "type": "shot_frequency",
+                        "value": "21.4"
+                    },
+                    {
+                           "type": "turret_turn_speed",
+                           "value": "40"
+                       }
+
+               ]
+        },{
+           "name_ru": "Снеговик",
+           "name_en": "Snowman",
+           "description_ru": "   ",
+           "description_en": "   ",
+           "modification": 0,
+           "id": "snowman",
+           "special_item": true,
+
+           "price_m0": "1000",
+           "price_m1": "1200",
+           "price_m2": "1750",
+           "price_m3": "2050",
+
+           "rang_m0":"1",
+           "rang_m1":"3",
+           "rang_m2":"5",
+           "rang_m3":"7",
+
+               "propertys_m0": [
+                       {
+                           "type": "damage",
+                           "value": "8-10"
+                       },
+                    {
+                        "type": "shot_frequency",
+                        "value": "150.0"
+                    },
+                       {
+                           "type": "turret_turn_speed",
+                           "value": "70.0"
+                       },
+                    {
+                        "type": "shot_range",
+                        "value": "50"
+                    }
+
+               ],
+               "propertys_m1":[
+                       {
+                           "type": "damage",
+                           "value": "12-18"
+                       },
+                    {
+                        "type": "shot_frequency",
+                        "value": "105.5"
+                    },
+                       {
+                           "type": "turret_turn_speed",
+                           "value": "80.7"
+                       },
+                    {
+                        "type": "shot_range",
+                        "value": "60"
+                    }
+               ],
+               "propertys_m2":[
+                       {
+                           "type": "damage",
+                           "value": "13-20"
+                       },
+                    {
+                        "type": "shot_frequency",
+                        "value": "109.2"
+                    },
+                       {
+                           "type": "turret_turn_speed",
+                           "value": "95.3"
+                       },
+                    {
+                        "type": "shot_range",
+                        "value": "65"
+
+                    }
+               ],
+               "propertys_m3":[
+                       {
+                           "type": "damage",
+                           "value": "14 - 23"
+                       },
+                    {
+                        "type": "shot_frequency",
+                        "value": "115"
+                    },
+                       {
+                           "type": "turret_turn_speed",
+                           "value": "112.2"
+                       },
+                    {
+                        "type": "shot_range",
+                        "value": "69"
+
+                    }
+
+               ]
+        }
+
+
+    ]
+}

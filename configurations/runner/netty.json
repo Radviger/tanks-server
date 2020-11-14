@@ -1,0 +1,11 @@
+{
+   "class_name": "gtanks.test.server.configuration.entitys.NettyConfiguratorEntity",
+   
+   "params":[
+   		{
+   			"var" : "port",
+   			"value" : 12345,
+   			"class_name": "java.lang.Integer"
+   		}
+   	]
+}
