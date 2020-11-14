@@ -23,7 +23,7 @@ import java.util.List;
 public class MapsLoader {
     private static final Gson GSON = new Gson();
     public static java.util.Map<String, Map> maps = new HashMap<>();
-    private static List<IMapConfigItem> configItems = new ArrayList<>();
+    private static List<MapConfigItem> configItems = new ArrayList<>();
     private static Parser parser;
 
     public static void initFactoryMaps() {
@@ -39,7 +39,7 @@ public class MapsLoader {
     }
 
     private static void loadConfig() {
-        File file = new File("maps/config.json");
+        File file = new File("config/maps/config.json");
         try {
             JsonObject obj = GSON.fromJson(new FileReader(file), JsonObject.class);
             JsonArray maps = obj.getAsJsonArray("maps");
@@ -57,7 +57,7 @@ public class MapsLoader {
                 boolean tdm = item.get("tdm").getAsBoolean();
                 boolean ctf = item.get("ctf").getAsBoolean();
                 JsonElement themeId = item.get("theme_id");
-                IMapConfigItem __item = ambientSoundId != null && gameModeId != null ? new IMapConfigItem(id, name, skyboxId, minRank, maxRank, maxPlayers, tdm, ctf, ambientSoundId.getAsString(), gameModeId.getAsString()) : new IMapConfigItem(id, name, skyboxId, minRank, maxRank, maxPlayers, tdm, ctf);
+                MapConfigItem __item = ambientSoundId != null && gameModeId != null ? new MapConfigItem(id, name, skyboxId, minRank, maxRank, maxPlayers, tdm, ctf, ambientSoundId.getAsString(), gameModeId.getAsString()) : new MapConfigItem(id, name, skyboxId, minRank, maxRank, maxPlayers, tdm, ctf);
                 if (themeId != null) {
                     __item.themeName = themeId.getAsString();
                 }
@@ -71,7 +71,7 @@ public class MapsLoader {
     }
 
     private static void parseMaps() {
-        File[] maps = (new File("maps")).listFiles();
+        File[] maps = (new File("config/maps")).listFiles();
 
         for (File file : maps) {
             if (!file.isDirectory() && file.getName().endsWith(".xml")) {
@@ -84,7 +84,7 @@ public class MapsLoader {
 
     private static void parse(File file) {
         Logger.log("Loading " + file.getName() + "...");
-        IMapConfigItem temp = getMapItem(file.getName().substring(0, file.getName().length() - 4));
+        MapConfigItem temp = getMapItem(file.getName().substring(0, file.getName().length() - 4));
         if (temp != null) {
             Map map = new Map();
 
@@ -167,9 +167,9 @@ public class MapsLoader {
         }
     }
 
-    private static IMapConfigItem getMapItem(String id) {
+    private static MapConfigItem getMapItem(String id) {
         for (Object configItem : configItems) {
-            IMapConfigItem item = (IMapConfigItem) configItem;
+            MapConfigItem item = (MapConfigItem) configItem;
             if (item.id.equals(id)) {
                 return item;
             }

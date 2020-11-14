@@ -10,7 +10,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
 public class ConfigurationsLoader {
-    private static final String DEFAULT_PATH = "configurations/runner/";
     private static final String FORMAT_CONFIG = ".json";
     private static final String PARSER_CLASS_NAME = "class_name";
     private static final String PARSER_PARAMS_ARRAY = "params";
@@ -18,15 +17,10 @@ public class ConfigurationsLoader {
     private static final String PARSER_VAR_NAME = "var";
     private static final Gson GSON = new Gson();
 
-    public static void load(String pathToAllConfigs) {
-        if (pathToAllConfigs == null || pathToAllConfigs.isEmpty()) {
-            pathToAllConfigs = DEFAULT_PATH;
-            System.out.println("WARNING! Path to all configs is null! Use default: configurations/runner/");
-        }
+    public static void load(String root) {
+        File folder = new File(root);
 
-        File path = new File(pathToAllConfigs);
-
-        for (File file : path.listFiles()) {
+        for (File file : folder.listFiles()) {
             if (file.getPath().endsWith(FORMAT_CONFIG)) {
                 parseAndLoadClass(file);
             }

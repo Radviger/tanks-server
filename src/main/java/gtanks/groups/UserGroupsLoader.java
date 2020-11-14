@@ -18,8 +18,8 @@ public class UserGroupsLoader {
         return usersGroups.get(typeUser);
     }
 
-    public static void load(String path) {
-        File folder = new File(path);
+    public static void load(String root) {
+        File folder = new File(root);
 
         for (File file : folder.listFiles()) {
             if (file.getName().endsWith(FILE_FORMAT)) {

@@ -10,11 +10,11 @@ public class RailgunEntity implements IEntity {
     public int weakeningCoefficient;
     public float damage_min;
     public float damage_max;
-    private ShotData shotData;
+    private final ShotData shotData;
 
-    public RailgunEntity(ShotData shotData, int charingTime, int weakeningCoefficient, float damage_min, float damage_max) {
+    public RailgunEntity(ShotData shotData, int chargingTime, int weakeningCoefficient, float damage_min, float damage_max) {
         this.type = EntityType.RAILGUN;
-        this.chargingTime = charingTime;
+        this.chargingTime = chargingTime;
         this.weakeningCoefficient = weakeningCoefficient;
         this.damage_min = damage_min;
         this.damage_max = damage_max;

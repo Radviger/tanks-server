@@ -6,7 +6,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import gtanks.StringUtils;
 import gtanks.battles.tanks.hulls.Hull;
-import gtanks.exceptions.GTanksServerException;
 
 import java.io.File;
 import java.io.FileReader;
@@ -18,12 +17,15 @@ public class HullsFactory {
     private static final Gson GSON = new Gson();
     private static final Map<String, Hull> hulls = new HashMap<>();
 
-    public static void init(String path2configs) {
+    public static void init(String root) {
         hulls.clear();
 
-        File file = new File(path2configs);
+        File folder = new File(root);
 
-        for (File config : file.listFiles()) {
+        for (File config : folder.listFiles()) {
+            if (!config.getName().endsWith(".json")) {
+                throw new IllegalArgumentException("In folder " + root + " find non-configuration file: " + config.getName());
+            }
             try {
                 parse(config);
             } catch (Exception e) {
@@ -41,13 +43,12 @@ public class HullsFactory {
             Hull hull = new Hull(mod.get("mass").getAsFloat(), mod.get("power").getAsFloat(), mod.get("speed").getAsFloat(), mod.get("turn_speed").getAsFloat(), mod.get("hp").getAsFloat());
             hulls.put(StringUtils.concatStrings(type, "_", mod.get("modification").getAsString()), hull);
         }
-
     }
 
     public static Hull getHull(String id) {
         Hull hull = hulls.get(id);
         if (hull == null) {
-            throw new GTanksServerException("Hull with id " + id + " is null!");
+            throw new IllegalArgumentException("Hull with id " + id + " is null!");
         } else {
             return hull;
         }

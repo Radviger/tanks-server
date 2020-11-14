@@ -1,6 +1,6 @@
 package gtanks.battles.maps;
 
-public class IMapConfigItem {
+public class MapConfigItem {
     public String id;
     public String name;
     public String skyboxId;
@@ -13,7 +13,7 @@ public class IMapConfigItem {
     public boolean tdm;
     public boolean ctf;
 
-    public IMapConfigItem(String id, String name, String skyboxId, int minRank, int maxRank, int maxPlayers, boolean tdm, boolean ctf) {
+    public MapConfigItem(String id, String name, String skyboxId, int minRank, int maxRank, int maxPlayers, boolean tdm, boolean ctf) {
         this.id = id;
         this.name = name;
         this.skyboxId = skyboxId;
@@ -24,7 +24,7 @@ public class IMapConfigItem {
         this.maxPlayers = maxPlayers;
     }
 
-    public IMapConfigItem(String id, String name, String skyboxId, int minRank, int maxRank, int maxPlayers, boolean tdm, boolean ctf, String soundId, String gamemodeId) {
+    public MapConfigItem(String id, String name, String skyboxId, int minRank, int maxRank, int maxPlayers, boolean tdm, boolean ctf, String soundId, String gamemodeId) {
         this.id = id;
         this.name = name;
         this.skyboxId = skyboxId;

@@ -24,11 +24,11 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            ConfigurationsLoader.load("");
+            ConfigurationsLoader.load("config/core/");
             initFactories();
             SystemConsoleHandler sch = SystemConsoleHandler.INSTANCE;
             sch.start();
-            UserGroupsLoader.load("groups/");
+            UserGroupsLoader.load("config/groups/");
             Logger.log("Connecting to DB...");
             Database.execute(session -> {
                 NativeQuery<?> query = session.createSQLQuery("SET NAMES 'utf8' COLLATE 'utf8_general_ci';");
@@ -42,11 +42,17 @@ public class Main {
     }
 
     private static void initFactories() throws IOException, JsonParseException {
-        GarageItemsLoader.loadFromConfig("turrets.json", "hulls.json", "colormaps.json", "inventory.json", "effects.json");
-        WeaponsFactory.init("weapons/");
-        HullsFactory.init("hulls/");
+        GarageItemsLoader.loadFromConfig(
+            "config/turrets.json",
+            "config/hulls.json",
+            "config/color_maps.json",
+            "config/inventory.json",
+            "config/effects.json"
+        );
+        WeaponsFactory.init("config/weapons/");
+        HullsFactory.init("config/hulls/");
         RankUtils.init();
         MapsLoader.initFactoryMaps();
-        KitsLoader.load("kits/kits.cfg");
+        KitsLoader.load("config/kits.json");
     }
 }

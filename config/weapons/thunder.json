@@ -1,0 +1,89 @@
+{
+  "type": "thunder",
+  "params": [
+    {
+      "modification": "m0",
+
+      "autoAimingAngleDown": 0.20944,
+      "autoAimingAngleUp": 0.15708,
+      "chargingTime": 0,
+      "impactCoeff": 2,
+      "impactForce": 2,
+      "kickback": 1.2,
+      "maxSplashDamageRadius": 120,
+      "max_damage": 35,
+      "minSplashDamagePercent": 25,
+      "minSplashDamageRadius": 10,
+      "min_damage": 21,
+      "numRaysDown": 97,
+      "numRaysUp": 73,
+      "reloadMsec": 3500,
+      "turretRotationAccel": 1.17,
+      "turretRotationSpeed": 1.17,
+      "weakeningCoeff": 0
+    },
+    {
+      "modification": "m1",
+
+      "autoAimingAngleDown": 0.20944,
+      "autoAimingAngleUp": 0.15708,
+      "chargingTime": 0,
+      "impactCoeff": 2.76,
+      "impactForce": 2,
+      "kickback": 1.7,
+      "maxSplashDamageRadius": 120,
+      "max_damage": 37,
+      "minSplashDamagePercent": 25,
+      "minSplashDamageRadius": 10,
+      "min_damage": 22,
+      "numRaysDown": 97,
+      "numRaysUp": 73,
+      "reloadMsec": 3157,
+      "turretRotationAccel": 1.5,
+      "turretRotationSpeed": 1.5,
+      "weakeningCoeff": 0
+    },
+    {
+      "modification": "m2",
+
+      "autoAimingAngleDown": 0.20944,
+      "autoAimingAngleUp": 0.15708,
+      "chargingTime": 0,
+      "impactCoeff": 3.06,
+      "impactForce": 2,
+      "kickback": 1.89,
+      "maxSplashDamageRadius": 120,
+      "max_damage": 41,
+      "minSplashDamagePercent": 25,
+      "minSplashDamageRadius": 10,
+      "min_damage": 24,
+      "numRaysDown": 97,
+      "numRaysUp": 73,
+      "reloadMsec": 2702,
+      "turretRotationAccel": 1.6,
+      "turretRotationSpeed": 1.6,
+      "weakeningCoeff": 0
+    },
+    {
+      "modification": "m3",
+
+      "autoAimingAngleDown": 0.20944,
+      "autoAimingAngleUp": 0.15708,
+      "chargingTime": 0,
+      "impactCoeff": 3.53,
+      "impactForce": 2,
+      "kickback": 2.19,
+      "maxSplashDamageRadius": 120,
+      "max_damage": 46,
+      "minSplashDamagePercent": 25,
+      "minSplashDamageRadius": 10,
+      "min_damage": 26,
+      "numRaysDown": 97,
+      "numRaysUp": 73,
+      "reloadMsec": 2465,
+      "turretRotationAccel": 1.8,
+      "turretRotationSpeed": 1.8,
+      "weakeningCoeff": 0
+    }
+  ]
+}

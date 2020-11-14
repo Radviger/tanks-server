@@ -34,8 +34,8 @@ public enum SystemConsoleHandler {
             }
             case "rf": {
                 Logger.log(Type.WARNING, "Attention! The factories of weapons and hulls will be reloaded!");
-                WeaponsFactory.init("weapons/");
-                HullsFactory.init("hulls/");
+                WeaponsFactory.init("config/weapons/");
+                HullsFactory.init("config/hulls/");
                 break;
             }
             case "help": {

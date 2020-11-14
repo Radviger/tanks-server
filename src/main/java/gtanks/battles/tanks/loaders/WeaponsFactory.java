@@ -31,7 +31,6 @@ import gtanks.battles.tanks.weapons.thunder.ThunderEntity;
 import gtanks.battles.tanks.weapons.thunder.ThunderModel;
 import gtanks.battles.tanks.weapons.twins.TwinsEntity;
 import gtanks.battles.tanks.weapons.twins.TwinsModel;
-import gtanks.exceptions.GTanksServerException;
 import gtanks.json.JsonUtils;
 import gtanks.logger.Logger;
 import gtanks.logger.Type;
@@ -78,16 +77,16 @@ public class WeaponsFactory {
         }
     }
 
-    public static void init(String path2config) {
+    public static void init(String root) {
         weapons.clear();
         Logger.log("Weapons Factory inited. Loading weapons...");
 
         try {
-            File folder = new File(path2config);
+            File folder = new File(root);
 
             for (File config : folder.listFiles()) {
-                if (!config.getName().endsWith(".cfg")) {
-                    throw new GTanksServerException("In folder " + path2config + " find non-configuration file: " + config.getName());
+                if (!config.getName().endsWith(".json")) {
+                    throw new IllegalArgumentException("In folder " + root + " find non-configuration file: " + config.getName());
                 }
 
                 Logger.log("Loading " + config.getName() + "...");
@@ -158,7 +157,7 @@ public class WeaponsFactory {
                     break;
                 }
                 case "railgun": {
-                    entity = new RailgunEntity(shotData, item.get("charingTime").getAsInt(), item.get("weakeningCoeff").getAsInt(), item.get("min_damage").getAsInt(), item.get("max_damage").getAsInt());
+                    entity = new RailgunEntity(shotData, item.get("chargingTime").getAsInt(), item.get("weakeningCoeff").getAsInt(), item.get("min_damage").getAsInt(), item.get("max_damage").getAsInt());
                     break;
                 }
                 case "flamethrower": {
