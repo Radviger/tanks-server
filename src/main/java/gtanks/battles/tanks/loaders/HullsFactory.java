@@ -40,7 +40,7 @@ public class HullsFactory {
 
         for (JsonElement e : obj.getAsJsonArray("modifications")) {
             JsonObject mod = e.getAsJsonObject();
-            Hull hull = new Hull(mod.get("mass").getAsFloat(), mod.get("power").getAsFloat(), mod.get("speed").getAsFloat(), mod.get("turn_speed").getAsFloat(), mod.get("hp").getAsFloat());
+            Hull hull = new Hull(mod.get("mass").getAsFloat(), mod.get("power").getAsFloat(), mod.get("maxForwardSpeed").getAsFloat(), mod.get("maxTurnSpeed").getAsFloat(), mod.get("hp").getAsFloat());
             hulls.put(StringUtils.concatStrings(type, "_", mod.get("modification").getAsString()), hull);
         }
     }
