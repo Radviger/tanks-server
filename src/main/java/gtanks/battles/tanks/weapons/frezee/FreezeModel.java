@@ -9,15 +9,15 @@ import gtanks.battles.BattlefieldPlayerController;
 import gtanks.battles.tanks.weapons.IEntity;
 import gtanks.battles.tanks.weapons.IWeapon;
 import gtanks.battles.tanks.weapons.anticheats.TickableWeaponAnticheatModel;
-import gtanks.battles.tanks.weapons.frezee.effects.FrezeeEffectModel;
+import gtanks.battles.tanks.weapons.frezee.effects.FreezeEffectModel;
 
-public class FrezeeModel extends TickableWeaponAnticheatModel implements IWeapon {
+public class FreezeModel extends TickableWeaponAnticheatModel implements IWeapon {
     private static final Gson GSON = new Gson();
     private final FrezeeEntity entity;
     private final BattlefieldModel bfModel;
     private final BattlefieldPlayerController player;
 
-    public FrezeeModel(FrezeeEntity entity, BattlefieldModel bfModel, BattlefieldPlayerController player) {
+    public FreezeModel(FrezeeEntity entity, BattlefieldModel bfModel, BattlefieldPlayerController player) {
         super(entity.weaponTickMsec);
         this.entity = entity;
         this.bfModel = bfModel;
@@ -43,7 +43,6 @@ public class FrezeeModel extends TickableWeaponAnticheatModel implements IWeapon
                 this.onTarget(new BattlefieldPlayerController[]{this.bfModel.getPlayer(victimId)}, distance);
             }
         }
-
     }
 
     @Override
@@ -63,20 +62,19 @@ public class FrezeeModel extends TickableWeaponAnticheatModel implements IWeapon
             this.bfModel.tanksKillModel.damageTank(targetsTanks[0], this.player, damage, true);
             BattlefieldPlayerController victim = targetsTanks[0];
             if (victim != null && victim.tank != null) {
-                boolean canFrezee = true;
+                boolean canFreeze = true;
                 if (this.bfModel.battleInfo.team) {
-                    canFrezee = !this.player.playerTeamType.equals(victim.playerTeamType);
+                    canFreeze = !this.player.playerTeamType.equals(victim.playerTeamType);
                 }
 
-                if (canFrezee) {
-                    if (victim.tank.frezeeEffect == null) {
-                        victim.tank.frezeeEffect = new FrezeeEffectModel(this.entity.coolingSpeed, victim.tank, this.bfModel);
-                        victim.tank.frezeeEffect.setStartSpecFromTank();
+                if (canFreeze) {
+                    if (victim.tank.freezeEffect == null) {
+                        victim.tank.freezeEffect = new FreezeEffectModel(this.entity.coolingSpeed, victim.tank, this.bfModel);
+                        victim.tank.freezeEffect.setStartSpecFromTank();
                     }
 
-                    victim.tank.frezeeEffect.update();
+                    victim.tank.freezeEffect.update();
                 }
-
             }
         }
     }

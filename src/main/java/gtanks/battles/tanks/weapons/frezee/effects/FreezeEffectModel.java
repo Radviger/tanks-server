@@ -6,7 +6,7 @@ import gtanks.battles.tanks.weapons.effects.IEffect;
 import gtanks.commands.Type;
 import gtanks.json.JsonUtils;
 
-public class FrezeeEffectModel implements IEffect {
+public class FreezeEffectModel implements IEffect {
     private static final float MIN_VALUE = 0.4F;
     public float speed;
     public float turnSpeed;
@@ -14,9 +14,9 @@ public class FrezeeEffectModel implements IEffect {
     private float power;
     private Tank tank;
     private BattlefieldModel bfModel;
-    private FrezeeEffectModel.FrezeeTimer currFrezeeTimer;
+    private FreezeEffectModel.FrezeeTimer currFrezeeTimer;
 
-    public FrezeeEffectModel(float power, Tank tank, BattlefieldModel bfModel) {
+    public FreezeEffectModel(float power, Tank tank, BattlefieldModel bfModel) {
         this.power = power;
         this.tank = tank;
         this.bfModel = bfModel;
@@ -49,7 +49,7 @@ public class FrezeeEffectModel implements IEffect {
             this.currFrezeeTimer.stoped = true;
         }
 
-        this.currFrezeeTimer = new FrezeeEffectModel.FrezeeTimer();
+        this.currFrezeeTimer = new FreezeEffectModel.FrezeeTimer();
         this.currFrezeeTimer.start();
         this.sendSpecData();
         this.sendChangeTemperature(TemperatureCalc.getTemperature(this.tank, this.speed, this.turnSpeed, this.turretRotationSpeed));
@@ -68,7 +68,7 @@ public class FrezeeEffectModel implements IEffect {
 
         @Override
         public void run() {
-            this.setName("FREZEE TIMER THREAD " + FrezeeEffectModel.this.tank);
+            this.setName("FREZEE TIMER THREAD " + FreezeEffectModel.this.tank);
 
             try {
                 sleep(3500L);
@@ -77,11 +77,11 @@ public class FrezeeEffectModel implements IEffect {
             }
 
             if (!this.stoped) {
-                FrezeeEffectModel.this.tank.speed = FrezeeEffectModel.this.speed;
-                FrezeeEffectModel.this.tank.turnSpeed = FrezeeEffectModel.this.turnSpeed;
-                FrezeeEffectModel.this.tank.turretRotationSpeed = FrezeeEffectModel.this.turretRotationSpeed;
-                FrezeeEffectModel.this.sendSpecData();
-                FrezeeEffectModel.this.sendChangeTemperature(0.0D);
+                FreezeEffectModel.this.tank.speed = FreezeEffectModel.this.speed;
+                FreezeEffectModel.this.tank.turnSpeed = FreezeEffectModel.this.turnSpeed;
+                FreezeEffectModel.this.tank.turretRotationSpeed = FreezeEffectModel.this.turretRotationSpeed;
+                FreezeEffectModel.this.sendSpecData();
+                FreezeEffectModel.this.sendChangeTemperature(0.0D);
             }
         }
     }

@@ -9,7 +9,7 @@ public enum EntityType {
     RAILGUN(ColormapResistanceType.RAILGUN),
     ISIDA(ColormapResistanceType.ISIDA),
     THUNDER(ColormapResistanceType.THUNDER),
-    FREZZE(ColormapResistanceType.FREZEE),
+    FREZZE(ColormapResistanceType.FREEZE),
     RICOCHET(ColormapResistanceType.RICOCHET),
     SHAFT(null),
     SNOWMAN(null);

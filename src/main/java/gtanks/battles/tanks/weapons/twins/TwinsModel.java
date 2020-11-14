@@ -1,6 +1,7 @@
 package gtanks.battles.tanks.weapons.twins;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import gtanks.RandomUtils;
@@ -49,8 +50,11 @@ public class TwinsModel extends FireableWeaponAnticheatModel implements IWeapon 
                 return;
             }
 
-            BattlefieldPlayerController victim = this.bfModel.getPlayer(parser.get("victimId").getAsString());
-            this.onTarget(new BattlefieldPlayerController[]{victim}, parser.get("distance").getAsInt());
+            JsonElement victimId = parser.get("victimId");
+            if (victimId != null) {
+                BattlefieldPlayerController victim = this.bfModel.getPlayer(victimId.getAsString());
+                this.onTarget(new BattlefieldPlayerController[]{victim}, parser.get("distance").getAsInt());
+            }
         } catch (JsonParseException e) {
             e.printStackTrace();
         }

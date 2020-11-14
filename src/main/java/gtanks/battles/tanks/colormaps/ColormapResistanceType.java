@@ -6,7 +6,7 @@ public enum ColormapResistanceType {
     TWINS,
     RAILGUN,
     ISIDA,
-    FREZEE,
+    FREEZE,
     THUNDER,
     RICOCHET
 }

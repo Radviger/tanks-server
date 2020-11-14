@@ -8,9 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BonusRegion {
-    private Vector3d max;
-    private Vector3d min;
-    private List<BonusType> type = new ArrayList<>();
+    private Vector3d max, min;
+    private final List<BonusType> type = new ArrayList<>();
 
     public Vector3d getMax() {
         return this.max;
@@ -45,6 +44,7 @@ public class BonusRegion {
         return this.type;
     }
 
+    @Override
     public String toString() {
         return "BONUS-REGION[TYPE = " + this.type + "] max: " + this.max + " min: " + this.min;
     }

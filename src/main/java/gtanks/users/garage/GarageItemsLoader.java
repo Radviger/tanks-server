@@ -5,7 +5,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import gtanks.battles.tanks.colormaps.Colormap;
-import gtanks.battles.tanks.colormaps.ColormapsFactory;
+import gtanks.battles.tanks.colormaps.ColorMapsFactory;
 import gtanks.system.localization.strings.LocalizedString;
 import gtanks.system.localization.strings.StringsLocalizationBundle;
 import gtanks.users.garage.enums.ItemType;
@@ -126,10 +126,10 @@ public class GarageItemsLoader {
             GarageItemsLoader.items.put(id, new Item(id, description, typeItem == ItemType.INVENTORY || typeItem == ItemType.PLUGIN, index, propertysItemM0, typeItem, 0, name, propertysItemM1, priceM1, rangM1, priceM0, rangM0, mods, specialItem, 0));
             ++index;
             if (typeItem == ItemType.COLOR) {
-                ColormapsFactory.addColormap(id + "_m0", new Colormap() {
+                ColorMapsFactory.addColormap(id + "_m0", new Colormap() {
                     {
                         for (PropertyItem _property : mods[0].propertys) {
-                            this.addResistance(ColormapsFactory.getResistanceType(_property.property), GarageItemsLoader.getInt(_property.value.replace("%", "")));
+                            this.addResistance(ColorMapsFactory.getResistanceType(_property.property), GarageItemsLoader.getInt(_property.value.replace("%", "")));
                         }
                     }
                 });

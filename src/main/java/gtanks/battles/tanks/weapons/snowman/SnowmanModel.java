@@ -11,7 +11,7 @@ import gtanks.battles.tanks.weapons.IWeapon;
 import gtanks.battles.tanks.weapons.WeaponUtils;
 import gtanks.battles.tanks.weapons.WeaponWeakeningData;
 import gtanks.battles.tanks.weapons.anticheats.FireableWeaponAnticheatModel;
-import gtanks.battles.tanks.weapons.frezee.effects.FrezeeEffectModel;
+import gtanks.battles.tanks.weapons.frezee.effects.FreezeEffectModel;
 import gtanks.commands.Type;
 import gtanks.logger.Logger;
 
@@ -66,12 +66,12 @@ public class SnowmanModel extends FireableWeaponAnticheatModel implements IWeapo
                     damage = WeaponUtils.calculateDamageFromDistance(damage, (int) this.weakeingData.minimumDamagePercent);
                 }
 
-                if (targetsTanks[0].tank.frezeeEffect == null) {
-                    targetsTanks[0].tank.frezeeEffect = new FrezeeEffectModel(this.entity.frezeeSpeed, targetsTanks[0].tank, this.bfModel);
-                    targetsTanks[0].tank.frezeeEffect.setStartSpecFromTank();
+                if (targetsTanks[0].tank.freezeEffect == null) {
+                    targetsTanks[0].tank.freezeEffect = new FreezeEffectModel(this.entity.frezeeSpeed, targetsTanks[0].tank, this.bfModel);
+                    targetsTanks[0].tank.freezeEffect.setStartSpecFromTank();
                 }
 
-                targetsTanks[0].tank.frezeeEffect.update();
+                targetsTanks[0].tank.freezeEffect.update();
                 this.bfModel.tanksKillModel.damageTank(targetsTanks[0], this.player, damage, true);
             }
         }

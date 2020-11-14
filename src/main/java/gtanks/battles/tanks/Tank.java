@@ -9,7 +9,7 @@ import gtanks.battles.tanks.data.DamageTankData;
 import gtanks.battles.tanks.hulls.Hull;
 import gtanks.battles.tanks.math.Vector3;
 import gtanks.battles.tanks.weapons.IWeapon;
-import gtanks.battles.tanks.weapons.frezee.effects.FrezeeEffectModel;
+import gtanks.battles.tanks.weapons.frezee.effects.FreezeEffectModel;
 
 import java.util.*;
 
@@ -25,10 +25,10 @@ public class Tank {
     public float speed;
     public float turnSpeed;
     public float turretRotationSpeed;
-    public int health = 10000;
+    public int health = MAX_HEALTH_TANK;
     public int incrationId;
     public String state = "active";
-    public FrezeeEffectModel frezeeEffect;
+    public FreezeEffectModel freezeEffect;
     public final List<Effect> activeEffects = new ArrayList<>();
     public Map<BattlefieldPlayerController, DamageTankData> lastDamagers = new LinkedHashMap<>();
     private IWeapon weapon;

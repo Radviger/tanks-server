@@ -14,7 +14,7 @@ import gtanks.battles.tanks.weapons.WeaponWeakeningData;
 import gtanks.battles.tanks.weapons.flamethrower.FlamethrowerEntity;
 import gtanks.battles.tanks.weapons.flamethrower.FlamethrowerModel;
 import gtanks.battles.tanks.weapons.frezee.FrezeeEntity;
-import gtanks.battles.tanks.weapons.frezee.FrezeeModel;
+import gtanks.battles.tanks.weapons.frezee.FreezeModel;
 import gtanks.battles.tanks.weapons.isida.IsidaEntity;
 import gtanks.battles.tanks.weapons.isida.IsidaModel;
 import gtanks.battles.tanks.weapons.railgun.RailgunEntity;
@@ -59,7 +59,7 @@ public class WeaponsFactory {
             case "thunder":
                 return new ThunderModel((ThunderEntity) getEntity(turretId), battle, tank);
             case "frezee":
-                return new FrezeeModel((FrezeeEntity) getEntity(turretId), battle, tank);
+                return new FreezeModel((FrezeeEntity) getEntity(turretId), battle, tank);
             case "isida":
                 return new IsidaModel((IsidaEntity) getEntity(turretId), tank, battle);
             case "shaft":

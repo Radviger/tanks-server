@@ -5,15 +5,15 @@ import gtanks.users.garage.enums.PropertyType;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ColormapsFactory {
-    private static Map<String, Colormap> colormaps = new HashMap<>();
+public class ColorMapsFactory {
+    private static final Map<String, Colormap> color_maps = new HashMap<>();
 
     public static void addColormap(String id, Colormap colormap) {
-        colormaps.put(id, colormap);
+        color_maps.put(id, colormap);
     }
 
     public static Colormap getColormap(String id) {
-        return colormaps.get(id);
+        return color_maps.get(id);
     }
 
     public static ColormapResistanceType getResistanceType(PropertyType pType) {
@@ -41,7 +41,7 @@ public class ColormapsFactory {
                 type = ColormapResistanceType.THUNDER;
                 break;
             case FREEZE_RESISTANCE:
-                type = ColormapResistanceType.FREZEE;
+                type = ColormapResistanceType.FREEZE;
                 break;
             case RICOCHET_RESISTANCE:
                 type = ColormapResistanceType.RICOCHET;

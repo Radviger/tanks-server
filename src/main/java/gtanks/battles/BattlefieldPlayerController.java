@@ -9,7 +9,7 @@ import gtanks.battles.ctf.flags.FlagServer;
 import gtanks.battles.inventory.InventoryController;
 import gtanks.battles.tanks.PlayerTeamType;
 import gtanks.battles.tanks.Tank;
-import gtanks.battles.tanks.colormaps.ColormapsFactory;
+import gtanks.battles.tanks.colormaps.ColorMapsFactory;
 import gtanks.battles.tanks.loaders.HullsFactory;
 import gtanks.battles.tanks.loaders.WeaponsFactory;
 import gtanks.battles.tanks.math.Vector3;
@@ -51,7 +51,7 @@ public class BattlefieldPlayerController extends BattlefieldPlayerCommandsConst 
         this.tank = new Tank(null);
         this.tank.setHull(Objects.requireNonNull(HullsFactory.getHull(this.getGarage().mountHull.getId())));
         this.tank.setWeapon(WeaponsFactory.getWeapon(this.getGarage().mountTurret.getId(), this, battle));
-        this.tank.setColormap(ColormapsFactory.getColormap(this.getGarage().mountColormap.getId()));
+        this.tank.setColormap(ColorMapsFactory.getColormap(this.getGarage().mountColormap.getId()));
         this.statistic = new PlayerStatistic(0, 0, 0);
         this.inventory = new InventoryController(this);
         battle.addPlayer(this);
