@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface AnticheatModel {
+public @interface AntiCheatModel {
     String name();
 
     String actionInfo();

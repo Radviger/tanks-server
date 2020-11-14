@@ -4,8 +4,8 @@ import gtanks.main.netty.ProtocolTransfer;
 import org.jboss.netty.channel.ChannelHandlerContext;
 
 public class Session {
-    private ProtocolTransfer protocolTransfer;
-    private ChannelHandlerContext context;
+    private final ProtocolTransfer protocolTransfer;
+    private final ChannelHandlerContext context;
 
     public Session(ProtocolTransfer protocolTransfer, ChannelHandlerContext context) {
         this.protocolTransfer = protocolTransfer;

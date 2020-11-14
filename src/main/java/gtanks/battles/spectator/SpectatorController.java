@@ -9,10 +9,10 @@ import gtanks.json.JsonUtils;
 import gtanks.lobby.LobbyManager;
 import gtanks.lobby.battles.BattleType;
 import gtanks.logger.Logger;
-import gtanks.network.listeners.IDisconnectListener;
+import gtanks.network.listeners.DisconnectListener;
 import gtanks.users.User;
 
-public class SpectatorController extends SpectatorControllerComandsConst implements IDisconnectListener {
+public class SpectatorController extends SpectatorControllerComandsConst implements DisconnectListener {
     private static final String NULL_JSON_STRING = "{}";
     private LobbyManager lobby;
     private BattlefieldModel bfModel;

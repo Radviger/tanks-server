@@ -13,9 +13,9 @@ import gtanks.battles.tanks.weapons.frezee.effects.FrezeeEffectModel;
 
 public class FrezeeModel extends TickableWeaponAnticheatModel implements IWeapon {
     private static final Gson GSON = new Gson();
-    private FrezeeEntity entity;
-    private BattlefieldModel bfModel;
-    private BattlefieldPlayerController player;
+    private final FrezeeEntity entity;
+    private final BattlefieldModel bfModel;
+    private final BattlefieldPlayerController player;
 
     public FrezeeModel(FrezeeEntity entity, BattlefieldModel bfModel, BattlefieldPlayerController player) {
         super(entity.weaponTickMsec);

@@ -19,7 +19,7 @@ import gtanks.json.JsonUtils;
 import gtanks.lobby.LobbyManager;
 import gtanks.logger.Logger;
 import gtanks.logger.Type;
-import gtanks.network.listeners.IDisconnectListener;
+import gtanks.network.listeners.DisconnectListener;
 import gtanks.services.AutoEntryServices;
 import gtanks.services.LobbyServices;
 import gtanks.users.User;
@@ -28,7 +28,7 @@ import gtanks.users.locations.UserLocation;
 
 import java.util.Objects;
 
-public class BattlefieldPlayerController extends BattlefieldPlayerCommandsConst implements IDisconnectListener, Comparable<BattlefieldPlayerController> {
+public class BattlefieldPlayerController extends BattlefieldPlayerCommandsConst implements DisconnectListener, Comparable<BattlefieldPlayerController> {
     private static final Gson GSON = new Gson();
 
     public LobbyManager parentLobby;

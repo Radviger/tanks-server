@@ -1,6 +1,6 @@
 package gtanks.lobby.chat.contants;
 
-public class ComandChatConst {
+public class CommandChatConst {
     public static final String CLEAR_CHAT = "clear";
     public static final String SYSTEM_MESSAGE = "system";
     public static final String ADD_CRY = "addcry";
@@ -8,10 +8,6 @@ public class ComandChatConst {
     public static final String STOP = "stop";
     public static final String START_CHAT = "start";
     public static final String WARNING_MESSAGE = "warn";
-    /**
-     * @deprecated
-     */
-    @Deprecated
     public static final String BLOCK_USER_IN_CHAT = "ban";
     public static final String UNBLOCK_USER_IN_CHAT = "unban";
     public static final String BLOCK_USER_IN_GAME = "blockgame";

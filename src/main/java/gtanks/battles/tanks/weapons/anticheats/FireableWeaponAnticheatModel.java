@@ -1,8 +1,8 @@
 package gtanks.battles.tanks.weapons.anticheats;
 
-import gtanks.battles.anticheats.AnticheatModel;
+import gtanks.battles.anticheats.AntiCheatModel;
 
-@AnticheatModel(
+@AntiCheatModel(
     name = "FireableWeaponAnticheatModel",
     actionInfo = "Сравнивает время перезарядки таких пушек как: Смоки, Твинс, Рельса, Гром, Рикошет"
 )

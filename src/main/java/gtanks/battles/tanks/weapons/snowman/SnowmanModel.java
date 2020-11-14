@@ -5,7 +5,7 @@ import com.google.gson.JsonObject;
 import gtanks.RandomUtils;
 import gtanks.battles.BattlefieldModel;
 import gtanks.battles.BattlefieldPlayerController;
-import gtanks.battles.anticheats.AnticheatModel;
+import gtanks.battles.anticheats.AntiCheatModel;
 import gtanks.battles.tanks.weapons.IEntity;
 import gtanks.battles.tanks.weapons.IWeapon;
 import gtanks.battles.tanks.weapons.WeaponUtils;
@@ -15,7 +15,7 @@ import gtanks.battles.tanks.weapons.frezee.effects.FrezeeEffectModel;
 import gtanks.commands.Type;
 import gtanks.logger.Logger;
 
-@AnticheatModel(
+@AntiCheatModel(
     name = "SnowmanModel",
     actionInfo = "Child FireableWeaponAnticheatModel"
 )

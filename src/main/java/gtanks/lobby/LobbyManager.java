@@ -24,7 +24,7 @@ import gtanks.main.database.DatabaseManager;
 import gtanks.main.database.impl.DatabaseManagerHibernate;
 import gtanks.main.netty.ProtocolTransfer;
 import gtanks.main.params.OnlineStats;
-import gtanks.network.listeners.DisconnectListener;
+import gtanks.network.listeners.DisconnectListeners;
 import gtanks.services.AutoEntryServices;
 import gtanks.services.LobbyServices;
 import gtanks.system.dailybonus.DailyBonusService;
@@ -46,7 +46,7 @@ public class LobbyManager extends LobbyCommandsConst {
     public ProtocolTransfer pipeline;
     public BattlefieldPlayerController battle;
     public SpectatorController spectatorController;
-    public DisconnectListener disconnectListener;
+    public DisconnectListeners disconnectListeners;
     public long timer;
     private User localUser;
     private FloodController chatFloodController;
@@ -54,7 +54,7 @@ public class LobbyManager extends LobbyCommandsConst {
     public LobbyManager(ProtocolTransfer pipeline, User localUser) {
         this.pipeline = pipeline;
         this.localUser = localUser;
-        this.disconnectListener = new DisconnectListener();
+        this.disconnectListeners = new DisconnectListeners();
         this.setChatFloodController(new LobbyFloodController());
         this.timer = System.currentTimeMillis();
         this.localUser.setUserLocation(UserLocation.GARAGE);
@@ -316,7 +316,7 @@ public class LobbyManager extends LobbyCommandsConst {
             }
 
             this.battle = null;
-            this.disconnectListener.removeListener(this.battle);
+            this.disconnectListeners.removeListener(this.battle);
         }
 
         if (this.spectatorController != null) {
@@ -345,7 +345,7 @@ public class LobbyManager extends LobbyCommandsConst {
                     }
 
                     this.battle = new BattlefieldPlayerController(this, battleInfo.model, red ? PlayerTeamType.RED : PlayerTeamType.BLUE);
-                    this.disconnectListener.addListener(this.battle);
+                    this.disconnectListeners.addListener(this.battle);
                     lobbyServices.sendCommandToAllUsers(Type.LOBBY, UserLocation.BATTLESELECT, "update_count_users_in_team_battle", JsonUtils.parseUpdateCoundPeoplesCommand(battleInfo));
                     this.send(Type.BATTLE, "init_battle_model", JsonUtils.parseBattleModelInfo(battleInfo, false));
                     lobbyServices.sendCommandToAllUsers(Type.LOBBY, UserLocation.BATTLESELECT, "add_player_to_battle", JsonUtils.parseAddPlayerComand(this.battle, battleInfo));
@@ -362,7 +362,7 @@ public class LobbyManager extends LobbyCommandsConst {
             if (battleInfo != null) {
                 if (battleInfo.model.players.size() < battleInfo.maxPeople) {
                     this.battle = new BattlefieldPlayerController(this, battleInfo.model, PlayerTeamType.NONE);
-                    this.disconnectListener.addListener(this.battle);
+                    this.disconnectListeners.addListener(this.battle);
                     ++battleInfo.countPeople;
                     System.out.println("incration");
                     if (!battleInfo.team) {

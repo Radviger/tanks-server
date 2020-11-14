@@ -1,8 +1,8 @@
 package gtanks.battles.tanks.weapons.anticheats;
 
-import gtanks.battles.anticheats.AnticheatModel;
+import gtanks.battles.anticheats.AntiCheatModel;
 
-@AnticheatModel(
+@AntiCheatModel(
     name = "TickableWeaponAnticheatModel",
     actionInfo = "Сравнивает период тиков таких пушек как: Огнёмет, Фриз, Изида"
 )

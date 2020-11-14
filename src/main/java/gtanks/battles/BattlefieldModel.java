@@ -3,7 +3,7 @@ package gtanks.battles;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import gtanks.StringUtils;
-import gtanks.battles.anticheats.AnticheatModel;
+import gtanks.battles.anticheats.AntiCheatModel;
 import gtanks.battles.bonuses.Bonus;
 import gtanks.battles.bonuses.BonusesSpawnService;
 import gtanks.battles.bonuses.model.BonusTakeModel;
@@ -343,7 +343,7 @@ public class BattlefieldModel implements Destroyable {
     }
 
     public void cheatDetected(BattlefieldPlayerController player, Class anticheat) {
-        AnticheatModel[] model = (AnticheatModel[]) anticheat.getAnnotationsByType(AnticheatModel.class);
+        AntiCheatModel[] model = (AntiCheatModel[]) anticheat.getAnnotationsByType(AntiCheatModel.class);
         if (model != null && model.length >= 1) {
             Logger.log("Detected cheater![" + model[0].name() + "] " + player.getUser().getNickname() + " " + player.parentLobby.pipeline.getIP());
         }

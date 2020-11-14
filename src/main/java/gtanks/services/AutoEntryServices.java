@@ -87,7 +87,7 @@ public enum AutoEntryServices {
                 lobby.getLocalUser().setUserLocation(UserLocation.BATTLE);
                 lobby.battle = new BattlefieldPlayerController(lobby, bModel, data.teamType);
                 lobby.battle.statistic = statistic;
-                lobby.disconnectListener.addListener(lobby.battle);
+                lobby.disconnectListeners.addListener(lobby.battle);
                 lobby.send(Type.BATTLE, "init_battle_model", JsonUtils.parseBattleModelInfo(battleInfo, false));
             }
         }

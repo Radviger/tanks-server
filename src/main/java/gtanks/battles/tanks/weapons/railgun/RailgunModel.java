@@ -7,12 +7,12 @@ import com.google.gson.JsonParseException;
 import gtanks.RandomUtils;
 import gtanks.battles.BattlefieldModel;
 import gtanks.battles.BattlefieldPlayerController;
-import gtanks.battles.anticheats.AnticheatModel;
+import gtanks.battles.anticheats.AntiCheatModel;
 import gtanks.battles.tanks.weapons.IEntity;
 import gtanks.battles.tanks.weapons.IWeapon;
 import gtanks.battles.tanks.weapons.anticheats.FireableWeaponAnticheatModel;
 
-@AnticheatModel(
+@AntiCheatModel(
     name = "RailgunModel",
     actionInfo = "Child FireableWeaponAnticheatModel"
 )

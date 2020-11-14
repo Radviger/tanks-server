@@ -2,9 +2,9 @@ package gtanks.battles.maps;
 
 import gtanks.battles.BattlefieldModel;
 import gtanks.battles.BattlefieldPlayerController;
-import gtanks.battles.anticheats.AnticheatModel;
+import gtanks.battles.anticheats.AntiCheatModel;
 
-@AnticheatModel(
+@AntiCheatModel(
     name = "MapChecksumModel",
     actionInfo = "Проверяет чек-суму(md5) карты на клиенте"
 )
