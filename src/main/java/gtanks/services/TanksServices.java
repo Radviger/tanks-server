@@ -2,6 +2,7 @@ package gtanks.services;
 
 import gtanks.RankUtils;
 import gtanks.commands.Type;
+import gtanks.lobby.LobbyCommandsConst;
 import gtanks.lobby.LobbyManager;
 import gtanks.logger.remote.RemoteDatabaseLogger;
 import gtanks.main.database.DatabaseManager;
@@ -50,7 +51,7 @@ public enum TanksServices {
                 RemoteDatabaseLogger.error("TanksServices::addCrystal: user null!");
             } else {
                 user.addCrystall(crystal);
-                lobby.send(Type.LOBBY, "add_crystall", String.valueOf(user.getCrystall()));
+                lobby.send(Type.LOBBY, LobbyCommandsConst.ADD_CRYSTAL, String.valueOf(user.getCrystall()));
                 this.database.update(user);
             }
         }

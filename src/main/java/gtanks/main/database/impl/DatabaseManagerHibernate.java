@@ -64,11 +64,11 @@ public enum DatabaseManagerHibernate implements DatabaseManager {
 
     @Override
     public User getUserById(String nickname) {
-        User user = this.getUserByIdFromCache(nickname);
+        User user = getUserByIdFromCache(nickname);
         if (user == null) {
             return Database.query(session -> {
                 Query<User> query = session.createQuery("FROM User U WHERE U.nickname = :nickname", User.class);
-                query.setString("nickname", nickname);
+                query.setParameter("nickname", nickname, StringType.INSTANCE);
                 return query.uniqueResult();
             });
         }
@@ -91,7 +91,7 @@ public enum DatabaseManagerHibernate implements DatabaseManager {
 
     @Override
     public User getUserByIdFromCache(String nickname) {
-        return (User) this.cache.get(nickname);
+        return this.cache.get(nickname);
     }
 
     @Override

@@ -19,6 +19,7 @@ import gtanks.users.User;
 import gtanks.users.karma.Karma;
 import org.jboss.netty.channel.ChannelHandlerContext;
 
+import java.util.Arrays;
 import java.util.regex.Pattern;
 
 public class Auth extends AuthCommandsConst {
@@ -38,6 +39,7 @@ public class Auth extends AuthCommandsConst {
         try {
             switch (command.type) {
                 case AUTH: {
+                    System.out.println("Auth args: " + Arrays.toString(command.args));
                     String nickname = command.args[0];
                     String password = command.args[1];
                     if (nickname.length() > 50) {
@@ -64,15 +66,16 @@ public class Auth extends AuthCommandsConst {
                     break;
                 }
                 case REGISTRATION:
-                    if (command.args[0].equals("check_name")) {
+                    System.out.println("Reg args: " + Arrays.toString(command.args));
+                    if (command.args[0].equals(CHECK_NICKNAME)) {
                         String nickname = command.args[1];
                         if (nickname.length() > 50) {
                             return;
                         }
 
-                        boolean callsignExist = database.contains(nickname);
-                        boolean callsignNormal = this.callsignNormal(nickname);
-                        this.transfer.send(Type.REGISTRATION, "check_name_result", !callsignExist && callsignNormal ? "not_exist" : "nickname_exist");
+                        boolean nameExists = database.contains(nickname);
+                        boolean nameValid = isNicknameValid(nickname);
+                        this.transfer.send(Type.REGISTRATION, CHECK_NICKNAME_RESULT, !nameExists && nameValid ? NICKNAME_NOT_EXIST : NICKNAME_EXIST);
                     } else {
                         String nickname = command.args[0];
                         String password = command.args[1];
@@ -85,15 +88,15 @@ public class Auth extends AuthCommandsConst {
                         }
 
                         if (database.contains(nickname)) {
-                            this.transfer.send(Type.REGISTRATION, "nickname_exist");
+                            this.transfer.send(Type.REGISTRATION, NICKNAME_EXIST);
                             return;
                         }
 
-                        if (this.callsignNormal(nickname)) {
+                        if (isNicknameValid(nickname)) {
                             User newUser = new User(nickname, password);
                             newUser.setLastIP(this.transfer.getIP());
                             database.register(newUser);
-                            this.transfer.send(Type.REGISTRATION, "info_done");
+                            this.transfer.send(Type.REGISTRATION, INFO_DONE);
                         } else {
                             this.transfer.closeConnection();
                         }
@@ -121,7 +124,7 @@ public class Auth extends AuthCommandsConst {
         }
     }
 
-    private boolean callsignNormal(String nick) {
+    private boolean isNicknameValid(String nick) {
         Pattern pattern = Pattern.compile("[a-zA-Z]\\w{3,14}");
         return pattern.matcher(nick).matches();
     }

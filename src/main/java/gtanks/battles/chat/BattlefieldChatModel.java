@@ -67,15 +67,29 @@ public class BattlefieldChatModel {
 
                 switch (arguments[0]) {
                     case "addcry": {
-                        this.tanksServices.addCrystal(player.parentLobby, this.getInt(arguments[1]));
+                        LobbyManager lobby = player.parentLobby;
+                        if (arguments.length > 2) {
+                            User u = this.database.getUserById(arguments[2]);
+                            if (u != null) {
+                                lobby = this.lobbyServices.getLobbyByUser(u);
+                            }
+                        }
+                        this.tanksServices.addCrystal(lobby, this.getInt(arguments[1]));
                         break;
                     }
                     case "addscore": {
                         int i = this.getInt(arguments[1]);
-                        if (player.parentLobby.getLocalUser().getScore() + i < 0) {
-                            this.sendSystemMessage("[SERVER]: Ваше количество очков опыта не должно быть отрицательное!", player);
+                        LobbyManager lobby = player.parentLobby;
+                        if (arguments.length > 2) {
+                            User u = this.database.getUserById(arguments[2]);
+                            if (u != null) {
+                                lobby = this.lobbyServices.getLobbyByUser(u);
+                            }
+                        }
+                        if (lobby.getLocalUser().getScore() + i < 0) {
+                            this.sendSystemMessage("[SERVER]: Ваше количество очков опыта не должно быть отрицательное!", lobby.battle);
                         } else {
-                            this.tanksServices.addScore(player.parentLobby, i);
+                            this.tanksServices.addScore(lobby, i);
                         }
                         break;
                     }

@@ -32,7 +32,7 @@ public class SmokyModel extends FiringWeaponModel {
         } else {
             this.bfModel.fire(this.player, data);
             JsonElement victimId = data.get("victimId");
-            if (victimId != null) {
+            if (victimId != null && !victimId.isJsonNull()) {
                 BattlefieldPlayerController victim = this.bfModel.players.get(victimId.getAsString());
                 if (victim != null) {
                     this.onTarget(new BattlefieldPlayerController[]{victim}, data.get("distance").getAsNumber().intValue());

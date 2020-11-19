@@ -146,7 +146,7 @@ public class SpectatorChatModel {
                 }
             }
         } else {
-            this.spModel.getBattleModel().sendToAllPlayers(Type.BATTLE, "spectator_message", message);
+            this.spModel.getBattleModel().sendToAllPlayers(Type.BATTLE, CHAT_SPECTATOR_COMMAND, message);
         }
     }
 }

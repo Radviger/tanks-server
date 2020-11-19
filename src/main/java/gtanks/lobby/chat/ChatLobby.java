@@ -66,289 +66,243 @@ public enum ChatLobby {
                 return;
             }
 
-            label244:
-            {
-                String var28;
-                switch ((var28 = arguments[0]).hashCode()) {
-                    case -1422509655:
-                        if (var28.equals("addcry")) {
-                            if (arguments.length >= 2) {
-                                this.tanksServices.addCrystal(msg.localLobby, this.getInt(arguments[1]));
-                            }
-                            break label244;
-                        }
-                        break;
-                    case -1357835445:
-                        if (var28.equals("cleant")) {
-                            if (arguments.length >= 2) {
-                                this.cleanMessagesByText(StringUtils.concatMassive(arguments, 1));
-                            }
-                            break label244;
-                        }
-                        break;
-                    case -1217854831:
-                        if (var28.equals("addscore")) {
-                            if (arguments.length >= 2) {
-                                int score = this.getInt(arguments[1]);
-                                if (msg.localLobby.getLocalUser().getScore() + score < 0) {
-                                    msg.localLobby.send(Type.LOBBY_CHAT, "system", "[SERVER]: Ваше количество очков опыта не должно быть отрицательное!");
-                                } else {
-                                    this.tanksServices.addScore(msg.localLobby, score);
-                                }
-                            }
-                            break label244;
-                        }
-                        break;
-                    case -1012222381:
-                        if (var28.equals("online")) {
-                            msg.localLobby.send(Type.LOBBY_CHAT, "system", "Current online: " + OnlineStats.getOnline() + "\nMax online: " + OnlineStats.getMaxOnline());
-                            break label244;
-                        }
-                        break;
-                    case -887328209:
-                        if (var28.equals("system")) {
-                            if (arguments.length >= 2) {
-                                this.sendSystemMessageToAll(arguments, false);
-                            }
-                            break label244;
-                        }
-                        break;
-                    case -293541251:
-                        if (var28.equals("unbanip")) {
-                            if (arguments.length >= 2) {
-                                User _victim = this.database.getUserById(arguments[1]);
-                                if (_victim == null) {
-                                    msg.localLobby.send(Type.LOBBY_CHAT, "system", "[SERVER]: Игрок не найден");
-                                    return;
-                                }
-
-                                LobbyManager _l = this.lobbyServices.getLobbyByUser(_victim);
-                                NettyUsersHandler.unblock(_l.getLocalUser().getLastIP());
-                            }
-                            break label244;
-                        }
-                        break;
-                    case 119:
-                        if (var28.equals("w")) {
-                            if (arguments.length < 3) {
-                                return;
-                            }
-
-                            User giver = this.database.getUserById(arguments[1]);
-                            if (giver == null) {
-                                msg.localLobby.send(Type.LOBBY_CHAT, "system", "[SERVER]: Игрок не найден!");
-                            } else {
-                                String reason = StringUtils.concatMassive(arguments, 2);
-                                this.sendSystemMessageToAll("Танкист " + giver.getNickname() + " предупрежден. Причина: " + reason, false);
-                            }
-                            break label244;
-                        }
-                        break;
-                    case 3291718:
-                        if (var28.equals("kick")) {
-                            if (arguments.length >= 2) {
-                                User _userForKick = this.database.getUserById(arguments[1]);
-                                if (_userForKick == null) {
-                                    msg.localLobby.send(Type.LOBBY_CHAT, "system", "[SERVER]: Игрок не найден");
-                                } else {
-                                    LobbyManager _lobby = this.lobbyServices.getLobbyByUser(_userForKick);
-                                    if (_lobby != null) {
-                                        _lobby.kick();
-                                        this.sendSystemMessageToAll(_userForKick.getNickname() + " кикнут", false);
-                                    }
-                                }
-                            }
-                            break label244;
-                        }
-                        break;
-                    case 3540994:
-                        if (var28.equals("stop")) {
-                            this.stopped = true;
-                            this.sendSystemMessageToAll("Чат остановлен", false);
-                            break label244;
-                        }
-                        break;
-                    case 3641990:
-                        if (var28.equals("warn")) {
-                            this.sendSystemMessageToAll(arguments, true);
-                            break label244;
-                        }
-                        break;
-                    case 93503862:
-                        if (var28.equals("banip")) {
-                            if (arguments.length >= 2) {
-                                User victim = this.database.getUserById(arguments[1]);
-                                if (victim == null) {
-                                    msg.localLobby.send(Type.LOBBY_CHAT, "system", "[SERVER]: Игрок не найден");
-                                    return;
-                                }
-
-                                LobbyManager l = this.lobbyServices.getLobbyByUser(victim);
-                                NettyUsersHandler.block(l.getLocalUser().getLastIP());
-                                l.kick();
-                            }
-                            break label244;
-                        }
-                        break;
-                    case 94746185:
-                        if (var28.equals("clean")) {
-                            if (arguments.length >= 2) {
-                                this.cleanMessagesByUser(arguments[1]);
-                            }
-                            break label244;
-                        }
-                        break;
-                    case 94746189:
-                        if (var28.equals("clear")) {
-                            this.clear();
-                            break label244;
-                        }
-                        break;
-                    case 98246397:
-                        if (var28.equals("getip")) {
-                            if (arguments.length >= 2) {
-                                User shower = this.database.getUserById(arguments[1]);
-                                if (shower == null) {
-                                    msg.localLobby.send(Type.LOBBY_CHAT, "system", "[SERVER]: Игрок не найден");
-                                    return;
-                                }
-
-                                String ip = shower.getAntiCheatData().ip;
-                                if (ip == null) {
-                                    ip = shower.getLastIP();
-                                }
-
-                                msg.localLobby.send(Type.LOBBY_CHAT, "system", "IP user " + shower.getNickname() + " : " + ip);
-                            }
-                            break label244;
-                        }
-                        break;
-                    case 109757538:
-                        if (var28.equals("start")) {
-                            this.stopped = false;
-                            this.sendSystemMessageToAll("Чат запущен", false);
-                            break label244;
-                        }
-                        break;
-                    case 111426262:
-                        if (var28.equals("unban")) {
-                            if (arguments.length >= 2) {
-                                User cu = this.database.getUserById(arguments[1]);
-                                if (cu == null) {
-                                    msg.localLobby.send(Type.LOBBY_CHAT, "system", "[SERVER]: Игрок не найден!");
-                                } else {
-                                    this.banServices.unbanChat(cu);
-                                    this.sendSystemMessageToAll("Танкисту " + cu.getNickname() + " был разрешён выход в эфир", false);
-                                }
-                            }
-                            break label244;
-                        }
-                        break;
-                    case 873005567:
-                        if (var28.equals("blockgame")) {
-                            if (arguments.length < 3) {
-                                return;
-                            }
-
-                            User victim_ = this.database.getUserById(arguments[1]);
-
-                            int reasonId;
-                            try {
-                                reasonId = Integer.parseInt(arguments[2]);
-                            } catch (Exception var24) {
-                                reasonId = 0;
-                            }
-
-                            if (victim_ == null) {
-                                msg.localLobby.send(Type.LOBBY_CHAT, "system", "[SERVER]: Игрок не найден!");
-                            } else {
-                                this.banServices.ban(BanType.GAME, BanTimeType.FOREVER, victim_, msg.user, BlockGameReason.getReasonById(reasonId).getReason());
-                                LobbyManager lobby = this.lobbyServices.getLobbyByNick(victim_.getNickname());
-                                if (lobby != null) {
-                                    lobby.kick();
-                                }
-
-                                this.sendSystemMessageToAll("Танкист " + victim_.getNickname() + " был заблокирован и кикнут", false);
-                            }
-                            break label244;
-                        }
-                        break;
-                    case 941444998:
-                        if (var28.equals("unblockgame")) {
-                            if (arguments.length < 2) {
-                                return;
-                            }
-
-                            User av = this.database.getUserById(arguments[1]);
-                            if (av == null) {
-                                msg.localLobby.send(Type.LOBBY_CHAT, "system", "[SERVER]: Игрок не найден!");
-                            } else {
-                                this.banServices.unblock(av);
-                                this.sendSystemMessageToAll("Танкист " + av.getNickname() + " был разблокирован", false);
-                            }
-                            break label244;
-                        }
-                        break;
-                    case 995013546:
-                        if (var28.equals("rbattle")) {
-                            if (arguments.length < 2) {
-                                break label244;
-                            }
-
-                            StringBuilder id = new StringBuilder();
-
-                            for (int i = 1; i < arguments.length; ++i) {
-                                id.append(arguments[i]).append(" ");
-                            }
-
-                            BattleInfo battle = BattlesList.getBattleInfoById(id.toString().trim().replace("#battle", ""));
-                            if (battle == null) {
-                                msg.localLobby.send(Type.LOBBY_CHAT, "system", "[SERVER]: Битва не найдена");
-                            } else {
-                                if (battle.model != null) {
-                                    battle.model.sendTableMessageToPlayers("Битва была досрочна завершена, скоро вы будете кикнуты");
-                                }
-
-                                SystemTimerScheduler.scheduleTask(() -> {
-                                    this.sendSystemMessageToAll("Битва " + battle.name + " была принудительно завершена", false);
-                                    BattlesList.removeBattle(battle);
-                                    autoEntryServices.battleDisposed(battle.model);
-                                }, 4000L);
-                                msg.localLobby.send(Type.LOBBY_CHAT, "system", "[SERVER]: Битва будет удалена через 4 секунды");
-                            }
-                            break label244;
-                        }
+            switch (arguments[0]) {
+                case "addcry": {
+                    if (arguments.length >= 2) {
+                        this.tanksServices.addCrystal(msg.localLobby, this.getInt(arguments[1]));
+                    }
+                    break;
                 }
+                case "cleant": {
+                    if (arguments.length >= 2) {
+                        this.cleanMessagesByText(StringUtils.concatMassive(arguments, 1));
+                    }
+                    break;
+                }
+                case "addscore": {
+                    if (arguments.length >= 2) {
+                        int score = this.getInt(arguments[1]);
+                        if (msg.localLobby.getLocalUser().getScore() + score < 0) {
+                            msg.localLobby.send(Type.LOBBY_CHAT, "system", "[SERVER]: Ваше количество очков опыта не должно быть отрицательное!");
+                        } else {
+                            this.tanksServices.addScore(msg.localLobby, score);
+                        }
+                    }
+                    break;
+                }
+                case "online": {
+                    msg.localLobby.send(Type.LOBBY_CHAT, "system", "Current online: " + OnlineStats.getOnline() + "\nMax online: " + OnlineStats.getMaxOnline());
+                    break;
+                }
+                case "system": {
+                    if (arguments.length >= 2) {
+                        this.sendSystemMessageToAll(arguments, false);
+                    }
+                    break;
+                }
+                case "unbanip": {
+                    if (arguments.length >= 2) {
+                        User _victim = this.database.getUserById(arguments[1]);
+                        if (_victim == null) {
+                            msg.localLobby.send(Type.LOBBY_CHAT, "system", "[SERVER]: Игрок не найден");
+                            return;
+                        }
 
-                if (!msg.message.startsWith("/ban")) {
+                        LobbyManager _l = this.lobbyServices.getLobbyByUser(_victim);
+                        NettyUsersHandler.unblock(_l.getLocalUser().getLastIP());
+                    }
+                    break;
+                }
+                case "w": {
+                    if (arguments.length < 3) {
+                        return;
+                    }
+
+                    User giver = this.database.getUserById(arguments[1]);
+                    if (giver == null) {
+                        msg.localLobby.send(Type.LOBBY_CHAT, "system", "[SERVER]: Игрок не найден!");
+                    } else {
+                        String reason = StringUtils.concatMassive(arguments, 2);
+                        this.sendSystemMessageToAll("Танкист " + giver.getNickname() + " предупрежден. Причина: " + reason, false);
+                    }
+                    break;
+                }
+                case "kick": {
+                    if (arguments.length >= 2) {
+                        User _userForKick = this.database.getUserById(arguments[1]);
+                        if (_userForKick == null) {
+                            msg.localLobby.send(Type.LOBBY_CHAT, "system", "[SERVER]: Игрок не найден");
+                        } else {
+                            LobbyManager _lobby = this.lobbyServices.getLobbyByUser(_userForKick);
+                            if (_lobby != null) {
+                                _lobby.kick();
+                                this.sendSystemMessageToAll(_userForKick.getNickname() + " кикнут", false);
+                            }
+                        }
+                    }
+                    break;
+                }
+                case "stop": {
+                    this.stopped = true;
+                    this.sendSystemMessageToAll("Чат остановлен", false);
+                    break;
+                }
+                case "warn": {
+                    this.sendSystemMessageToAll(arguments, true);
+                    break;
+                }
+                case "banip": {
+                    if (arguments.length >= 2) {
+                        User victim = this.database.getUserById(arguments[1]);
+                        if (victim == null) {
+                            msg.localLobby.send(Type.LOBBY_CHAT, "system", "[SERVER]: Игрок не найден");
+                            return;
+                        }
+
+                        LobbyManager l = this.lobbyServices.getLobbyByUser(victim);
+                        NettyUsersHandler.block(l.getLocalUser().getLastIP());
+                        l.kick();
+                    }
+                    break;
+                }
+                case "clean": {
+                    if (arguments.length >= 2) {
+                        this.cleanMessagesByUser(arguments[1]);
+                    }
+                    break;
+                }
+                case "clear": {
+                    this.clear();
+                    break;
+                }
+                case "getip": {
+                    if (arguments.length >= 2) {
+                        User shower = this.database.getUserById(arguments[1]);
+                        if (shower == null) {
+                            msg.localLobby.send(Type.LOBBY_CHAT, "system", "[SERVER]: Игрок не найден");
+                            return;
+                        }
+
+                        String ip = shower.getAntiCheatData().ip;
+                        if (ip == null) {
+                            ip = shower.getLastIP();
+                        }
+
+                        msg.localLobby.send(Type.LOBBY_CHAT, "system", "IP user " + shower.getNickname() + " : " + ip);
+                    }
+                    break;
+                }
+                case "start": {
+                    this.stopped = false;
+                    this.sendSystemMessageToAll("Чат запущен", false);
+                    break;
+                }
+                case "unban": {
+                    if (arguments.length >= 2) {
+                        User cu = this.database.getUserById(arguments[1]);
+                        if (cu == null) {
+                            msg.localLobby.send(Type.LOBBY_CHAT, "system", "[SERVER]: Игрок не найден!");
+                        } else {
+                            this.banServices.unbanChat(cu);
+                            this.sendSystemMessageToAll("Танкисту " + cu.getNickname() + " был разрешён выход в эфир", false);
+                        }
+                    }
+                    break;
+                }
+                case "blockgame": {
+                    if (arguments.length >= 3) {
+                        User victim_ = this.database.getUserById(arguments[1]);
+
+                        int reasonId;
+                        try {
+                            reasonId = Integer.parseInt(arguments[2]);
+                        } catch (Exception var24) {
+                            reasonId = 0;
+                        }
+
+                        if (victim_ == null) {
+                            msg.localLobby.send(Type.LOBBY_CHAT, "system", "[SERVER]: Игрок не найден!");
+                        } else {
+                            this.banServices.ban(BanType.GAME, BanTimeType.FOREVER, victim_, msg.user, BlockGameReason.getReasonById(reasonId).getReason());
+                            LobbyManager lobby = this.lobbyServices.getLobbyByNick(victim_.getNickname());
+                            if (lobby != null) {
+                                lobby.kick();
+                            }
+
+                            this.sendSystemMessageToAll("Танкист " + victim_.getNickname() + " был заблокирован и кикнут", false);
+                        }
+                    }
+                    break;
+                }
+                case "unblockgame": {
+                    if (arguments.length < 2) {
+                        return;
+                    }
+
+                    User av = this.database.getUserById(arguments[1]);
+                    if (av == null) {
+                        msg.localLobby.send(Type.LOBBY_CHAT, "system", "[SERVER]: Игрок не найден!");
+                    } else {
+                        this.banServices.unblock(av);
+                        this.sendSystemMessageToAll("Танкист " + av.getNickname() + " был разблокирован", false);
+                    }
+                    break;
+                }
+                case "rbattle": {
+                    if (arguments.length >= 2) {
+                        StringBuilder id = new StringBuilder();
+
+                        for (int i = 1; i < arguments.length; ++i) {
+                            id.append(arguments[i]).append(" ");
+                        }
+
+                        BattleInfo battle = BattlesList.getBattleInfoById(id.toString().trim().replace("#battle", ""));
+                        if (battle == null) {
+                            msg.localLobby.send(Type.LOBBY_CHAT, "system", "[SERVER]: Битва не найдена");
+                        } else {
+                            if (battle.model != null) {
+                                battle.model.sendTableMessageToPlayers("Битва была досрочна завершена, скоро вы будете кикнуты");
+                            }
+
+                            SystemTimerScheduler.scheduleTask(() -> {
+                                this.sendSystemMessageToAll("Битва " + battle.name + " была принудительно завершена", false);
+                                BattlesList.removeBattle(battle);
+                                autoEntryServices.battleDisposed(battle.model);
+                            }, 4000L);
+                            msg.localLobby.send(Type.LOBBY_CHAT, "system", "[SERVER]: Битва будет удалена через 4 секунды");
+                        }
+                    }
+                    break;
+                }
+                case "ban": {
+                    BanTimeType time = BanChatCommads.getTimeType(arguments[0]);
+                    if (arguments.length < 3) {
+                        return;
+                    }
+
+                    String reason = StringUtils.concatMassive(arguments, 2);
+                    if (time == null) {
+                        msg.localLobby.send(Type.LOBBY_CHAT, "system", "[SERVER]: Команда бана не найдена!");
+                        return;
+                    }
+
+                    User _victim = this.database.getUserById(arguments[1]);
+                    if (_victim == null) {
+                        msg.localLobby.send(Type.LOBBY_CHAT, "system", "[SERVER]: Игрок не найден!");
+                        return;
+                    }
+
+                    this.banServices.ban(BanType.CHAT, time, _victim, msg.user, reason);
+                    this.sendSystemMessageToAll("Танкист " + _victim.getNickname() + " лишен права выхода в эфир " + time.getNameType() + " Причина: " + reason, false);
+                    break;
+                }
+                default: {
                     msg.localLobby.send(Type.LOBBY_CHAT, "system", "[SERVER]: Неизвестная команда!");
+                    break;
                 }
-            }
-
-            if (msg.message.startsWith("/ban")) {
-                BanTimeType time = BanChatCommads.getTimeType(arguments[0]);
-                if (arguments.length < 3) {
-                    return;
-                }
-
-                String reason = StringUtils.concatMassive(arguments, 2);
-                if (time == null) {
-                    msg.localLobby.send(Type.LOBBY_CHAT, "system", "[SERVER]: Команда бана не найдена!");
-                    return;
-                }
-
-                User _victim = this.database.getUserById(arguments[1]);
-                if (_victim == null) {
-                    msg.localLobby.send(Type.LOBBY_CHAT, "system", "[SERVER]: Игрок не найден!");
-                    return;
-                }
-
-                this.banServices.ban(BanType.CHAT, time, _victim, msg.user, reason);
-                this.sendSystemMessageToAll("Танкист " + _victim.getNickname() + " лишен права выхода в эфир " + time.getNameType() + " Причина: " + reason, false);
             }
         } else if (!msg.message.isEmpty()) {
             if (msg.message.length() >= 399) {
-                msg = null;
                 return;
             }
 
@@ -395,15 +349,15 @@ public enum ChatLobby {
     }
 
     public void sendSystemMessageToAll(String[] ar, boolean yellow) {
-        StringBuffer total = new StringBuffer();
+        StringBuilder total = new StringBuilder();
 
         for (int i = 1; i < ar.length; ++i) {
             total.append(ar[i]).append(" ");
         }
 
-        ChatMessage sys_msg = new ChatMessage((User) null, total.toString(), false, (User) null, yellow, (LobbyManager) null);
-        sys_msg.system = true;
-        this.chatMessages.add(sys_msg);
+        ChatMessage msg = new ChatMessage(null, total.toString(), false, null, yellow, null);
+        msg.system = true;
+        this.chatMessages.add(msg);
         if (this.chatMessages.size() >= 50) {
             this.chatMessages.remove(0);
         }
@@ -412,7 +366,7 @@ public enum ChatLobby {
     }
 
     public void sendSystemMessageToAll(String msg, boolean yellow) {
-        ChatMessage sys_msg = new ChatMessage((User) null, msg, false, (User) null, yellow, (LobbyManager) null);
+        ChatMessage sys_msg = new ChatMessage(null, msg, false, null, yellow, null);
         sys_msg.system = true;
         this.chatMessages.add(sys_msg);
         if (this.chatMessages.size() >= 50) {
